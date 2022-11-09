@@ -1,0 +1,84 @@
+.d1{
+  @extend %d1;
+}
+.d2{
+  @extend %d2;
+}
+
+h1, .h1{
+  @extend %h1;
+}
+h2, .h2{
+  @extend %h2;
+}
+h3, .h3{
+  @extend %h3;
+}
+h4, .h4{
+  @extend %h4;
+}
+h5, .h5{
+  @extend %h5;
+}
+h6, .h6{
+  @extend %h6;
+}
+.h7{
+  @extend %h7;
+}
+
+.p1{
+  @extend %p1;
+}
+.p2{
+  @extend %p2;
+}
+.p3{
+  @extend %p3;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.mt-4px{
+  margin-top: 4px;  
+}
+.mb-4px{
+  margin-bottom: 4px;  
+}
+
+.mt-8px{
+  margin-top: 8px;  
+}
+.mb-8px{
+  margin-bottom: 8px;  
+}
+.me-8px{
+  margin-right: 8px;
+}
+.ms-8px{
+  margin-left: 8px;
+}
+
+.mt-16px{
+  margin-top: 16px;  
+}
+.mb-16px{
+  margin-bottom: 16px;  
+}
+
+.mt-24px{
+  margin-top: 24px;  
+}
+.mb-24px{
+  margin-bottom: 24px;  
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-error{
+  color: $color_pink;
+}
