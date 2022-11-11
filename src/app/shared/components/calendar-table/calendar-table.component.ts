@@ -1,4 +1,3 @@
-
 import {
   Component,
   ChangeDetectionStrategy,
@@ -40,14 +39,13 @@ const colors: Record<string, EventColor> = {
   },
 };
 
-
-
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  selector: 'app-calendar-table',
+  templateUrl: './calendar-table.component.html',
+  styleUrls: ['./calendar-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CalendarComponent  {
+export class CalendarTableComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any> | undefined;
 
   view: CalendarView = CalendarView.Month;
@@ -56,10 +54,10 @@ export class CalendarComponent  {
 
   viewDate: Date = new Date();
 
-  modalData: {
+  modalData!: {
     action: string;
     event: CalendarEvent;
-  } | undefined;
+  };
 
   actions: CalendarEventAction[] = [
     {
@@ -123,6 +121,7 @@ export class CalendarComponent  {
   ];
 
   activeDayIsOpen: boolean = true;
+
   constructor(private modal: NgbModal) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -191,5 +190,3 @@ export class CalendarComponent  {
     this.activeDayIsOpen = false;
   }
 }
-
-
