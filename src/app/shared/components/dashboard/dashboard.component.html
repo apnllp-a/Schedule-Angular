@@ -1,0 +1,13 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Calendar</h1>
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        
+        <mat-card-content class="dashboard-card-content" >
+          <app-calendar-table></app-calendar-table>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

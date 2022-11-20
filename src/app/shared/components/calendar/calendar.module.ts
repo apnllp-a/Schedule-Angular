@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarTableComponent } from './calendar-table.component';
-
-
+import { CalendarComponent } from './calendar.component';
 
 @NgModule({
-  declarations: [CalendarTableComponent],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,7 +19,7 @@ import { CalendarTableComponent } from './calendar-table.component';
       useFactory: adapterFactory,
     }),
   ],
-  exports:[CalendarTableComponent],
-
+   declarations: [CalendarComponent],
+  exports:[CalendarComponent],
 })
-export class CalendarTableModule { }
+export class CalenwdarModule { }

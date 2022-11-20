@@ -1,0 +1,82 @@
+<body>
+    
+
+    <div class="container">
+        <div class="header-title">
+            <h3>รายชื่อพนักงาน</h3>
+            <div class="status-table">
+                <div class="total-confirm">
+                    <a href="#" class="edit">แก้ไขข้อมูลพนักงาน</a>
+                    <p class="edit-list" (click)="expression =! expression">แก้ไขรายชื่อพนักงาน</p>
+                </div>
+                <div class="total-user" >
+                    <p style="text-align:start ;">พนักงานทั้งหมด</p>
+                    <p style="text-align:center;font-size: 32px; ">65</p>
+                    <p style="text-align:end ;">คน</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="data-table">
+            <div class="filter-head">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" #inputEl (input)="inputSearch(inputEl.value)" pInputText placeholder="Search">
+                </span>
+                <div class="drp" style="display: flex;align-items: center; gap: 20px;">
+                    <h5 style=" font-family: 'Kanit'!important;font-size: 18px;margin-top: 15px;">เรียงตาม</h5>
+                <p-dropdown [options]="cities" optionLabel="name" style="outline:none;"></p-dropdown>
+                </div>
+            </div>
+            <div class="card"  [ngClass]="expression ? 'onclick' : 'card-onclick'">
+                <h5>รายชื่อพนักงาน </h5>
+                <p-table [value]=" products" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                    [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                    <ng-template pTemplate="header">
+                        <tr style="text-align:center ;">
+                            <th style="width:5%;text-align:center ;">No.</th>
+                            <th style="width:25%;text-align:center ;">รายชื่อ</th>
+                            <th style="width:20%;text-align:center ;">Email</th>
+                            <th style="width:20%;text-align:center ;">Username</th>
+                            <th style="width:15%;text-align:center ;">วันที่</th>
+                            <th style="width:15%;text-align:center ;">
+                                <ng-container *ngIf="expression; else elseTemplate">
+                                    ติดต่อ
+                           </ng-container>
+                           <ng-template #elseTemplate>
+                               แก้ไขรายชื่อ
+                           </ng-template>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-products>
+                        <tr>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.code}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.name}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.category}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.quantity}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.quantity}}</td>
+                            <td style="text-align:center ;">
+                               <ng-container *ngIf="expression; else elseTemplate">
+                                         {{products.tal}}
+                                </ng-container>
+                                <ng-template #elseTemplate>
+                                    <i class="fa-solid fa-trash" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
+                                </ng-template>
+                               
+                              
+    
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorleft">
+                    </ng-template>
+                    <ng-template pTemplate="paginatorright">
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>

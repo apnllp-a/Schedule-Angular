@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    font-family: 'Kanit'!important;
+
+    .header-title {
+        h3{
+            font-family: 'Kanit'!important;
+            border: 3px solid #31A69F;
+            color: #31A69F;
+            display: flex;
+            width: 500px;
+            height: 150px;
+           justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            font-size: 36px;
+            font-weight: 500;
+        }
+        padding: 25px 30px;
+        display: flex;
+        gap:50px;
+        justify-content: space-between;
+        align-items: center;
+
+        .status-table {
+            display: flex;
+            gap: 50px;
+
+            .total-confirm {
+                line-height: 30px;
+                width: 200px;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: #3493e0;
+                color: #fff;
+                padding: 20px 22px;
+                border: none;
+                border-radius: 16px;
+            }
+
+            .total-user {
+                line-height: 30px;
+                width: 200px;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: #e03434;
+                color: #fff;
+                padding: 20px 22px;
+                border: none;
+                border-radius: 16px;
+            }
+        }
+    }
+
+    .data-table{
+        
+        .filter-head{
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            input{
+                height: 45px;
+            }
+        }
+        .card {
+            border: 1px solid #31A69F;
+            h5 {
+                padding:15px 20px;
+                background-color: #31A69F;
+                color: #fff;
+                font-size: 18px;
+                font-family: 'Kanit'!important;
+            }
+        }
+    }
+    * th,td{
+        font-family: 'Kanit'!important;
+     }
+
+}

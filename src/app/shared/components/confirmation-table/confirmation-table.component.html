@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="header-title">
+        <h3>ยืนยันการสมัคร</h3>
+        <div class="status-table">
+            <div class="total-confirm">
+                <p style="text-align:start ;">รอการยืนยันทั้งหมด</p>
+                <p style="text-align:center;font-size: 32px;  ">{{products.length}}</p>
+                <p style="text-align:end ;">คน</p>
+            </div>
+            <div class="total-user">
+                <p style="text-align:start ;">พนักงานทั้งหมด</p>
+                <p style="text-align:center;font-size: 32px; ">65</p>
+                <p style="text-align:end ;">คน</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-table">
+        <div class="filter-head">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" #inputEl (input)="inputSearch(inputEl.value)" pInputText placeholder="Search">
+            </span>
+            <div class="drp" style="display: flex;align-items: center; gap: 20px;height: 50px;">
+                <h5 style=" font-family: 'Kanit'!important;font-size: 18px;margin-top: 15px;">เรียงตาม</h5>
+            <p-dropdown [options]="cities" optionLabel="name" style="outline:none;min-width: 150px;"></p-dropdown>
+            </div>
+        </div>
+        <div class="card">
+            <h5>รายชื่อผู้สมัครสมาชิก</h5>
+            <p-table [value]=" products" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                <ng-template pTemplate="header">
+                    <tr style="text-align:center ;">
+                        <th style="width:5%;text-align:center ;">No.</th>
+                        <th style="width:25%;text-align:center ;">รายชื่อ</th>
+                        <th style="width:20%;text-align:center ;">Email</th>
+                        <th style="width:20%;text-align:center ;">Username</th>
+                        <th style="width:15%;text-align:center ;">วันที่</th>
+                        <th style="width:15%;text-align:center ;">ยืนยัน</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-products>
+                    <tr>
+                        <td style="text-align:center ;">{{products.code}}</td>
+                        <td style="text-align:center ;">{{products.name}}</td>
+                        <td style="text-align:center ;">{{products.category}}</td>
+                        <td style="text-align:center ;">{{products.quantity}}</td>
+                        <td style="text-align:center ;">{{products.quantity}}</td>
+                        <td style="text-align:center ;">
+                            <p-toast *ngIf="true"></p-toast>
+
+                            <p-confirmPopup></p-confirmPopup>
+
+                            <button (click)="confirm($event)" pButton icon="pi pi-check" label="Confirm" 
+                             
+                            style="padding:7px 18px ;
+                                   background-color: #31A69F;
+                                   border-color: #31A69F;"
+                            ></button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+@import '/src/assets/scss/mixins';
+@import '/src/assets/scss/variables';
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    font-family: 'Kanit'!important;
+
+    .header-title {
+        h3{
+            font-family: 'Kanit';
+            border: 3px solid #31A69F;
+            color: #31A69F;
+            display: flex;
+            width: 500px;
+            height: 150px;
+           justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            font-size: 36px;
+            font-weight: 500;
+        }
+        padding: 25px 30px;
+        display: flex;
+        gap:50px;
+        justify-content: space-between;
+        align-items: center;
+
+        .status-table {
+            display: flex;
+            gap: 50px;
+
+            .total-confirm {
+                justify-content: space-evenly;
+                display: flex;
+                flex-direction: column;
+                .edit{
+                    background-color: brown;
+                    color: #fff;
+                    text-decoration: none;
+                    padding: 10px 22px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+                .edit-list {
+                    background-color: darkorchid;
+                    color: #fff;
+                    text-decoration: none;
+                    padding: 10px 22px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-family: 'Kanit'!important;
+                    cursor: pointer;
+                }
+            }
+
+            .total-user {
+                line-height: 30px;
+                width: 200px;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: #34a1e0;
+                color: #fff;
+                padding: 20px 22px;
+                border: none;
+                border-radius: 16px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .data-table{
+        
+        .filter-head{
+            
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            input{
+                height: 45px;
+            }
+        }
+        .card {
+            
+            border: 1px solid #31A69F;
+            h5 {
+                font-family: 'Kanit'!important;
+                padding:15px 20px;
+                background-color: #31A69F;
+                color: #fff;
+                font-size: 18px;
+            }
+        }
+        .card-onclick {
+            
+            border: 1px solid darkorchid;
+            h5 {
+                font-family: 'Kanit'!important;
+                padding:15px 20px;
+                background-color: darkorchid;
+                color: #fff;
+                font-size: 18px;
+            }
+        }
+    }
+    
+ * th{
+    font-family: 'Kanit'!important;
+ }
+}
