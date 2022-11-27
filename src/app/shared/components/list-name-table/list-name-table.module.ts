@@ -19,6 +19,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import { HeaderModule } from "../header-hr/header.module";
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { HeaderModule } from "../header-hr/header.module";
         DropdownModule,
         ConfirmDialogModule,
         ConfirmPopupModule,
-        HeaderModule
+        HeaderModule,
+        MatDialogModule
     ]
 })
 export class ListNameTableModule { }

@@ -8,7 +8,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarComponent } from './calendar.component';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     FormsModule,

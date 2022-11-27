@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-page-it',
@@ -9,14 +10,19 @@ export class MainPageItComponent implements OnInit {
   
   confirm:boolean= true;
 
-  @ViewChild('test',{read:ElementRef}) test?: ElementRef<HTMLImageElement>
+  tests: any;
+  testsID: string | null | undefined;
 
   searchList(text:string){
     console.log('Name searched: ' + text);
   }
-  constructor() { }
+
+ 
+
+  constructor(private activatedRoute: ActivatedRoute, ) { }
 
   ngOnInit(): void {
+   this.testsID = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
 }

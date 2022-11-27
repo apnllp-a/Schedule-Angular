@@ -6,8 +6,7 @@
             <h3>รายชื่อพนักงาน</h3>
             <div class="status-table">
                 <div class="total-confirm">
-                    <a href="#" class="edit">แก้ไขข้อมูลพนักงาน</a>
-                    <p class="edit-list" (click)="expression =! expression">แก้ไขรายชื่อพนักงาน</p>
+                    <p class="edit-list" (click)="expression =! expression">แก้ไขข้อมูลพนักงาน</p>
                 </div>
                 <div class="total-user" >
                     <p style="text-align:start ;">พนักงานทั้งหมด</p>
@@ -30,7 +29,7 @@
             </div>
             <div class="card"  [ngClass]="expression ? 'onclick' : 'card-onclick'">
                 <h5>รายชื่อพนักงาน </h5>
-                <p-table [value]=" products" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                <p-table [value]=" products"  [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
                     [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
                     <ng-template pTemplate="header">
                         <tr style="text-align:center ;">
@@ -44,7 +43,7 @@
                                     ติดต่อ
                            </ng-container>
                            <ng-template #elseTemplate>
-                               แก้ไขรายชื่อ
+                               แก้ไขข้อมูล
                            </ng-template>
                             </th>
                         </tr>
@@ -61,8 +60,8 @@
                                          {{products.tal}}
                                 </ng-container>
                                 <ng-template #elseTemplate>
-                                    <i class="fa-solid fa-trash" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
-                                </ng-template>
+                                    <i class="fa-regular fa-pen-to-square" (click)="openDialog()" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
+                               </ng-template>
                                
                               
     

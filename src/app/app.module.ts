@@ -25,6 +25,7 @@ import { NavbarModule } from './shared/components/navbar/navbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PermissionPageComponent } from './views/permission-page/permission-page.component';
+import { HeaderItModule } from './shared/components/header-it/header-it.module';
 @NgModule({
     declarations: [
         AppComponent,
@@ -66,6 +67,7 @@ import { PermissionPageComponent } from './views/permission-page/permission-page
         HttpClientModule,
         MatNativeDateModule,
         ReactiveFormsModule,
+        HeaderItModule,
     ]
 })
 export class AppModule { }

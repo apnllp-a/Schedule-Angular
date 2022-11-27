@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {ConfirmationService, MessageService, PrimeNGConfig} from 'primeng/api';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { debounceTime } from 'rxjs';
+import { AccountComponent } from '../account/account.component';
 interface City {
   name: string,
   code: string
@@ -30,84 +30,84 @@ export class ListNameTableComponent implements OnInit {
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125126,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125127,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125128,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125129,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125130,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125131,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125132,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125133,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125134,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125135,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     },
     {
       code: 125136,
       name: 'Honkai Impact 3',
       category: 'Games',
       quantity: '5 Star',
-      tal:'095-888-7765'
+      tal: '000-854-9658'
     }
   ];
   
@@ -162,7 +162,8 @@ confirm(event: Event) {
 
   constructor(   private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private primengConfig: PrimeNGConfig) {
+    private primengConfig: PrimeNGConfig,
+    public dialog: MatDialog,) {
     this.cities = [
         {name: 'New York', code: 'NY'},
         {name: 'Rome', code: 'RM'},
@@ -172,6 +173,17 @@ confirm(event: Event) {
     ];
 }
 
+openDialog() {
+  const dialogRef = this.dialog.open(AccountComponent,{
+
+    panelClass:'custom-modalbox',
+   
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
+}
 
 ngOnInit() {
   this.primengConfig.ripple = true;

@@ -18,6 +18,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {DropdownModule} from 'primeng/dropdown';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import { HeaderItModule } from '../header-it/header-it.module';
 @NgModule({
   declarations: [ConfirmationTableComponent],
   imports: [
@@ -38,8 +39,8 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     ProgressBarModule,
     DropdownModule,
     ConfirmDialogModule,
-    ConfirmPopupModule
-    
+    ConfirmPopupModule,
+    HeaderItModule
     
 
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmationTableComponent } from './shared/components/confirmation-table/confirmation-table.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,9 @@ const routes: Routes = [
     path: 'main-page-it/permission-page',
     loadChildren: () => import('./views/permission-page/permission-page.module').then(m => m.PermissionPageModule),
   },
+  {
+    path: 'checkout', component: ConfirmationTableComponent
+  }
 ];
 
 @NgModule({

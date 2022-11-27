@@ -16,12 +16,14 @@
     font-family: 'Kanit'!important;
 
     .header-title {
+        width: 90%;
+        display: flex;
         h3{
             font-family: 'Kanit';
             border: 3px solid #31A69F;
             color: #31A69F;
             display: flex;
-            width: 500px;
+            width: 350px;
             height: 150px;
            justify-content: center;
             align-items: center;
@@ -118,4 +120,8 @@
  * th{
     font-family: 'Kanit'!important;
  }
+}
+::ng-deep .mat-dialog-container{
+    background-color: #ffffff !important;
+    color: #000;
 }
