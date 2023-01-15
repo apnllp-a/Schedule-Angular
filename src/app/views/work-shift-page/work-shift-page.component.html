@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="navbar">
+        <app-header></app-header>
+    </div>
+    <div class="work-shift-table">
+        <h1>บันทึกข้อมูลการเเลกเปลี่ยน</h1>
+        <div class="table">
+            <p-table  [value]=" products" [paginator]="true" [rows]="15" [showCurrentPageReport]="true"
+                [tableStyle]="{'min-width': '50rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                <ng-template pTemplate="header">
+                    <tr style="text-align:center; background-color: blueviolet !important;">
+                        <th style="width:5%;text-align:center ;">No.</th>
+                        <th style="width:20%;text-align:center ;">แผนก</th>
+                        <th style="width:25%;text-align:center ;">ชื่อผู้ร้องขอ</th>
+                        <th style="width:25%;text-align:center ;">ผู้แลกเปลี่ยน</th>
+                        <th style="width:10%;text-align:center ;">วันที่ทำการ</th>
+                        <th style="width:15%;text-align:center ;">ผู้อนุมัติ</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-products>
+                    <tr (click)="openDialog()">
+                        <td style="text-align:center ;">{{products.code }}</td>
+                        <td style="text-align:center ;">{{ products.quantity }}</td>
+                        <td style="text-align:center ;">{{ products.name}}</td>
+                        <td style="text-align:center ;">{{products.category}}</td>
+                        <td style="text-align:center ;">{{products.date}}</td>
+                        <td style="text-align:center ;">
+                            {{products.admin}}
+
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

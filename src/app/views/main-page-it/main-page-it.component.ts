@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-main-page-it',
   templateUrl: './main-page-it.component.html',
   styleUrls: ['./main-page-it.component.scss'],
+  encapsulation:ViewEncapsulation.None
 })
 export class MainPageItComponent implements OnInit {
   
@@ -17,6 +18,8 @@ export class MainPageItComponent implements OnInit {
     console.log('Name searched: ' + text);
   }
 
+
+  
  
 
   constructor(private activatedRoute: ActivatedRoute, ) { }

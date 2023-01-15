@@ -24,14 +24,15 @@ import { CalendarTableModule } from "./shared/components/calendar-table/calendar
 import { NavbarModule } from './shared/components/navbar/navbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
-import { PermissionPageComponent } from './views/permission-page/permission-page.component';
 import { HeaderItModule } from './shared/components/header-it/header-it.module';
+import { MaterialExampleModule } from 'material.module';
+import { RegisterPageModule } from './views/register-page/register-page.module';
+import { RegisterPageComponent } from './views/register-page/register-page.component';
 @NgModule({
     declarations: [
         AppComponent,
+        RegisterPageComponent
     ],
-    providers: [],
-    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -57,17 +58,12 @@ import { HeaderItModule } from './shared/components/header-it/header-it.module';
         CalendarTableModule,
         NavbarModule,
         NoopAnimationsModule,
-        LayoutModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        FormsModule,
         HttpClientModule,
         MatNativeDateModule,
-        ReactiveFormsModule,
         HeaderItModule,
-    ]
+        MaterialExampleModule
+    ],
+   
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

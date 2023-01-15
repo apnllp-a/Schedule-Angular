@@ -8,7 +8,7 @@ import { LoginPageRoutingModule } from './login-page-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
   ]
 })
 export class LoginPageModule { }

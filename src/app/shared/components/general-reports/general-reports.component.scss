@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+
+    .card-header {
+        height: 20%;
+        padding: 20px;
+    }
+
+    .card-detail {
+        height: 60%;
+        padding: 20px;
+    }
+
+    .card-footer {
+        height: 20%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        .person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .involved {
+            display: flex;
+            gap: 25px;
+            .hr,
+            .boss {
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+
+}

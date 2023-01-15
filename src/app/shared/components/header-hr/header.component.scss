@@ -114,6 +114,14 @@ button {
     text-decoration: none;
     display: block;
 }
+.sidenav p {
+    cursor: pointer;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 25px;
+    text-decoration: none;
+    display: block;
+}
 
 .sidenav a:hover {
     background-color: #9892d8;

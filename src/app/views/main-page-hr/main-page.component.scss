@@ -2,18 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
-.header{
+.header{ 
+    
     width: 100vw;
-    position: relative;
 }
 .calendar{
     position: absolute;
-    top: 85px;
-    left: 365px;
-    margin: 0 50px;
+    top: 100px;
+    left: 400px;
+    margin: 0 auto;
+    .container{
+        .tableSetting{
+            display: none !important;
+        }
+    }
 }
 
 

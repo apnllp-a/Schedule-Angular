@@ -12,6 +12,14 @@ const routes: Routes = [
     loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
   },
   {
+    path: 'register-page/:id',
+    loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
+  },
+  {
+    path: 'add',
+    loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
+  },
+  {
     path: 'main-page-hr',
     loadChildren: () => import('./views/main-page-hr/main-page.module').then(m => m.MainPageModule),
   },
@@ -37,7 +45,13 @@ const routes: Routes = [
   },
   {
     path: 'checkout', component: ConfirmationTableComponent
-  }
+  },
+  { path: 'work-shift-page', 
+  loadChildren: () => import('./views/work-shift-page/work-shift-page.module').then(m => m.WorkShiftPageModule)
+ },
+  { path: 'documents-page', 
+  loadChildren: () => import('./views/documents-page/documents-page.module').then(m => m.DocumentsPageModule) 
+}
 ];
 
 @NgModule({

@@ -8,18 +8,20 @@ import { CalendarTableModule } from 'src/app/shared/components/calendar-table/ca
 import { HeaderBModule } from 'src/app/shared/components/header-b/header-b.module';
 import { HeaderHdModule } from 'src/app/shared/components/header-hd/header-hd.module';
 import { HeaderItModule } from 'src/app/shared/components/header-it/header-it.module';
+import { CalenwdarModule } from "../../shared/components/calendar/calendar.module";
 
 
 @NgModule({
-  declarations: [MainPageComponent],
-  imports: [
-    CommonModule,
-    MainPageRoutingModule,
-    HeaderModule,
-    HeaderBModule,
-    HeaderHdModule,
-    HeaderItModule,
-    CalendarTableModule
-  ]
+    declarations: [MainPageComponent],
+    imports: [
+        CommonModule,
+        MainPageRoutingModule,
+        HeaderModule,
+        HeaderBModule,
+        HeaderHdModule,
+        HeaderItModule,
+        CalendarTableModule,
+        CalenwdarModule
+    ]
 })
 export class MainPageModule { }

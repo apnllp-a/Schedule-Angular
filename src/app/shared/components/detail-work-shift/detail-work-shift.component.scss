@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+.card{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 800px;
+    padding: 20px;
+    .title{
+    }
+    .details{
+    }
+    .btn-group{
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        button{
+           padding: 7px 15px;
+           border: none;
+           border-radius: 4px;
+        }
+        button:hover{
+            transition: .1s ease-in;
+           background-color: bisque;
+        }
+    }
+}
+

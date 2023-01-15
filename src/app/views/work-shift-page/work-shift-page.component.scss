@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    min-width: 100vw;
+    font-family: 'Kanit'!important;
+    
+    .work-shift-table{
+    
+        padding: 20px 0;
+        width:1280px;
+        position: absolute;
+        top: 100px;
+        left: 500px;
+        h1{
+            width: inherit;
+            border-bottom: 1px solid #d5d5d5;
+            padding: 25px 0 ;
+            font-size: 28px;
+            font-family: 'Kanit'!important;
+        }
+        tr:hover{
+            background-color: #dcd9fd ;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+        }
+     
+    }
+}
+

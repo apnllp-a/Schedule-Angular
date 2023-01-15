@@ -5,24 +5,60 @@
         <h3>Create your account with Schedule</h3>
        </div>
        <div class="input-form-area">
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <input type="password" placeholder="Verify Password">
+          
+          <input type="text" placeholder="Username" name="username"  required id="username" [(ngModel)]="tutorial.username">
+        <input type="text" placeholder="Password" name="password" required id="password"[(ngModel)]="tutorial.password">
+        <input type="password" placeholder="Verify Password" name="v-password" required id="v-password">
         <div class="check-pass">
             <p><i class="fa-regular fa-circle-check"></i> รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร</p>
             <p><i class="fa-regular fa-circle-check"></i> ประกอบตัวอักษรและตัวเลข</p><br>
             </div>
-        <input type="text" placeholder="Name">
-        <select name="" id="#">
+        <input type="text" placeholder="Name" name="name" required id="name" [(ngModel)]="tutorial.name">
+        <select name="department" id="#" required id="department" [(ngModel)]="tutorial.department">
             <option value="1">IT</option>
             <option value="2">HR</option>
             <option value="3">P</option>
             <option value="4">BOSS</option>
         </select>
         <div class="button-group">
-            <button type="submit">ยืนยัน</button>
+            <button type="submit" (click)="saveTutorial()">ยืนยัน</button>
             <a href="/">เข้าสู่ระบบ</a>
         </div>
        </div>
     </div>
 </body>
+<!-- 
+<div>
+  <div class="submit-form">
+    <div >
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+         
+          name="title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          class="form-control"
+          id="description"
+          required
+          name="description"
+        />
+      </div>
+
+      <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newTutorial()">Add</button>
+    </div>
+  </div>
+</div> -->

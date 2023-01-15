@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   startOfDay,
