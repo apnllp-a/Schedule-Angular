@@ -19,6 +19,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import { HeaderItModule } from '../header-it/header-it.module';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ConfirmationTableComponent],
   imports: [
@@ -40,8 +41,8 @@ import { HeaderItModule } from '../header-it/header-it.module';
     DropdownModule,
     ConfirmDialogModule,
     ConfirmPopupModule,
-    HeaderItModule
-    
+    HeaderItModule,
+    FormsModule
 
 
 

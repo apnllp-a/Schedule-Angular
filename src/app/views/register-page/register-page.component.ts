@@ -38,7 +38,6 @@ export class RegisterPageComponent implements OnInit {
         },
         error: (e) => console.error(e)
       });
-    console.log(data);
   }
 
   newTutorial(): void {

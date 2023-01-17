@@ -14,6 +14,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderItModule } from 'src/app/shared/components/header-it/header-it.module';
+import { ConfirmationTableComponent } from 'src/app/shared/components/confirmation-table/confirmation-table.component';
 
 
 @NgModule({
@@ -23,12 +24,12 @@ import { HeaderItModule } from 'src/app/shared/components/header-it/header-it.mo
         CommonModule,
         MainPageItRoutingModule,
         HeaderModule,
-        ConfirmationTableModule,
         ListNameTableModule,
         MatTabsModule,
         FormsModule,
         NgbModalModule,
         CalendarTableModule,
+        ConfirmationTableModule,
         FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,

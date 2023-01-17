@@ -31,7 +31,7 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
 @NgModule({
     declarations: [
         AppComponent,
-        RegisterPageComponent
+        RegisterPageComponent,
     ],
     imports: [
         BrowserModule,
@@ -61,7 +61,7 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
         HttpClientModule,
         MatNativeDateModule,
         HeaderItModule,
-        MaterialExampleModule
+        MaterialExampleModule,
     ],
    
     bootstrap: [AppComponent]

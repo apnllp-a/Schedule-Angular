@@ -3,8 +3,9 @@ import {ConfirmationService, MessageService, PrimeNGConfig} from 'primeng/api';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { debounceTime } from 'rxjs';
-
-
+import { Tutorial  } from "../../../models/tutorial.model";
+import { ServicesTestService } from "../../../services/services-test.service";
+import { ActivatedRoute, Router } from '@angular/router';
 interface City {
   name: string,
   code: string
@@ -18,87 +19,89 @@ interface City {
 })
 export class ConfirmationTableComponent {
   cities: City[];
-
   selectedCity: City | undefined;
   first = 0;
-
   rows = 10;
 
+  tutorials?: Tutorial[];
+  currentTutorial: Tutorial = {};
+  currentIndex = -1;
+  name = '';
 
-  products = [
-    {
-      code: 125125,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125126,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125127,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125128,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125129,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125130,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125131,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125132,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125133,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125134,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125135,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    },
-    {
-      code: 125136,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star'
-    }
-  ];
+  // products = [
+  //   {
+  //     code: 125125,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125126,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125127,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125128,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125129,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125130,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125131,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125132,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125133,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125134,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125135,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   },
+  //   {
+  //     code: 125136,
+  //     name: 'Honkai Impact 3',
+  //     category: 'Games',
+  //     quantity: '5 Star'
+  //   }
+  // ];
   
   @Output() onInput = new EventEmitter<string>();
   @Output() onSearch = this.onInput.pipe(debounceTime(1000));
@@ -120,11 +123,11 @@ reset() {
 }
 
 isLastPage(): boolean {
-    return this.products ? this.first === (this.products .length - this.rows): true;
+    return this.tutorials ? this.first === (this.tutorials .length - this.rows): true;
 }
 
 isFirstPage(): boolean {
-    return this.products  ? this.first === 0 : true;
+    return this.tutorials  ? this.first === 0 : true;
 }
 
 confirm(event: Event) {
@@ -140,18 +143,21 @@ confirm(event: Event) {
       });
     },
     reject: () => {
+      this.deleteTutorial()
       this.messageService.add({
         severity: "error",
         summary: "Rejected",
         detail: "ยกเลิกการสมัคร"
+      
       });
     }
   });
 }
-
   constructor(   private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private primengConfig: PrimeNGConfig) {
+    private primengConfig: PrimeNGConfig,private servicetestService: ServicesTestService
+    ,private route: ActivatedRoute,
+    private router: Router) {
     this.cities = [
         {name: 'รายชื่อ', code: 'NY'},
         {name: 'แผนก', code: 'RM'},
@@ -162,8 +168,69 @@ confirm(event: Event) {
 }
 
 
+retrieveTutorials(): void {
+  this.servicetestService.getAll()
+    .subscribe({
+      next: (data) => {
+        this.tutorials = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+}
+
+refreshList(): void {
+  this.retrieveTutorials();
+  this.currentTutorial = {};
+  this.currentIndex = -1;
+}
+
+setActiveTutorial(tutorial: Tutorial, index: number): void {
+  this.currentTutorial = tutorial;
+  this.currentIndex = index;
+}
+
+removeAllTutorials(): void {
+  this.servicetestService.deleteAll()
+    .subscribe({
+      next: (res) => {
+        console.log(res);
+        this.refreshList();
+      },
+      error: (e) => console.error(e)
+    });
+}
+
+searchTitle(): void {
+  this.currentTutorial = {};
+  this.currentIndex = -1;
+
+  this.servicetestService.findByName(this.name)
+    .subscribe({
+      next: (data) => {
+        this.tutorials = data;
+        console.log(data);
+      },
+      error: (e) => console.error(e)
+    });
+}
+
+
+deleteTutorial(): void {
+  this.servicetestService.delete(this.currentTutorial.id)
+    .subscribe({
+      next: (res) => {
+        console.log(res);
+        this.router.navigate(['/tutorials']);
+      },
+      error: (e) => console.error(e)
+    });
+}
+
 ngOnInit() {
   this.primengConfig.ripple = true;
+  this.retrieveTutorials();
+console.log(this.tutorials);
 }
 }
 

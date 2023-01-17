@@ -34,7 +34,7 @@ export class ServicesTestService {
     return this.http.delete(baseUrl);
   }
 
-  findByUsername(username: any): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(`${baseUrl}?username=${username}`);
+  findByName(name: any): Observable<Tutorial[]> {
+    return this.http.get<Tutorial[]>(`${baseUrl}?name=${name}`);
   }
 }
