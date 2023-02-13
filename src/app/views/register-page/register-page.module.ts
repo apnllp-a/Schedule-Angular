@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterPageRoutingModule } from './register-page-routing.module';
 import { FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     RegisterPageRoutingModule,
+    MatFormFieldModule
   ]
 })
 export class RegisterPageModule { }

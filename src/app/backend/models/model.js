@@ -3,8 +3,17 @@ module.exports = mongoose => {
       {
         username: String,
         password: String,
-        name: String,
-        department: String,
+        firstname: String,
+        lastname:String,
+        departmentDetail: {
+          role:String,
+          salary:Number,
+          department:String
+        },
+        status:{
+          role:String,
+          active:Boolean
+        },
         published: Boolean
       },
       { timestamps: true }

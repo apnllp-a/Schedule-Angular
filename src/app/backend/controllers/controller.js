@@ -14,8 +14,10 @@ exports.create = (req, res) => {
     const tutorial = new Tutorial({
         username: req.body.username,
         password: req.body.password,
-        name: req.body.name,
-        department: req.body.department,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        departmentDetail: req.body.departmentDetail,
+        status: req.body.status,
         published: req.body.published ? req.body.published : false
     });
 

@@ -4,7 +4,7 @@
     <div class="status-table">
       <div class="total-confirm">
         <p style="text-align:start ;">รอการยืนยันทั้งหมด</p>
-        <p style="text-align:center;font-size: 32px;  ">12</p>
+        <p style="text-align:center;font-size: 32px;  ">{{length}}</p>
         <p style="text-align:end ;">คน</p>
       </div>
       <div class="total-user">
@@ -20,11 +20,11 @@
     <div class="filter-head">
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
-        <input type="text" [(ngModel)]="name" pInputText placeholder="Search">
+        <input type="text" [(ngModel)]="name" pInputText placeholder="Search"  > <button type="button" (click)="searchName()">search</button>
       </span>
       <div class="drp" style="display: flex;align-items: center; gap: 20px;height: 50px;">
         <h5 style=" font-family: 'Kanit'!important;font-size: 18px;margin-top: 15px;">เรียงตาม</h5>
-        <p-dropdown [options]="cities" optionLabel="name" style="outline:none;min-width: 150px;"></p-dropdown>
+        <p-dropdown  optionLabel="name" style="outline:none;min-width: 150px;"></p-dropdown>
       </div>
     </div>
     <div class="card">
@@ -45,10 +45,28 @@
           <tr *ngFor="let tutorial of tutorials; let i = index" [class.active]="i == currentIndex"
             (click)="setActiveTutorial(tutorial, i)">
             <td style="text-align:center ;">{{i+1}}</td>
-            <td style="text-align:center ;">{{tutorial.name}}</td>
-            <td style="text-align:center ;">{{tutorial.department}}</td>
+            <td style="text-align:center ;">{{tutorial.firstname}}  {{tutorial.lastname}}</td>
+            <td style="text-align:center ;">
+                <span ngSwitch="{{tutorial.departmentDetail}}">
+                <p *ngSwitchCase="1">
+                IT
+                </p>
+                <p *ngSwitchCase="2">
+                HR
+                </p>
+                <p *ngSwitchCase="3">
+                P
+                </p>
+                <p *ngSwitchCase="4">
+                Boss
+                </p>
+                <p *ngSwitchDefault>
+                ยังไม่ได้กำหนดระดับ
+                </p>
+                </span>
+            </td>
             <td style="text-align:center ;">{{tutorial.username}}</td>
-            <td style="text-align:center ;">{{tutorial.id}}</td>
+            <td style="text-align:center ;">{{tutorial.createdAt | date}}</td>
             <td style="text-align:center ;">
               <button (click)="confirm($event)" pButton icon="pi pi-check" label="Confirm" style="padding:7px 18px ;
                                    background-color: #31A69F;
@@ -63,11 +81,13 @@
             Remove All
           </button> -->
         </ng-template>
+        
       </p-table>
       <p-toast *ngIf="true"></p-toast>
       <p-confirmPopup></p-confirmPopup>
     </div>
   </div>
+
   <!-- 
   <div class="">
     <div class="list row">

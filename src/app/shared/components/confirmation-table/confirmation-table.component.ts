@@ -6,10 +6,6 @@ import { debounceTime } from 'rxjs';
 import { Tutorial  } from "../../../models/tutorial.model";
 import { ServicesTestService } from "../../../services/services-test.service";
 import { ActivatedRoute, Router } from '@angular/router';
-interface City {
-  name: string,
-  code: string
-}
 
 @Component({
   selector: 'app-confirmation-table',
@@ -18,12 +14,10 @@ interface City {
   providers: [ConfirmationService, MessageService]
 })
 export class ConfirmationTableComponent {
-  cities: City[];
-  selectedCity: City | undefined;
   first = 0;
   rows = 10;
-
-  tutorials?: Tutorial[];
+  length=0;
+  tutorials: Tutorial[];
   currentTutorial: Tutorial = {};
   currentIndex = -1;
   name = '';
@@ -123,12 +117,17 @@ reset() {
 }
 
 isLastPage(): boolean {
-    return this.tutorials ? this.first === (this.tutorials .length - this.rows): true;
+    return this.tutorials ? this.first === (this.tutorials.length - this.rows): true;
 }
 
 isFirstPage(): boolean {
     return this.tutorials  ? this.first === 0 : true;
 }
+
+
+
+
+
 
 confirm(event: Event) {
   this.confirmationService.confirm({
@@ -157,14 +156,8 @@ confirm(event: Event) {
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,private servicetestService: ServicesTestService
     ,private route: ActivatedRoute,
-    private router: Router) {
-    this.cities = [
-        {name: 'รายชื่อ', code: 'NY'},
-        {name: 'แผนก', code: 'RM'},
-        {name: 'บัญชีผู้ใช้', code: 'LDN'},
-        {name: 'วันที่', code: 'IST'},
-        {name: 'ID', code: 'PRS'}
-    ];
+    private router: Router, private http: HttpClient) {
+   
 }
 
 
@@ -173,7 +166,7 @@ retrieveTutorials(): void {
     .subscribe({
       next: (data) => {
         this.tutorials = data;
-        console.log(data);
+       this.length = data.length;
       },
       error: (e) => console.error(e)
     });
@@ -201,10 +194,9 @@ removeAllTutorials(): void {
     });
 }
 
-searchTitle(): void {
+searchName(): void {
   this.currentTutorial = {};
   this.currentIndex = -1;
-
   this.servicetestService.findByName(this.name)
     .subscribe({
       next: (data) => {
@@ -221,16 +213,18 @@ deleteTutorial(): void {
     .subscribe({
       next: (res) => {
         console.log(res);
-        this.router.navigate(['/tutorials']);
+        this.refreshList();
+
       },
       error: (e) => console.error(e)
     });
+
 }
 
 ngOnInit() {
   this.primengConfig.ripple = true;
   this.retrieveTutorials();
-console.log(this.tutorials);
+console.log(this.tutorials?.length);
 }
 }
 
