@@ -9,7 +9,7 @@
       </div>
       <div class="total-user">
         <p style="text-align:start ;">พนักงานทั้งหมด</p>
-        <p style="text-align:center;font-size: 32px; ">65</p>
+        <p style="text-align:center;font-size: 32px; ">{{lengthUserAll}}</p>
         <p style="text-align:end ;">คน</p>
       </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="filter-head">
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
-        <input type="text" [(ngModel)]="name" pInputText placeholder="Search"  > <button type="button" (click)="searchName()">search</button>
+        <input type="text" [(ngModel)]="name" pInputText placeholder="Search" class="form-control"> <button type="button" (click)="searchName()">search</button>
       </span>
       <div class="drp" style="display: flex;align-items: center; gap: 20px;height: 50px;">
         <h5 style=" font-family: 'Kanit'!important;font-size: 18px;margin-top: 15px;">เรียงตาม</h5>

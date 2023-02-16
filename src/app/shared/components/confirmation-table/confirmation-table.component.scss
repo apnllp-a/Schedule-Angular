@@ -9,22 +9,23 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    font-family: 'Kanit'!important;
+    font-family: 'Kanit' !important;
 
     .header-title {
-        h3{
-            font-family: 'Kanit'!important;
+        h3 {
+            font-family: 'Kanit' !important;
             border: 3px solid #31A69F;
             color: #31A69F;
             display: flex;
             width: 500px;
             height: 150px;
-           justify-content: center;
+            justify-content: center;
             align-items: center;
             border-radius: 16px;
             font-size: 36px;
             font-weight: 500;
         }
+
         padding: 25px 30px;
         display: flex;
         gap:50px;
@@ -63,29 +64,53 @@
         }
     }
 
-    .data-table{
-        
-        .filter-head{
+    .data-table {
+
+        .filter-head {
             padding: 10px 0;
             display: flex;
             justify-content: space-between;
-            input{
+
+            input {
                 height: 45px;
             }
+
+            .p-input-icon-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                button{
+                    color: #fff;
+                    border: none;
+                    background-color:  #31A69F;
+                    border-radius: 4px;
+                    padding: 7px 12px;
+                    transition: .1s ease-in;
+                }
+                button:hover{
+                    background-color: #fff;
+                    color: #31A69F;
+                    border:1px solid #31A69F;
+                }
+            }
         }
+
         .card {
             border: 1px solid #31A69F;
+
             h5 {
-                padding:15px 20px;
+                padding: 15px 20px;
                 background-color: #31A69F;
                 color: #fff;
                 font-size: 18px;
-                font-family: 'Kanit'!important;
+                font-family: 'Kanit' !important;
             }
         }
     }
-    * th,td{
-        font-family: 'Kanit'!important;
-     }
+
+    * th,
+    td {
+        font-family: 'Kanit' !important;
+    }
 
 }
