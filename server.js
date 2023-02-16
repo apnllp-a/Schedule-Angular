@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
 
 var corsOptions = {
@@ -16,11 +15,13 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
 const db = require("./src/app/backend/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => {
     console.log("Connected to the database!");
@@ -33,6 +34,9 @@ db.mongoose
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder applicationzzzzzzzzzz." });
+});
+app.get("/userAll", (req, res) => {
+  res.json({ message: "Welcome to Appp" });
 });
 
 require("./src/app/backend/routes/routes")(app);

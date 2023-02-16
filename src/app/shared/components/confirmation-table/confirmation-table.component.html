@@ -16,7 +16,6 @@
   </div>
 
   <div class="data-table">
-<h1>555</h1>
     <div class="filter-head">
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
@@ -29,8 +28,8 @@
     </div>
     <div class="card">
       <h5>รายชื่อผู้สมัครสมาชิก</h5>
-      <p-table [paginator]="true" [rows]="5" [showCurrentPageReport]="true" [tableStyle]="{'min-width': '75rem'}"
-        currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]" [value]="[tutorials]">
+      <p-table [paginator]="true" [rows]="5"  [tableStyle]="{'min-width': '75rem'}"
+         [rowsPerPageOptions]="[10,15,20]" [value]="[tutorials]">
         <ng-template pTemplate="header">
           <tr style="text-align:center ;">
             <th style="width:5%;text-align:center ;">No.</th>
@@ -71,6 +70,7 @@
               <button (click)="confirm($event)" pButton icon="pi pi-check" label="Confirm" style="padding:7px 18px ;
                                    background-color: #31A69F;
                                    border-color: #31A69F;"></button>
+                                   
             </td>
           </tr>
         </ng-template>
@@ -87,6 +87,7 @@
       <p-confirmPopup></p-confirmPopup>
     </div>
   </div>
+  
 
   <!-- 
   <div class="">

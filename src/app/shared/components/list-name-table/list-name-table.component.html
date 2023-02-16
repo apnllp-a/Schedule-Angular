@@ -29,7 +29,7 @@
             </div>
             <div class="card"  [ngClass]="expression ? 'onclick' : 'card-onclick'">
                 <h5>รายชื่อพนักงาน </h5>
-                <p-table [value]=" products"  [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                <p-table [value]="[user_all]"  [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
                     [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
                     <ng-template pTemplate="header">
                         <tr style="text-align:center ;">
@@ -49,15 +49,16 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-products>
-                        <tr>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.code}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.name}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.category}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.quantity}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{products.quantity}}</td>
+                        <tr *ngFor="let user_alls of user_all; let i = index" [class.active]="i == currentIndex"
+                        (click)="setActiveUserAlls(user_alls, i)">
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{i+1}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.firstname}} {{user_alls.lastname}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.email}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.username}}</td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">17 jun 2012</td>
                             <td style="text-align:center ;">
                                <ng-container *ngIf="expression; else elseTemplate">
-                                         {{products.tal}}
+                                {{user_alls.tal}}
                                 </ng-container>
                                 <ng-template #elseTemplate>
                                     <i class="fa-regular fa-pen-to-square" (click)="openDialog()" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
