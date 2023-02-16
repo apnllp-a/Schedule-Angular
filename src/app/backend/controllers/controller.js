@@ -35,7 +35,7 @@ exports.create = (req, res) => {
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
     const firstname = req.query.firstname;
-    var condition = firstname ? { firstname: { $regex: new RegExp(firstname), $option: "i" } } : {};
+    var condition = firstname ? { firstname:  RegExp(firstname), $option: "i" }  : {};
     Tutorial.find(condition).then(data => {
         res.send(data);
     })

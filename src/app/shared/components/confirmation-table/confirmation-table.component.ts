@@ -6,8 +6,8 @@ import { debounceTime } from 'rxjs';
 import { Tutorial } from "../../../models/tutorial.model";
 import { ServicesTestService } from "../../../services/services-test.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import { subscribe } from 'graphql';
 import { UserAllService } from '../../../services/user/user-all.service';
+import { UserAll } from 'src/app/models/user/user-all.model';
 @Component({
   selector: 'app-confirmation-table',
   templateUrl: './confirmation-table.component.html',
@@ -18,6 +18,7 @@ export class ConfirmationTableComponent {
   first = 0;
   rows = 10;
   length = 0;
+  lengthUserAll = 0;
   tutorials?: Tutorial[];
   currentTutorial: Tutorial = {};
   currentIndex = -1;
@@ -87,8 +88,17 @@ export class ConfirmationTableComponent {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.retrieveTutorials();
+    this.retrieveUserAlls()
+  }
 
-
+  retrieveUserAlls(): void {
+    this.userAllService.getAll()
+      .subscribe({
+        next: (data) => {
+          this.lengthUserAll = data.length;
+        },
+        error: (e) => console.error(e)
+      });
   }
 
   retrieveTutorials(): void {
@@ -130,10 +140,10 @@ export class ConfirmationTableComponent {
   searchName(): void {
     this.currentTutorial = {};
     this.currentIndex = -1;
+
     this.servicetestService.findByName(this.name).subscribe({
       next: (data) => {
         this.tutorials = data;
-        this.refreshList();
       },
       error: (e) => console.error(e)
     });

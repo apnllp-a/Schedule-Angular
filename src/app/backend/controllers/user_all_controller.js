@@ -35,7 +35,7 @@ exports.create = (req, res) => {
 // Retrieve all UserAlls from the database.
 exports.findAll = (req, res) => {
     const firstname = req.query.firstname;
-    var condition = firstname ? { firstname: { $regex: new RegExp(firstname), $option: "i" } } : {};
+    var condition = firstname ? { firstname:  RegExp(firstname), $option: "i" }  : {};
     userAll.find(condition).then(data => {
         res.send(data);
     })
