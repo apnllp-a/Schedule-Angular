@@ -1,115 +1,58 @@
-<!-- <body>
-    <div class="container">
-       <div class="title-head">
-        <img src="../../../assets/images/login.png" alt="">
-        <h3>Create your account with Schedule</h3>
-       </div>
-       <div class="input-form-area">
-          
-          <input type="text" placeholder="Username" name="username"  required id="username" [(ngModel)]="tutorial.username">
-        <input type="text" placeholder="Password" name="password" required id="password"[(ngModel)]="tutorial.password">
-        <input type="text" placeholder="Verify Password" name="v-password" required id="v-password">
-        <ng-container *ngIf="">
-          <p>ไม่ตรงกัน</p>
-        </ng-container>
-        
-        <div class="check-pass">
-            <p><i class="fa-regular fa-circle-check"></i> รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร</p>
-            <p><i class="fa-regular fa-circle-check"></i> ประกอบตัวอักษรและตัวเลข</p><br>
-            </div>
-        <input type="text" placeholder="Name" name="name" required id="name" [(ngModel)]="tutorial.lastname">
-        <select name="departmentDetail" id="#" required id="department" [(ngModel)]="tutorial.departmentDetail" aria-placeholder="ทั้งหมด">
-            <option value="1">IT</option>
-            <option value="2">HR</option>
-            <option value="3">P</option>
-            <option value="4">BOSS</option>
-        </select>
-        <div class="button-group">
-            <button type="submit" (click)="saveTutorial()">ยืนยัน</button>
-            <a href="/">เข้าสู่ระบบ</a>
-        </div>
-       </div>
-    </div>
-</body> -->
-<!-- 
-<div>
-  <div class="submit-form">
-    <div >
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          required
-         
-          name="title"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input
-          class="form-control"
-          id="description"
-          required
-          name="description"
-        />
-      </div>
-
-      <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
-    </div>
-
-    <div *ngIf="submitted">
-      <h4>Tutorial was submitted successfully!</h4>
-      <button class="btn btn-success" (click)="newTutorial()">Add</button>
-    </div>
-  </div>
-</div> -->
-
 <body>
   <div class="container">
     <h1>Create your account with Schedule</h1>
+    <div *ngIf="submitted">Registeredd !!</div>
     <div class="form-register-card">
+      
       <div class="item-left">
         <mat-form-field appearance="outline">
           <mat-label>First-Name</mat-label>
-          <input type="text" name="firstname" [(ngModel)]="tutorial.firstname" matInput placeholder="Enter your First Name" type="text" [formControl]="firstname" required>
-          <mat-error *ngIf="firstname.invalid" >{{getErrorMessage()}}</mat-error>
+          <input type="text" name="firstname" [(ngModel)]="tutorial.firstname" matInput
+            placeholder="Enter your First Name" type="text" [formControl]="firstname" required>
+          <mat-error *ngIf="firstname.invalid">{{getErrorMessageFirstname()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Username</mat-label>
-          <input type="text" name="username" [(ngModel)]="tutorial.username" matInput #inputusername maxlength="10" placeholder="Enter your Username" type="text" [formControl]="username" required>
+          <input type="text" name="username" [(ngModel)]="tutorial.username" matInput #inputusername maxlength="10"
+            placeholder="Enter your Username" type="text" [formControl]="username" required>
           <mat-hint align="end">{{inputusername.value.length}}/10</mat-hint>
-          <mat-error *ngIf="username.invalid" >{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Department</mat-label>
-          <input type="text" name="department" [(ngModel)]="tutorial.departmentDetail" matInput placeholder="Enter your Department" type="text">
-        </mat-form-field>
-       
+          <input type="text" name="department" [(ngModel)]="tutorial.departmentDetail" matInput
+            placeholder="Enter your Department" type="text">
+        </mat-form-field> -->
+
       </div>
       <div class="item-right">
         <mat-form-field appearance="outline">
           <mat-label>Last-Name</mat-label>
-          <input type="text" name="lastname" [(ngModel)]="tutorial.lastname" matInput placeholder="Enter your Last Name" type="text" [formControl]="lastname" required>
-          <mat-error *ngIf="lastname.invalid" >{{getErrorMessage()}}</mat-error>
+          <input type="text" name="lastname" [(ngModel)]="tutorial.lastname" matInput placeholder="Enter your Last Name"
+            type="text" [formControl]="lastname" required>
+          <mat-error *ngIf="lastname.invalid">{{getErrorMessageLastname()}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input  name="password" [(ngModel)]="tutorial.password" matInput #inputpass minlength="4" maxlength="8" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <input name="password" [(ngModel)]="tutorial.password" matInput #inputpass minlength="4" maxlength="8"
+            placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-hint align="end">{{inputpass.value.length}}/8</mat-hint>
+          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Status</mat-label>
-          <input type="text" name="status" [(ngModel)]="tutorial.status" matInput placeholder="Enter your Status" type="text">
-        </mat-form-field>
+          <input type="text" name="status" [(ngModel)]="tutorial.status" matInput placeholder="Enter your Status"
+            type="text">
+        </mat-form-field> -->
       </div>
     </div>
+
     <button type="submit" (click)="saveTutorial()">Confirm !</button>
   </div>
   <img src="../../../assets/images/login.png" alt="">
 </body>
+

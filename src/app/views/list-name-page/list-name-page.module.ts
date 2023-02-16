@@ -5,6 +5,7 @@ import { ListNamePageRoutingModule } from './list-name-page-routing.module';
 import { ListNamePageComponent } from './list-name-page.component';
 import { HeaderItModule } from 'src/app/shared/components/header-it/header-it.module';
 import { ListNameTableModule } from 'src/app/shared/components/list-name-table/list-name-table.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ListNameTableModule } from 'src/app/shared/components/list-name-table/l
     CommonModule,
     ListNamePageRoutingModule,
     HeaderItModule,
-    ListNameTableModule
+    ListNameTableModule,
+    MatFormFieldModule
   ],exports:[ ListNamePageComponent]
 })
 export class ListNamePageModule { }

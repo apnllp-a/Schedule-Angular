@@ -62,6 +62,7 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
         MatNativeDateModule,
         HeaderItModule,
         MaterialExampleModule,
+        
     ],
    
     bootstrap: [AppComponent]

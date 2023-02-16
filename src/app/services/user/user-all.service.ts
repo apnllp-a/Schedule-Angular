@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Tutorial } from '../models/tutorial.model';
-
-const baseUrl = 'http://localhost:8080/api/ScheduleDB';
+import { UserAll } from '../../models/user/user-all.model';
+const baseUrl = 'http://localhost:8080/api/userAll';
 @Injectable({
   providedIn: 'root'
 })
-export class ServicesTestService {
-  constructor(private http: HttpClient) { }
+export class UserAllService {
 
-  getAll(): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(baseUrl);
+  constructor(private http:HttpClient) { }
+
+  getAll(): Observable<UserAll[]> {
+    return this.http.get<UserAll[]>(baseUrl);
   }
 
-  get(id: any): Observable<Tutorial> {
+  get(id: any): Observable<UserAll> {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
@@ -34,7 +34,7 @@ export class ServicesTestService {
     return this.http.delete(baseUrl);
   }
 
-  findByName(name: any): Observable<Tutorial[]> {
-    return this.http.get<Tutorial[]>(`${baseUrl}?firstname=${name}`);
+  findByName(name: any): Observable<UserAll[]> {
+    return this.http.get<UserAll[]>(`${baseUrl}?firstname=${name}`);
   }
 }
