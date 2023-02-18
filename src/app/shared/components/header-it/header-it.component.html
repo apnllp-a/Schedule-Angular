@@ -1,6 +1,7 @@
 <body>
         <div class="topnav">
             <div class="logo">
+           
                 <a href="#">IT</a>
             </div>
             <nav>
@@ -19,10 +20,25 @@
             </nav>
         </div>
         <div class="sidenav">
-            <a href="/main-page-it" routerLinkActive="active" >ตารางเวร</a>
-            <a href="/main-page-it/list-name-page" routerLinkActive="active">รายชื่อพนักงาน</a>
-            <a href="/main-page-it/confirmation-page" routerLinkActive="active">ยืนยันการสมัคร</a>
-            <a href="/main-page-it/permission-page" routerLinkActive="active">กำหนดสิทธิ์</a>
-            
+            <a href="/main-page-it" routerLinkActive="active" >รายชื่อพนักงาน</a>
+            <a href="/confirmation-page" routerLinkActive="active">ยืนยันการสมัคร</a>
+            <a href="/permission-page" routerLinkActive="active">กำหนดสิทธิ์</a>
         </div>
+
+        <!-- <mat-drawer-container class="example-container" autosize>
+            <mat-drawer #drawer class="example-sidenav" mode="side">
+                <div class="list-nav">
+                    <a href="/main-page-it" routerLinkActive="active" >รายชื่อพนักงาน</a>
+                    <a href="/main-page-it/confirmation-page" routerLinkActive="active">ยืนยันการสมัคร</a>
+                    <a href="/main-page-it/permission-page" routerLinkActive="active">กำหนดสิทธิ์</a>
+                </div>
+            </mat-drawer>
+          
+            <div class="example-sidenav-content">
+              <button type="button" mat-button (click)="drawer.toggle()">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+            </div>
+          
+          </mat-drawer-container> -->
 </body>

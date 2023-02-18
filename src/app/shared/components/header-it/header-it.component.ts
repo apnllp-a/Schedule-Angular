@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderItComponent implements OnInit {
   displayUi =false;
+  showFiller = false;
   constructor() { }
 
   ngOnInit(): void {

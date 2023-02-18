@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/main-page-it/main-page-it.module').then(m => m.MainPageItModule),
   },
   {
-    path: 'main-page-it/confirmation-page',
+    path: 'confirmation-page',
     loadChildren: () => import('./views/confirmation-page/confirmation-page.module').then(m => m.ConfirmationPageModule),
   },
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/account-page/account-page.module').then(m => m.AccountPageModule),
   },
   {
-    path: 'main-page-it/permission-page',
+    path: 'permission-page',
     loadChildren: () => import('./views/permission-page/permission-page.module').then(m => m.PermissionPageModule),
   },
   {
