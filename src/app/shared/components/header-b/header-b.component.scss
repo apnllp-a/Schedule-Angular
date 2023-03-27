@@ -16,14 +16,21 @@
     .navbar {
         width: 100vw;
         display: flex;
-        background-color: #31A636;
+        background-color: #285430;
         color: #fff;
         justify-content: space-between;
         padding: 15px 25px;
         align-items: center;
+        .title{
+                img{
+                    height: 75px;
+                    width: 200px;
+                    filter: invert(1);
+                }
+        }
 
         button {
-            background-color: #31A636;
+            background-color: #285430;
             color: #fff;
             padding: 7px 14px;
             border: none;
@@ -35,19 +42,25 @@
 
     .side-nav {
         display: flex;
-        flex-direction: column;
-        height: 150vh;
-        background-color: #F5F5F5;
-        width: 350px;
-        gap: 10px;
+        background-color: #E5D9B6;
+        width: 100vw;
         align-items: center;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
-
+        a{
+        text-decoration: none;
+        color: #000;
+        }
         p {
+            margin: 0;
             padding: 15px 20px;
             cursor: pointer;
+            transition: .2s ease-in-out;
+        }
+        p:hover{
+            background-color: #285430d4;
+            color: #E5D9B6;
         }
     }
 }

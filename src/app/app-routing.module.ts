@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/main-page-it/main-page-it.module').then(m => m.MainPageItModule),
   },
   {
-    path: 'main-page-it/confirmation-page',
+    path: 'confirmation-page',
     loadChildren: () => import('./views/confirmation-page/confirmation-page.module').then(m => m.ConfirmationPageModule),
   },
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/account-page/account-page.module').then(m => m.AccountPageModule),
   },
   {
-    path: 'main-page-it/permission-page',
+    path: 'permission-page',
     loadChildren: () => import('./views/permission-page/permission-page.module').then(m => m.PermissionPageModule),
   },
   {
@@ -51,7 +51,11 @@ const routes: Routes = [
  },
   { path: 'documents-page', 
   loadChildren: () => import('./views/documents-page/documents-page.module').then(m => m.DocumentsPageModule) 
-}
+},
+  { path: 'main-page-hd', loadChildren: () => import('./views/main-page-hd/main-page-hd.module').then(m => m.MainPageHdModule) },
+  { path: 'main-page-b', loadChildren: () => import('./views/main-page-b/main-page-b.module').then(m => m.MainPageBModule) },
+  { path: 'document-head-page', loadChildren: () => import('./views/document-head-page/document-head-page.module').then(m => m.DocumentHeadPageModule) },
+  { path: 'document-b-page', loadChildren: () => import('./views/document-b-page/document-b-page.module').then(m => m.DocumentBPageModule) }
 ];
 
 @NgModule({

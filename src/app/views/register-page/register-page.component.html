@@ -1,7 +1,23 @@
 <body>
   <div class="container">
     <h1>Create your account with Schedule</h1>
-    <div *ngIf="submitted">Registeredd !!</div>
+    <div class="dialog-alert-status" *ngIf="submitted" >
+      <div class="dialog-content">
+          <i (click)="submitted =! submitted" class="fa-solid fa-xmark"></i>
+          <div class="detail-content">
+            <h3>{{h3_alert}}</h3>
+            <p>{{p_alert}}</p>
+            <div class="btn_group">
+              <a href="/">เข้าสู่ระบบ</a>
+            </div>
+          </div>
+      </div>
+  </div>
+
+
+
+
+
     <div class="form-register-card">
       
       <div class="item-left">

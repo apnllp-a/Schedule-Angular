@@ -1,0 +1,66 @@
+<body>
+    <div class="container">
+        <div class="navbar">
+            <app-header-b></app-header-b>
+        </div>
+
+        <div class="container-table">
+            <div class="header-title">
+                <h2 class="depart-name">เอกสาร</h2>
+    
+    
+                <div class="data-list">
+                    <div class="list-document_name">
+                        <mat-form-field class="list-doc" appearance="fill">
+                            <mat-label>เลือกแผนก</mat-label>
+                            <mat-select [(value)]="selected">
+                              <mat-option>None</mat-option>
+                              <mat-option value="option1">แผนกที่ 1</mat-option>
+                              <mat-option value="option2">แผนกที่ 2</mat-option>
+                              <mat-option value="option3">แผนกที่ 3</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+        
+                   <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText placeholder="Search" class="form-control">
+                    <button type="button" >search</button>
+                </span>
+                </div>
+            </div>
+    
+            <div class="data-table">
+                <div class="card">
+                    <p-table [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                        [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                        <ng-template pTemplate="header">
+                            <tr style="text-align:center ;">
+                                <th style="width:10%;text-align:center ;">No.</th>
+                                <th style="width:25%;text-align:center ;">ชื่อ-นามสกุล</th>
+                                <th style="width:15%;text-align:center ;"> แผนก</th>
+                                <th style="width:15%;text-align:center ;"> ประเภทเอกสาร </th>
+                                <th style="width:30%;text-align:center ;"> รายละเอียด</th>
+                                <th style="width:10%;text-align:center ;"> วันที่</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" >
+                            <tr >
+                                <td style="text-align:center ;font-family: 'Kanit'!important;">1</td>
+                                <td style="text-align:center ;font-family: 'Kanit'!important;">อภินันทน์ ลิ้มรำไพ</td>
+                                <td style="text-align:center ;"> ลากิจ </td>
+                                <td style="text-align:center ;">ไปทำอย่างอื่น </td>
+                                <td style="text-align:center ;">สำเร็จ </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorleft">
+                        </ng-template>
+                        <ng-template pTemplate="paginatorright">
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</body>

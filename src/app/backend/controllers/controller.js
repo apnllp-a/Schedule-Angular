@@ -16,7 +16,7 @@ exports.create = (req, res) => {
         password: req.body.password,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        departmentDetail: req.body.departmentDetail,
+        position: req.body.position,
         status: req.body.status,
         published: req.body.published ? req.body.published : false
     });

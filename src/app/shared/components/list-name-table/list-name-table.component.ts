@@ -7,6 +7,8 @@ import { UserAll } from '../../../models/user/user-all.model';
 import { UserAllService } from '../../../services/user/user-all.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Tutorial } from 'src/app/models/tutorial.model';
+import { da } from 'date-fns/locale';
 
 interface City {
   name: string,
@@ -25,98 +27,14 @@ export class ListNameTableComponent implements OnInit {
   first = 0;
   rows = 10;
   expression = true;
-  user_all?: UserAll[];
+  user_all: UserAll[];
+  sortBydate:any;
   currentUserAll: UserAll = {};
   currentIndex = -1;
   name = '';
   length: number;
 
-  products = [
-    {
-      code: 125125,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125126,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125127,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125128,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125129,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125130,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125131,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125132,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125133,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125134,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125135,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    },
-    {
-      code: 125136,
-      name: 'Honkai Impact 3',
-      category: 'Games',
-      quantity: '5 Star',
-      tal: '000-854-9658'
-    }
-  ];
+
 
   @Output() onInput = new EventEmitter<string>();
   @Output() onSearch = this.onInput.pipe(debounceTime(1000));
@@ -139,11 +57,11 @@ export class ListNameTableComponent implements OnInit {
   }
 
   isLastPage(): boolean {
-    return this.products ? this.first === (this.products.length - this.rows) : true;
+    return this.user_all ? this.first === (this.user_all.length - this.rows) : true;
   }
 
   isFirstPage(): boolean {
-    return this.products ? this.first === 0 : true;
+    return this.user_all ? this.first === 0 : true;
   }
 
   confirm(event: Event) {
@@ -167,7 +85,18 @@ export class ListNameTableComponent implements OnInit {
       }
     });
   }
+  searchName(): void {
+    this.currentUserAll = {};
+    this.currentIndex = -1;
 
+    this.userAllService.findByName(this.name).subscribe({
+      next: (data) => {
+        this.user_all = data;
+        console.log(this.user_all)
+      },
+      error: (e) => console.error(e)
+    });
+  }
 
   retrieveUserAlls(): void {
     this.userAllService.getAll()
@@ -175,7 +104,7 @@ export class ListNameTableComponent implements OnInit {
         next: (data) => {
           this.user_all = data;
           this.length = data.length;
-          console.log("aasdasdas" + this.user_all)
+          console.log(this.user_all)
 
         },
         error: (e) => console.error(e)
@@ -194,6 +123,18 @@ export class ListNameTableComponent implements OnInit {
   }
 
 
+  sortByDate(): void {
+    this.userAllService.getAll().subscribe({
+      next:(data)=>{
+        
+        this.sortBydate = data
+        console.log(this.sortBydate )
+      },
+      error: (e) => console.error(e)
+    });
+  }
+
+
 
   constructor(private confirmationService: ConfirmationService,
     private messageService: MessageService,
@@ -202,19 +143,20 @@ export class ListNameTableComponent implements OnInit {
     , private route: ActivatedRoute,
     private router: Router, private http: HttpClient) {
     this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
+      { name: 'วันที่', code: 'NY' },
+      { name: 'ระดับพนักงาน', code: 'PRS' }
     ];
+
   }
 
-  openDialog() {
+  openDialog(index: number): void {
     const dialogRef = this.dialog.open(AccountComponent, {
-
       panelClass: 'custom-modalbox',
-
+      enterAnimationDuration:'12000ms',
+      exitAnimationDuration:'2000ms',
+      data:{
+        index
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -225,6 +167,8 @@ export class ListNameTableComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.retrieveUserAlls()
+    this.searchName()
+    this.sortByDate()
   }
 
 }

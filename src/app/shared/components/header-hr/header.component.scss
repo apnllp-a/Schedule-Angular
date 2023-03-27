@@ -11,6 +11,11 @@
 
 .logo {
     margin-left: 50px;
+    img{
+        height: 75px;
+        width: 200px;
+        filter: invert(1);
+    }
 }
 
 i {

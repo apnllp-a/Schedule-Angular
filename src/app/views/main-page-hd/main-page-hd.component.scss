@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+@import '/src/assets/scss/mixins';
+@import '/src/assets/scss/variables';
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.header{
+    width: 100vw;
+}
+
+.container-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    font-family: 'Kanit'!important;
+
+    .header-title {
+        width: 90%;
+        display: flex;
+        h3{
+            font-family: 'Kanit';
+            border: 3px solid #A6313F;
+            color: #A6313F;
+            display: flex;
+            width: 350px;
+            height: 150px;
+           justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            font-size: 36px;
+            font-weight: 500;
+        }
+        padding: 25px 30px;
+        display: flex;
+        gap:50px;
+        justify-content: space-between;
+        align-items: center;
+
+        .status-table {
+            display: flex;
+            gap: 50px;
+
+            .total-confirm {
+                justify-content: space-evenly;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .total-user {
+                line-height: 30px;
+                width: 200px;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: #34a1e0;
+                color: #fff;
+                padding: 20px 22px;
+                border: none;
+                border-radius: 16px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .data-table{
+        width: 90%;
+        .filter-head{
+            
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            .p-input-icon-left{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                button{
+                    color: #fff;
+                    border: none;
+                    background-color: #A6313F;
+                    border-radius: 4px;
+                    padding: 7px 12px;
+                    transition: 0.1s ease-in;
+                }
+                button:hover{
+                    background-color: #fff;
+                    color: #A6313F;
+                    border:1px solid #A6313F;
+                }
+            }
+            input{
+                height: 45px;
+            }
+        }
+        .card {
+            
+            border: 1px solid #A6313F;
+            h5 {
+                font-family: 'Kanit'!important;
+                padding:15px 20px;
+                background-color: #A6313F;
+                color: #fff;
+                font-size: 18px;
+            }
+        }
+      
+    }
+    
+ * th{
+    font-family: 'Kanit'!important;
+ }
+}

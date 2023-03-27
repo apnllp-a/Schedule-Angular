@@ -20,7 +20,8 @@
             <div class="filter-head">
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input type="text" #inputEl (input)="inputSearch(inputEl.value)" pInputText placeholder="Search">
+                    <input type="text" [(ngModel)]="name" pInputText placeholder="Search" class="form-control">
+                    <button type="button" (click)="searchName()">search</button>
                 </span>
                 <div class="drp" style="display: flex;align-items: center; gap: 20px;">
                     <h5 style=" font-family: 'Kanit'!important;font-size: 18px;margin-top: 15px;">เรียงตาม</h5>
@@ -61,7 +62,7 @@
                                 {{user_alls.tal}}
                                 </ng-container>
                                 <ng-template #elseTemplate>
-                                    <i class="fa-regular fa-pen-to-square" (click)="openDialog()" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
+                                    <i class="fa-regular fa-pen-to-square" (click)="openDialog(user_alls.id)" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
                                </ng-template>
                                
                               

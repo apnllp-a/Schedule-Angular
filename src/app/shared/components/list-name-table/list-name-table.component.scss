@@ -83,12 +83,31 @@
     }
 
     .data-table{
-        
+        width: 90%;
         .filter-head{
             
             padding: 10px 0;
             display: flex;
             justify-content: space-between;
+            .p-input-icon-left{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                button{
+                    color: #fff;
+                    border: none;
+                    background-color: #31A69F;
+                    border-radius: 4px;
+                    padding: 7px 12px;
+                    transition: 0.1s ease-in;
+                }
+                button:hover{
+                    background-color: #fff;
+                    color: #31A69F;
+                    border:1px solid #31A69F;
+                }
+            }
             input{
                 height: 45px;
             }

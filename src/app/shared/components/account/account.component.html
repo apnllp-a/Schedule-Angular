@@ -1,12 +1,14 @@
 <div class="form">
     <h3>
-        ข้อมูลส่วนตัว
+        ข้อมูลส่วนตัว  <span style="color: #31A69F;">( {{user_all?.firstname}} {{user_all?.lastname}} )</span>
     </h3>
+
+    
     <div class="input-section">
         <div class="item-left">
             <div class="item">
                 <label for="">ชื่อ-นามสกุล</label>
-                <input type="text" placeholder="Apinan Limlampai">
+                <input type="text" placeholder="{{user_all?.firstname}} {{user_all?.lastname}}">
             </div>
             <div class="item">
                 <label for="">ที่อยู่</label>
@@ -24,11 +26,11 @@
         <div class="item-right">
             <div class="item">
                 <label for="">เบอร์โทร</label>
-                <input type="text" placeholder="099-999-5587">
+                <input type="text" placeholder="{{user_all?.tal}}">
             </div>
             <div class="item">
                 <label for="">e-mail</label>
-                <input type="text" placeholder="email-Am@gmail.com">
+                <input type="text" placeholder="{{user_all?.email}}">
             </div>
             <div class="item">
                 <label for="">วุฒิการศึกษา</label>

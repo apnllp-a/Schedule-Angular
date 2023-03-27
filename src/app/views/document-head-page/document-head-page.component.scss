@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+@import '/src/assets/scss/mixins';
+@import '/src/assets/scss/variables';
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+.header{
+    width: 100vw;
+}
+
+.container-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    font-family: 'Kanit'!important;
+
+    .header-title {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        .depart-name{
+            font-family: 'Kanit';
+            border: 3px solid #A6313F;
+            color: #A6313F;
+            display: flex;
+            width: 350px;
+            height: 150px;
+           justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            font-size: 36px;
+            font-weight: 500;
+        }
+        padding: 25px 30px;
+        display: flex;
+        gap:50px;
+        align-items: center;
+
+        .data-list{
+          .list-document_name{
+            .list-doc{
+             
+            }
+          }
+            .p-input-icon-left{
+                display: flex;
+                gap: 10px;
+                input{
+                    height: 45px;
+                }
+                input:focus{
+                    outline: #A6313F;
+                }
+                input:hover{
+                    border:1px solid #A6313F;
+                }
+                button{
+                    border:1px solid #0f0e0e00;
+                    border-radius: 4px;
+                    background-color: #A6313F;
+                    padding: 7px 12px;
+                    color: #fff;
+                    transition: 0.1s ease-in;
+                }
+                button:hover{
+                    background-color: #fff;
+                    color: #A6313F;
+                    border:1px solid #A6313F;
+                }
+            }
+        }
+    }
+
+    .data-table{
+        width: 90%;
+        .card {
+            
+            border: 1px solid #A6313F;
+            h5 {
+                font-family: 'Kanit'!important;
+                padding:15px 20px;
+                background-color: #A6313F;
+                color: #fff;
+                font-size: 18px;
+            }
+        }
+      
+    }
+    
+ * th{
+    background-color: #A6313F;
+    color: #fff;
+    font-family: 'Kanit'!important;
+ }
+}
+
+.date-day {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+    color: #A6313F!important;
+}
+
+   
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+    background:#fff !important;
+}
+
+
+::ng-deep .mat-form-field .mat-input-element {
+    color: slategray;
+}
+::ng-deep .mat-form-field .mat-form-field-label {
+    color: slategray!important;
+}
+::ng-deep .mat-form-field .mat-form-field-underline {
+    background-color: slategray;
+}
+::ng-deep .mat-form-field .mat-form-field-ripple {
+    background-color: slategray;
+}
+::ng-deep .mat-form-field .mat-form-field-required-marker {
+    color: slategray;
+}
+
+///Focus
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #A6313F!important;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #A6313F;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-required-marker {
+    color: #A6313F;
+}
+::ng-deep .mat-form-field.mat-focused .mat-input-element {
+    color: #A6313F;
+}
+
+
+///invalid ไม่มี value
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-input-element {
+    color: #ff33cc;
+}
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: #ff33cc!important;
+}
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
+    color: #ff33cc;
+}
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+    background-color: #ff33cc;
+}

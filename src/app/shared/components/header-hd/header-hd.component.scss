@@ -21,7 +21,13 @@
         justify-content: space-between;
         padding: 15px 25px;
         align-items: center;
-
+        .title{
+            img{
+                height: 75px;
+                width: 200px;
+                filter: invert(1);
+            }
+        }
         button {
             background-color: #A6313F;
             color: #fff;
@@ -35,19 +41,23 @@
 
     .side-nav {
         display: flex;
-        flex-direction: column;
         height: 100%;
         background-color: #F5F5F5;
-        width: 350px;
-        gap: 10px;
+        width: 100vw;
         align-items: center;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
 
         p {
+            margin: 0 !important;
             padding: 15px 20px;
             cursor: pointer;
+            transition: .2s ease-in-out;
+        }
+        p:hover {
+           background-color: #b1535e;
+           color: #F5F5F5;
         }
     }
 }

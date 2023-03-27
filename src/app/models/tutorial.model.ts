@@ -14,6 +14,7 @@ export class Tutorial {
     role?: String,
     active?: boolean,
   }
+  position?:String;
   createdAt?: Date;
   published?: boolean;
 }
