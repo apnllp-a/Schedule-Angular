@@ -1,27 +1,22 @@
-import { AfterViewInit, Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { debounceTime } from 'rxjs';
-import { AccountComponent } from '../account/account.component';
-import { UserAll } from '../../../models/user/user-all.model';
-import { UserAllService } from '../../../services/user/user-all.service';
+import { UserAll } from '../../models/user/user-all.model';
+import { UserAllService } from '../../services/user/user-all.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Tutorial } from 'src/app/models/tutorial.model';
-import { da } from 'date-fns/locale';
 
 interface City {
   name: string,
   code: string
 }
-
 @Component({
-  selector: 'app-list-name-table',
-  templateUrl: './list-name-table.component.html',
-  styleUrls: ['./list-name-table.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  selector: 'app-main-page-hd',
+  templateUrl: './main-page-hd.component.html',
+  styleUrls: ['./main-page-hd.component.scss'],
+
 })
-export class ListNameTableComponent implements OnInit {
+export class MainPageHdComponent implements OnInit {
   cities: City[];
   selectedCity: City | undefined;
   first = 0;
@@ -64,27 +59,6 @@ export class ListNameTableComponent implements OnInit {
     return this.user_all ? this.first === 0 : true;
   }
 
-  confirm(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: "ยืนยันการสมัครหรือ ไม่",
-      icon: "pi pi-exclamation-triangle",
-      accept: () => {
-        this.messageService.add({
-          severity: "info",
-          summary: "Confirmed",
-          detail: "ยืนยันการสมัคร"
-        });
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: "error",
-          summary: "Rejected",
-          detail: "ยกเลิกการสมัคร"
-        });
-      }
-    });
-  }
   searchName(): void {
     this.currentUserAll = {};
     this.currentIndex = -1;
@@ -136,9 +110,7 @@ export class ListNameTableComponent implements OnInit {
 
 
 
-  constructor(private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-    private primengConfig: PrimeNGConfig,
+  constructor(
     public dialog: MatDialog, private userAllService: UserAllService
     , private route: ActivatedRoute,
     private router: Router, private http: HttpClient) {
@@ -149,23 +121,9 @@ export class ListNameTableComponent implements OnInit {
 
   }
 
-  openDialog(index: number): void {
-    const dialogRef = this.dialog.open(AccountComponent, {
-      panelClass: 'custom-modalbox',
-      enterAnimationDuration:'12000ms',
-      exitAnimationDuration:'2000ms',
-      data:{
-        index
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+ 
 
   ngOnInit() {
-    this.primengConfig.ripple = true;
     this.retrieveUserAlls()
     this.searchName()
     this.sortByDate()

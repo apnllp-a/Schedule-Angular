@@ -14,6 +14,7 @@ module.exports = mongoose => {
         role: String,
         active: Boolean
       },
+      position: {type:String,default:'member'},
       published: Boolean
     },
     { timestamps: true }

@@ -8,6 +8,11 @@
 
 .logo {
     margin-left: 50px;
+    img{
+        height: 75px;
+        width: 200px;
+        filter: invert(1);
+    }
 }
 
 i {
@@ -46,7 +51,7 @@ nav ul {
 }
 
 button {
-    color: #000000;
+    color: #ffffff;
     text-align: center;
     font-size: 16.5px;
     width: 200px;
@@ -76,6 +81,7 @@ button {
 }
 
 .containerdrop ul li {
+    color: #fff;
     margin: 5px 0;
     padding: 7px 15px;
 }

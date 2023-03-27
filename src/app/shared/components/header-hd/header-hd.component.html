@@ -2,19 +2,16 @@
     <div class="container">
         <div class="navbar">
             <div class="title">
-                <h2>ชื่อแผนก</h2>
+                <a href="#"><img src="../../../assets/images/logo-sch-bg.png" alt=""></a>
             </div>
             <div class="btn-info">
                 <button style="display:flex ; align-items: center;  gap: 20px;"><i class="fa-regular fa-user"></i> Username</button>
             </div>
         </div>
         <div class="side-nav"><br>
-            <p [routerLink]="['/main-page-hr']" routerLinkActive="router-link-active" >รายชื่อพนักงาน</p>
+            <p [routerLink]="['/main-page-hd']" routerLinkActive="router-link-active" >รายชื่อพนักงาน</p>
             <p>เวรการทำงานของแผนก</p>
-            <p>กำหนดประเภทเวรการทำงาน</p>
-            <p>เอกสารต่าง ๆ</p>
-            <p>ยืนยันเอกสาร</p>
-            
+            <p [routerLink]="['/document-head-page']" routerLinkActive="router-link-active">เอกสารต่าง ๆ</p>
         </div>
     </div>
 </body>

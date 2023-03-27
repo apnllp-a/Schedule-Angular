@@ -20,6 +20,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import { HeaderModule } from "../header-hr/header.module";
 import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         ConfirmDialogModule,
         ConfirmPopupModule,
         HeaderModule,
-        MatDialogModule
+        MatDialogModule,
+        FormsModule
     ]
 })
 export class ListNameTableModule { }

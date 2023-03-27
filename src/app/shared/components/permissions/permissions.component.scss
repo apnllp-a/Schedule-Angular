@@ -2,6 +2,7 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
 @import '/src/assets/scss/mixins';
 @import '/src/assets/scss/variables';
+
 * {
     padding: 0;
     margin: 0;
@@ -13,70 +14,90 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    font-family: 'Kanit'!important;
+    font-family: 'Kanit' !important;
+
     .header-title {
-        h3{
+        h3 {
             font-family: 'Kanit';
             border: 3px solid #31A69F;
             color: #31A69F;
             display: flex;
             width: 350px;
             height: 100px;
-           justify-content: center;
+            justify-content: center;
             align-items: center;
             border-radius: 16px;
             font-size: 36px;
             font-weight: 500;
         }
+
         padding: 25px 30px;
         display: flex;
         gap:50px;
         justify-content: space-between;
         align-items: center;
 
-        
+
     }
 
-    .data-table{
+    .data-table {
         width: 90%;
-        .filter-head{
-            
+
+        .filter-head {
+
             padding: 10px 0;
             display: flex;
             justify-content: space-between;
-            input{
+
+            input {
                 height: 45px;
             }
         }
+
         .card {
-            
+
             border: 1px solid #31A69F;
+
             h5 {
-                font-family: 'Kanit'!important;
-                padding:15px 20px;
+                font-family: 'Kanit' !important;
+                padding: 15px 20px;
                 background-color: #31A69F;
                 color: #fff;
                 font-size: 18px;
             }
         }
+
         .card-onclick {
-            
+
             border: 1px solid darkorchid;
+
             h5 {
-                font-family: 'Kanit'!important;
-                padding:15px 20px;
+                font-family: 'Kanit' !important;
+                padding: 15px 20px;
                 background-color: darkorchid;
                 color: #fff;
                 font-size: 18px;
             }
         }
     }
-    
- * th{
-    font-family: 'Kanit'!important;
- }
 
- 
+    * th {
+        font-family: 'Kanit' !important;
+    }
+
+    .btn-update {
+        background-color: #316da6;
+        color: #fff;
+        border: 1px solid #00000000;
+        border-radius: 4px;
+        padding: 12px;
+        transition: .2s ease-in-out;
+    }
+    .btn-update:hover {
+        background-color:  #fff ;
+        color: #316da6;
+        border: 1px solid #316da6;
+        
+    }
+
 }
-
-

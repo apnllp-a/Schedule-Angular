@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesTestService } from 'src/app/services/services-test.service';
 import { Tutorial } from 'src/app/models/tutorial.model';
-import { Title } from '@angular/platform-browser';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { te } from 'date-fns/locale';
+import { UserAllService } from '../../../app/services/user/user-all.service';
 import { delay } from 'rxjs';
+import { UserAll } from 'src/app/models/user/user-all.model';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -18,21 +19,20 @@ export class RegisterPageComponent implements OnInit {
     password: '',
     firstname: '',
     lastname: '',
-    departmentDetail: {
-      role: '',
-      salary: '',
-      department: '',
-    },
-    status: {
-      role: '',
-      active: false
-    },
+    position: '',
     published: false
   };
   submitted = false;
+  user_all: UserAll[];
 
-  constructor(private tutorialService: ServicesTestService, private router: Router) { }
+
+  h3_alert:string;
+  p_alert:string;
+
+
+  constructor( private userAllService: UserAllService,private tutorialService: ServicesTestService, private router: Router) { }
   ngOnInit(): void {
+    this.retrieveUserAlls()
   }
 
   //fname
@@ -73,7 +73,17 @@ export class RegisterPageComponent implements OnInit {
     return this.password.hasError('password') ? 'Not a valid password' : '';
 
   }
+  retrieveUserAlls(): void {
+    this.userAllService.getAll()
+      .subscribe({
+        next: (data) => {
+          this.user_all = data;
+          console.log(this.user_all)
 
+        },
+        error: (e) => console.error(e)
+      });
+  }
 
 
 
@@ -83,13 +93,7 @@ export class RegisterPageComponent implements OnInit {
       password: this.tutorial.password,
       firstname: this.tutorial.firstname,
       lastname: this.tutorial.lastname,
-      departmentdetail: this.tutorial.departmentDetail,
-      roledepart: this.tutorial.departmentDetail?.role,
-      salarydepart: this.tutorial.departmentDetail?.salary,
-      departmentdepart: this.tutorial.departmentDetail?.department,
-      status: this.tutorial.status,
-      rolestatus: this.tutorial.status?.role,
-      activestatus: this.tutorial.status?.active
+      position: this.tutorial.position 
 
     };
 
@@ -99,7 +103,11 @@ export class RegisterPageComponent implements OnInit {
           console.log(res);
           this.submitted = true;
           if (this.submitted == true) {
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
+           console.log(res + 'success')
+           this.h3_alert = 'สมัครสมาชิกสำเร็จ'
+           this.p_alert = 'ไปหน้า Login เพื่อเข้าสู่ระบบ'
+          //  กรุณาตรวจสอบข้อมูลอีกครั้ง
           }
         },
         error: (e) => console.error(e)
@@ -115,13 +123,9 @@ export class RegisterPageComponent implements OnInit {
       password: '',
       firstname: '',
       lastname: '',
-      departmentdetail: '',
-      roledepart: '',
-      salarydepart: '',
-      departmentdepart: '',
-      rolestatus: '',
-      activestatus: '',
+      position: " member",
       published: false
+      
     };
   }
 

@@ -1,13 +1,12 @@
 <body>
-    
+    <div class="header">
+        <app-header-hd></app-header-hd>
+    </div>
 
-    <div class="container">
+    <div class="container-table">
         <div class="header-title">
             <h3>รายชื่อพนักงาน</h3>
             <div class="status-table">
-                <div class="total-confirm">
-                    <p class="edit-list" (click)="expression =! expression">แก้ไขข้อมูลพนักงาน</p>
-                </div>
                 <div class="total-user" >
                     <p style="text-align:start ;">พนักงานทั้งหมด</p>
                     <p style="text-align:center;font-size: 32px; ">{{length}}</p>
@@ -34,19 +33,10 @@
                     [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
                     <ng-template pTemplate="header">
                         <tr style="text-align:center ;">
-                            <th style="width:5%;text-align:center ;">No.</th>
-                            <th style="width:25%;text-align:center ;">รายชื่อ</th>
-                            <th style="width:20%;text-align:center ;">Email</th>
-                            <th style="width:20%;text-align:center ;">Username</th>
-                            <th style="width:15%;text-align:center ;">วันที่</th>
-                            <th style="width:15%;text-align:center ;">
-                                <ng-container *ngIf="expression; else elseTemplate">
-                                    ติดต่อ
-                           </ng-container>
-                           <ng-template #elseTemplate>
-                               แก้ไขข้อมูล
-                           </ng-template>
-                            </th>
+                            <th style="width:10%;text-align:center ;">No.</th>
+                            <th style="width:30%;text-align:center ;">รายชื่อ</th>
+                            <th style="width:15%;text-align:center ;"> ติดต่อ</th>
+                            <th style="width:25%;text-align:center ;"> ประเภทเวรการทำงาน</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-products>
@@ -54,19 +44,8 @@
                         (click)="setActiveUserAlls(user_alls, i)">
                             <td style="text-align:center ;font-family: 'Kanit'!important;">{{i+1}}</td>
                             <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.firstname}} {{user_alls.lastname}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.email}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.username}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">17 jun 2012</td>
-                            <td style="text-align:center ;">
-                               <ng-container *ngIf="expression; else elseTemplate">
-                                {{user_alls.tal}}
-                                </ng-container>
-                                <ng-template #elseTemplate>
-                                    <i class="fa-regular fa-pen-to-square" (click)="openDialog(user_alls.id)" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
-                               </ng-template>
-                               
-                              
-    
+                            <td style="text-align:center ;"> {{user_alls.tal}}
+                            <td style="text-align:center ;"> เวรเช้า  or เวรเย็น
                             </td>
                         </tr>
                     </ng-template>
@@ -79,5 +58,5 @@
         </div>
         
     </div>
-    
+
 </body>

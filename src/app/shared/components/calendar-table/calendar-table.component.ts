@@ -136,6 +136,7 @@ export class CalendarTableComponent {
         this.activeDayIsOpen = true;
       }
       this.viewDate = date;
+      console.log(date)
     }
   }
 
@@ -160,6 +161,7 @@ export class CalendarTableComponent {
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
+    console.log(this.modalData)
   }
 
   addEvent(): void {
