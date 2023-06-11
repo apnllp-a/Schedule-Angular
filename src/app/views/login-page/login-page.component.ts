@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { ServicesTestService } from 'src/app/services/services-test.service';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { NgZone } from '@angular/core';
+import { UserAll } from 'src/app/models/user/user-all.model';
+import { UserAllService } from 'src/app/services/user/user-all.service';
+import mongoose from 'mongoose';
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -29,17 +33,28 @@ export class LoginPageComponent implements OnInit {
   //password
   password = new FormControl('', [Validators.required, Validators.nullValidator]);
   
+  goToPage(): void {
+    this.router.navigate(['/main-page-hr']);
+  }
+  
   login(): void {
-    // Perform login validation and actions here
-    if (this.tutorial.username === 'admin' && this.tutorial.password === 'password') {
+
+    const str1 = this.username+"";
+    const str2 = this.password+"";
+    const str3 =""
+
+
+    if (str1 === 'admin' && str2 === 'password') {
       // Successful login
       alert('Welcome ');
-      console.log(this.username)
-      // Redirect to the desired page or perform any other action
+      this.router.navigate(['/main-page-hr']);
+
     } else {
       // Invalid credentials
       const messageAlert = this.username+" Invid" + this.password;
+
       alert(messageAlert);
+      
       // Display error message or perform any other action
     }
   }
@@ -58,7 +73,4 @@ export class LoginPageComponent implements OnInit {
     return this.password.hasError('password') ? 'Not a valid password' : '';
 
   }
-
-
-
 }

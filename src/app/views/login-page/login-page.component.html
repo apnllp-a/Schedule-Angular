@@ -7,10 +7,10 @@
         </div>
         <div class="input-form-area">
             <h3>Welcome to Schedule</h3>
-            <form (ngSubmit)="login()">
-            <input type="text" placeholder="" [(ngModel)]="username" name="username">
+            <form>
+            <input type="text" placeholder="username" [(ngModel)]="username" name="username" >
             <input type="password" placeholder="********" [(ngModel)]="password" name="password">
-            <button type="submit">เข้าสู่ระบบ</button>
+            <button type="submit" (click)="login()">เข้าสู่ระบบ</button>
             <p>ยังไม่มีบัญชีผู้ใช้งาน ? <span><a href="/register-page" style="color:#90CAF9;">สร้างบัญชีผู้ใช้งาน</a></span></p>
         </form>
         </div>
