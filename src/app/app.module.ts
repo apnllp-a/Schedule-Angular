@@ -28,10 +28,12 @@ import { HeaderItModule } from './shared/components/header-it/header-it.module';
 import { MaterialExampleModule } from 'material.module';
 import { RegisterPageModule } from './views/register-page/register-page.module';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
+import { LoginPageComponent } from './views/login-page/login-page.component';
 @NgModule({
     declarations: [
         AppComponent,
         RegisterPageComponent,
+        LoginPageComponent
     ],
     imports: [
         BrowserModule,
@@ -62,6 +64,10 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
         MatNativeDateModule,
         HeaderItModule,
         MaterialExampleModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule
         
     ],
    

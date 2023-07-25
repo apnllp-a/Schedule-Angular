@@ -52,8 +52,8 @@ const routes: Routes = [
   { path: 'documents-page', 
   loadChildren: () => import('./views/documents-page/documents-page.module').then(m => m.DocumentsPageModule) 
 },
-  { path: 'main-page-hd', loadChildren: () => import('./views/main-page-hd/main-page-hd.module').then(m => m.MainPageHdModule) },
-  { path: 'main-page-b', loadChildren: () => import('./views/main-page-b/main-page-b.module').then(m => m.MainPageBModule) },
+  { path: 'main-page-head', loadChildren: () => import('./views/main-page-hd/main-page-hd.module').then(m => m.MainPageHdModule) },
+  { path: 'main-page-board', loadChildren: () => import('./views/main-page-b/main-page-b.module').then(m => m.MainPageBModule) },
   { path: 'document-head-page', loadChildren: () => import('./views/document-head-page/document-head-page.module').then(m => m.DocumentHeadPageModule) },
   { path: 'document-b-page', loadChildren: () => import('./views/document-b-page/document-b-page.module').then(m => m.DocumentBPageModule) }
 ];

@@ -5,6 +5,9 @@ import { UserAll } from '../../models/user/user-all.model';
 import { UserAllService } from '../../services/user/user-all.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { StorageService } from 'src/app/shared/components/_services//storage.service';
+import { AuthService } from 'src/app/shared/components/_services/auth.service';
+import { EventBusService } from 'src/app/shared/components/_shared/event-bus.service';
 
 interface City {
   name: string,
@@ -17,6 +20,7 @@ interface City {
 
 })
 export class MainPageHdComponent implements OnInit {
+  username?: string;
   cities: City[];
   selectedCity: City | undefined;
   first = 0;
@@ -111,9 +115,14 @@ export class MainPageHdComponent implements OnInit {
 
 
   constructor(
-    public dialog: MatDialog, private userAllService: UserAllService
-    , private route: ActivatedRoute,
-    private router: Router, private http: HttpClient) {
+    public dialog: MatDialog,
+    private userAllService: UserAllService,
+    private route: ActivatedRoute,
+    private router: Router, private http: HttpClient,    
+    private storageService: StorageService,
+    private authService: AuthService,
+    private eventBusService: EventBusService,) {
+
     this.cities = [
       { name: 'วันที่', code: 'NY' },
       { name: 'ระดับพนักงาน', code: 'PRS' }
@@ -122,11 +131,25 @@ export class MainPageHdComponent implements OnInit {
   }
 
  
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: res => {
+        console.log(res);
+        this.storageService.clean();
 
+        this.router.navigate(['/'])
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
+  }
   ngOnInit() {
     this.retrieveUserAlls()
     this.searchName()
     this.sortByDate()
+    const user = this.storageService.getUser();
+    this.username = user.username;
   }
 
 }
