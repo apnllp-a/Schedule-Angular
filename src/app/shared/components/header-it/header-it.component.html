@@ -7,12 +7,12 @@
                 <div class="containerdrop">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                      <i class="fa-solid fa-circle-user"></i> Username
+                      <i class="fa-solid fa-circle-user"></i> {{username}}
                       <span class="caret"></span>
                     </button>
                         <ul class="dropdown-menu">
                             <li><a href="/account-page" style="  color: #fff;">ข้อมูลส่วนตัว</a></li>
-                            <li style="width:120px ;"><a href="#" style="  color: #fff;">ออกจากระบบ</a></li>
+                            <li style="width:120px ;"><a style="  color: #fff;" (click)="logout()">ออกจากระบบ</a></li>
                         </ul>
                     </div>
                 </div>
