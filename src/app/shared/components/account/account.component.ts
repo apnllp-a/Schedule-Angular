@@ -30,4 +30,7 @@ export class AccountComponent implements OnInit {
         error: (e) => console.error(e)
       });
   }
+
+
+  
 }

@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    RouterLink
+    RouterLink,
   ],exports:[
     HeaderComponent
   ]

@@ -1,91 +1,126 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 
-.container{
-
+.container {
+    position: relative;
     padding: 20px;
-    margin: 200px auto;
+    // margin: 200px auto;
     width: 550px;
-   border: 2px solid #d5d5d5;
-   border-radius: 16px;
-   .title-head{
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 350px;
-    
-    h2{
-        font-family: 'kanit';
-        font-style: normal;
-        font-size: 20px;
-        text-align: center;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #d5d5d5;
-    }
-    img{
-        margin: 10px auto;
-        width: 150px;
-        height: 150px;
-    }
-   }
-   .input-form-area{
-    h3{
-        font-family: 'kanit';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        padding: 10px 0;
-    }
-    margin: 10px auto;
-    width: 350px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    input{
-        font-family: 'kanit';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        border: 1px solid #d5d5d5;
-        padding: 10px 25px;
-        height: 40px;
-        border-radius: 16px;
-        margin: 7px 0;
-        outline: none;
-    }
-    input:focus{
-        
-        border: 1px solid #90CAF9;
-    }
-    button{
-        background-color: #90CAF9;
-        font-family: 'kanit';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 16px;
-        margin: 10px 0;
-        border-radius: 16px;
-        border: none;
-        padding: 7px 20px;
-        cursor: pointer; 
-    }
-    p{
-        font-family: 'kanit';
-        font-style: normal;
-        font-weight: 300;
-        font-size: 12px;
-        padding: 10px;
-        }
-    button:hover{
-        background-color: #ffd7a2;
-    }
-   }
+    box-shadow: 0px 2px 4px 0px #0000001a;
 
-   
+    border-radius: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .title-head {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        // width: 350px;
+
+        h2 {
+            font-family: 'kanit';
+            // font-style: normal;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #0000001a;
+        }
+
+        img {
+            margin: 10px auto;
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    .input-form-area {
+        h3 {
+            font-family: 'kanit';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        margin: 10px auto;
+        width: 350px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        input {
+            font-family: 'kanit';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            border: 1px solid #d5d5d5;
+            padding: 10px 25px;
+            height: 40px;
+            border-radius: 4px;
+            margin: 7px 0;
+            outline: none;
+        }
+
+        input:focus {
+
+            border: 1px solid #90CAF9;
+        }
+
+        button {
+            background-color: #90CAF9;
+            font-family: 'kanit';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 16px;
+            border: none;
+            padding: 7px 20px;
+            cursor: pointer;
+        }
+
+        p {
+            font-family: 'kanit';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        button:hover {
+            background-color: #ffd7a2;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            // gap: 16px;
+        }
+    }
+
+
 }
-    
+
+
+@media screen and (max-width: 720px) {
+    .container {
+        width: 100%;
+
+        .input-form-area {
+            margin: 10px auto;
+            width: 100%;
+        }
+
+
+    }
+}

@@ -20,21 +20,23 @@
             <div class="filter-head">
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input type="text" [(ngModel)]="name" pInputText placeholder="Search" class="form-control">
-                    <button type="button" (click)="searchName()">search</button>
+                    <input type="text" (click)="searchReset()" [(ngModel)]="name" pInputText placeholder="Search" class="form-control">
+                    <button type="button" (click)="searchByFirstname(name)">search</button>
                 </span>
                 <div class="drp" style="display: flex;align-items: center; gap: 20px;">
                     <h5 style=" font-family: 'Kanit'!important;font-size: 18px;margin-top: 15px;">เรียงตาม</h5>
-                <p-dropdown [options]="cities" optionLabel="name" style="outline:none;"></p-dropdown>
+                <!-- <p-dropdown [options]="cities" optionLabel="name" style="outline:none;"></p-dropdown> -->
+                <p-dropdown [(ngModel)]="selectedUser" [options]="sortedUserAll" optionLabel="firstname"></p-dropdown>
+
                 </div>
             </div>
             <div class="card"  [ngClass]="expression ? 'onclick' : 'card-onclick'">
                 <h5>รายชื่อพนักงาน </h5>
-                <p-table [value]="[user_all]"  [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-                    [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                <p-table [value]="user_all"  [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                    [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[10,15,20]">
                     <ng-template pTemplate="header">
                         <tr style="text-align:center ;">
-                            <th style="width:5%;text-align:center ;">No.</th>
+                            <!-- <th style="width:5%;text-align:center ;">No.</th> -->
                             <th style="width:25%;text-align:center ;">รายชื่อ</th>
                             <th style="width:20%;text-align:center ;">Email</th>
                             <th style="width:20%;text-align:center ;">Username</th>
@@ -50,19 +52,34 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-products>
-                        <tr *ngFor="let user_alls of user_all; let i = index" [class.active]="i == currentIndex"
-                        (click)="setActiveUserAlls(user_alls, i)">
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{i+1}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.firstname}} {{user_alls.lastname}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.email}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.username}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">17 jun 2012</td>
+                        <tr >
+                            <!-- <td style="text-align:center ;font-family: 'Kanit'!important;">{{i+1}}</td> -->
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">
+                                <ng-container *ngIf="products.firstname == null || products.firstname == ''">ไม่พบข้อมูล</ng-container>
+                                <ng-container *ngIf="products.firstname != null">{{products.firstname}} {{products.lastname}}</ng-container>
+                            </td>
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">
+                                    <ng-container *ngIf="products.email == null">ยังไม่ได้กำหนด</ng-container>
+                                    <ng-container *ngIf="products.email != null">{{products.email}}</ng-container>
+                                </td>
+
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">
+                                <ng-container *ngIf="products.username == null">ไม่พบข้อมูล</ng-container>
+                                <ng-container *ngIf="products.username != null">{{products.username}}</ng-container>
+                            </td>
+
+                            <td style="text-align:center ;font-family: 'Kanit'!important;">
+                                <ng-container *ngIf="products.createdAt == null">ไม่ทราบ</ng-container>
+                                <ng-container *ngIf="products.createdAt != null">{{products.createdAt | date}}</ng-container>
+                            </td>
+                            
                             <td style="text-align:center ;">
                                <ng-container *ngIf="expression; else elseTemplate">
-                                {{user_alls.tal}}
+                                <ng-container *ngIf="products.tal == null">ยังไม่ได้กำหนด</ng-container>
+                                    <ng-container *ngIf="products.tal != null">{{products.tal}}</ng-container>
                                 </ng-container>
                                 <ng-template #elseTemplate>
-                                    <i class="fa-regular fa-pen-to-square" (click)="openDialog(user_alls.id)" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
+                                    <i class="fa-regular fa-pen-to-square" (click)="openDialog(products.id)" style="background-color: rgb(235, 61, 61);padding: 7px 10px;color: #fff;border-radius: 8px;cursor: pointer;"></i>
                                </ng-template>
                                
                               

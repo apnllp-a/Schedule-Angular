@@ -28,11 +28,13 @@ export class ListNameTableComponent implements OnInit {
   rows = 10;
   expression = true;
   user_all: UserAll[];
-  sortBydate:any;
+  sortBydate: any;
   currentUserAll: UserAll = {};
   currentIndex = -1;
   name = '';
   length: number;
+  selectedUser: UserAll | null = null; // Assuming UserAll is your data type
+  sortedUserAll: UserAll[] = [];
 
 
 
@@ -85,17 +87,45 @@ export class ListNameTableComponent implements OnInit {
       }
     });
   }
-  searchName(): void {
-    this.currentUserAll = {};
-    this.currentIndex = -1;
+  // searchName(): void {
+  //   this.currentUserAll = {};
+  //   this.currentIndex = -1;
 
-    this.userAllService.findByName(this.name).subscribe({
-      next: (data) => {
-        this.user_all = data;
-        console.log(this.user_all)
-      },
-      error: (e) => console.error(e)
-    });
+  //   this.userAllService.findByName(this.name).subscribe({
+  //     next: (data) => {
+  //       this.user_all = data;
+  //       console.log(this.user_all)
+  //     },
+  //     error: (e) => console.error(e)
+  //   });
+  // }
+
+
+  searchReset(): void {
+    this.userAllService.getAll()
+      .subscribe({
+        next: (data) => {
+          this.user_all = data;
+          this.length = data.length;
+          // console.log(this.user_all)
+
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  searchByFirstname(firstname: string): void {
+    // Convert the search query to lowercase
+    const searchQuery = firstname.toLowerCase();
+
+    // Use Array.prototype.filter() to search for data with a specific firstname
+    if (searchQuery) {
+      const searchResult = this.user_all.filter(user => user?.firstname?.toLowerCase() === searchQuery);
+      console.log(searchResult);
+
+      // Assign the search results to the searchResult variable
+      this.user_all = searchResult;
+    }
   }
 
   retrieveUserAlls(): void {
@@ -104,7 +134,7 @@ export class ListNameTableComponent implements OnInit {
         next: (data) => {
           this.user_all = data;
           this.length = data.length;
-          console.log(this.user_all)
+          // console.log(this.user_all)
 
         },
         error: (e) => console.error(e)
@@ -125,10 +155,10 @@ export class ListNameTableComponent implements OnInit {
 
   sortByDate(): void {
     this.userAllService.getAll().subscribe({
-      next:(data)=>{
-        
+      next: (data) => {
+
         this.sortBydate = data
-        console.log(this.sortBydate )
+        console.log(this.sortBydate)
       },
       error: (e) => console.error(e)
     });
@@ -152,9 +182,9 @@ export class ListNameTableComponent implements OnInit {
   openDialog(index: number): void {
     const dialogRef = this.dialog.open(AccountComponent, {
       panelClass: 'custom-modalbox',
-      enterAnimationDuration:'12000ms',
-      exitAnimationDuration:'2000ms',
-      data:{
+      enterAnimationDuration: '12000ms',
+      exitAnimationDuration: '2000ms',
+      data: {
         index
       }
     });
@@ -167,8 +197,31 @@ export class ListNameTableComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.retrieveUserAlls()
-    this.searchName()
+    this.searchByFirstname(this.name)
     this.sortByDate()
   }
+
+
+  sortUserAllByCreatedAt(): void {
+    // Sort the data by createdAt
+    this.user_all.sort((a, b) => {
+      if (a.createdAt !== undefined && b.createdAt !== undefined) {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+  
+        return dateA.getTime() - dateB.getTime();
+      } else {
+        return a.createdAt === undefined ? -1 : 1;
+      }
+    });
+  
+    // Assign the sorted data to a property
+    this.sortedUserAll = [...this.user_all];
+
+    this.user_all = this.sortedUserAll;
+  }
+  
+
+
 
 }
