@@ -1,3 +1,4 @@
+
 * {
     padding: 0;
     margin: 0;
@@ -14,8 +15,8 @@
     .header-title {
         h3 {
             font-family: 'Kanit' !important;
-            border: 3px solid #31A69F;
-            color: #31A69F;
+            border: 3px solid #E1AE24;
+            color: #E1AE24;
             display: flex;
             width: 500px;
             height: 150px;
@@ -35,6 +36,18 @@ width: 90%;
         .status-table {
             display: flex;
             gap: 50px;
+            align-items: flex-end;
+
+            .btn_link{
+                text-align: center;
+                background-color: #31A69F;
+                color: #fff;
+                text-decoration: none;
+                padding: 10px 22px;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+            }
 
             .total-confirm {
                 line-height: 30px;
@@ -71,6 +84,55 @@ width: 90%;
             display: flex;
             justify-content: space-between;
 
+
+            .drp {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                position: relative;
+                padding: 0 4px;
+                width: 150px;
+                background: #E1AE24;
+                border-radius: 8px;
+
+                h5 {
+                    font-family: "Kanit" !important;
+                    font-size: 16px;
+                    margin-top: 15px;
+                    width: 50%;
+                    font-weight: bold;
+                }
+
+                .sortBy_ul {
+                    position: absolute;
+                    list-style: none;
+                    bottom: -80px;
+                    right: 0;
+                    background: #fff;
+                    z-index: 9;
+                    width: 150px;
+                    border: 1px solid;
+                    border-radius: 4px;
+
+                    li {
+                        cursor: pointer;
+                        padding: 8px;
+                    }
+
+                    li:hover {
+                        background: #E1AE24;
+                    }
+                }
+
+                button {
+                    background: #fff;
+                    border: none;
+                    width: 50%;
+                    border-radius: 4px;
+                    height: 85%;
+                }
+            }
+
             input {
                 height: 45px;
             }
@@ -82,25 +144,25 @@ width: 90%;
                 button{
                     color: #fff;
                     border: none;
-                    background-color:  #31A69F;
+                    background-color:  #E1AE24;
                     border-radius: 4px;
                     padding: 7px 12px;
                     transition: .1s ease-in;
                 }
                 button:hover{
                     background-color: #fff;
-                    color: #31A69F;
-                    border:1px solid #31A69F;
+                    color: #E1AE24;
+                    border:1px solid #E1AE24;
                 }
             }
         }
 
         .card {
-            border: 1px solid #31A69F;
+            border: 1px solid #E1AE24;
 
             h5 {
                 padding: 15px 20px;
-                background-color: #31A69F;
+                background-color: #E1AE24;
                 color: #fff;
                 font-size: 18px;
                 font-family: 'Kanit' !important;

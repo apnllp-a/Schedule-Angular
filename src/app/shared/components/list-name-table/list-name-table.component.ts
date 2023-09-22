@@ -27,6 +27,8 @@ export class ListNameTableComponent implements OnInit {
   first = 0;
   rows = 10;
   expression = true;
+  btn_toggle = false;
+
   user_all: UserAll[];
   sortBydate: any;
   currentUserAll: UserAll = {};
@@ -219,6 +221,32 @@ export class ListNameTableComponent implements OnInit {
     this.sortedUserAll = [...this.user_all];
 
     this.user_all = this.sortedUserAll;
+  }
+
+
+  sortUserAllByName(): void {
+    // Sort the data by firstname
+      this.userAllService.getAll()
+        .subscribe({
+          next: (data) => {
+            // Sort the data by name in ascending order (A-Z) after checking for undefined values
+            this.user_all = data.sort((a: any, b: any) => {
+              if (a.firstname !== undefined && b.firstname !== undefined) {
+                return a.firstname.localeCompare(b.firstname);
+              } else if (a.firstname !== undefined) {
+                return 1; // Move 'a' to a higher index
+              } else if (b.firstname !== undefined) {
+                return -1; // Move 'b' to a higher index
+              } else {
+                return 0; // No change in order when both are undefined
+              }
+            });
+            this.length = this.user_all.length;
+          },
+          error: (e) => console.error(e)
+        });
+    
+ 
   }
   
 

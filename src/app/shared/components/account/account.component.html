@@ -7,12 +7,13 @@
     <div class="input-section">
         <div class="item-left">
             <div class="item">
-                <label for="">ชื่อ-นามสกุล</label>
-                <input type="text" placeholder="{{user_all?.firstname}} {{user_all?.lastname}}">
+                <label for="">ชื่อ</label>
+                <input [(ngModel)]="firstname" type="text" placeholder="{{user_all?.firstname}}">
             </div>
+           
             <div class="item">
                 <label for="">ที่อยู่</label>
-                <input type="text" placeholder=" 25 ม.1 ... ">
+                <input  type="text" placeholder=" 25 ม.1 ... ">
             </div>
             <div class="item">
                 <label for="">วัน / เดือน / ปีเกิด</label>
@@ -24,23 +25,32 @@
             </div>
         </div>
         <div class="item-right">
+             <div class="item">
+                <label for="">นามสกุล</label>
+                <input [(ngModel)]="lastname"  type="text" placeholder=" {{user_all?.lastname}}">
+            </div>
             <div class="item">
                 <label for="">เบอร์โทร</label>
-                <input type="text" placeholder="{{user_all?.tal}}">
+                <input [(ngModel)]="tal" type="text" placeholder="{{user_all?.tal}}">
             </div>
             <div class="item">
                 <label for="">e-mail</label>
-                <input type="text" placeholder="{{user_all?.email}}">
+                <input [(ngModel)]="email" type="text" placeholder="{{user_all?.email}}">
             </div>
             <div class="item">
                 <label for="">วุฒิการศึกษา</label>
+                <input  type="text" placeholder="...">
+            </div>
+
+            <div class="item">
+                <label for="">กำหนดสิทธิ์</label>
                 <input type="text" placeholder="...">
             </div>
             
         </div>
     </div>
     <div class="btn-group">
-        <button>ยืนยัน</button>
+        <button (click)="update()">ยืนยัน</button>
         <button>ยกเลิก</button>
     </div>
 </div>

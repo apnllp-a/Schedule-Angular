@@ -19,10 +19,12 @@ export class ConfirmationTableComponent {
   rows = 10;
   length = 0;
   lengthUserAll = 0;
-  tutorials?: Tutorial[];
+  tutorials: Tutorial[];
+  sortedUserAll: Tutorial[] = [];
   currentTutorial: Tutorial = {};
   currentIndex = -1;
   name = '';
+  btn_toggle = false;
   
 
   @Output() onInput = new EventEmitter<string>();
@@ -181,6 +183,50 @@ export class ConfirmationTableComponent {
         error: (e) => console.error(e)
       });
 
+  }
+
+  sortUserAllByCreatedAt(): void {
+    // Sort the data by createdAt
+    this.tutorials.sort((a, b) => {
+      if (a.createdAt !== undefined && b.createdAt !== undefined) {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+  
+        return dateA.getTime() - dateB.getTime();
+      } else {
+        return a.createdAt === undefined ? -1 : 1;
+      }
+    });
+  
+    // Assign the sorted data to a property
+    this.sortedUserAll = [...this.tutorials];
+
+    this.tutorials = this.sortedUserAll;
+  }
+
+
+  sortUserAllByName(): void {
+    // Sort the data by firstname
+      this.userAllService.getAll()
+        .subscribe({
+          next: (data) => {
+            // Sort the data by name in ascending order (A-Z) after checking for undefined values
+            this.tutorials = data.sort((a: any, b: any) => {
+              if (a.firstname !== undefined && b.firstname !== undefined) {
+                return a.firstname.localeCompare(b.firstname);
+              } else if (a.firstname !== undefined) {
+                return 1; // Move 'a' to a higher index
+              } else if (b.firstname !== undefined) {
+                return -1; // Move 'b' to a higher index
+              } else {
+                return 0; // No change in order when both are undefined
+              }
+            });
+          },
+          error: (e) => console.error(e)
+        });
+    
+ 
   }
 
 
