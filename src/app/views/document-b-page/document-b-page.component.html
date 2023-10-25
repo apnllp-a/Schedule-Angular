@@ -32,25 +32,32 @@
     
             <div class="data-table">
                 <div class="card">
-                    <p-table [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                    <p-table [value]="document" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
                         [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
                         <ng-template pTemplate="header">
                             <tr style="text-align:center ;">
-                                <th style="width:10%;text-align:center ;">No.</th>
-                                <th style="width:25%;text-align:center ;">ชื่อ-นามสกุล</th>
-                                <th style="width:15%;text-align:center ;"> แผนก</th>
-                                <th style="width:15%;text-align:center ;"> ประเภทเอกสาร </th>
-                                <th style="width:30%;text-align:center ;"> รายละเอียด</th>
-                                <th style="width:10%;text-align:center ;"> วันที่</th>
+                                <!-- <th style="width:10%;text-align:center ;">No.</th> -->
+                                <th style="width:25%;">ชื่อ-นามสกุล</th>
+                                <th style="width:15%;"> แผนก</th>
+                                <th style="width:15%;"> ประเภทเอกสาร </th>
+                                <th style="width:15%;"> วันที่</th>
+                                <th style="width:30%;text-align: center;"> รายละเอียด</th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" >
+                        <ng-template pTemplate="body" let-document>
                             <tr >
-                                <td style="text-align:center ;font-family: 'Kanit'!important;">1</td>
-                                <td style="text-align:center ;font-family: 'Kanit'!important;">อภินันทน์ ลิ้มรำไพ</td>
-                                <td style="text-align:center ;"> ลากิจ </td>
-                                <td style="text-align:center ;">ไปทำอย่างอื่น </td>
-                                <td style="text-align:center ;">สำเร็จ </td>
+                                <!-- <td  style="font-family: 'Kanit'!important;">{{ 1}}</td> -->
+                                <td style="font-family: 'Kanit'!important;">{{document.user_send}}</td>
+                                <td style="">ยังไม่ได้กำหนด</td>
+                                <td style=""> 
+                                    <ng-container *ngIf="document.type_doc == '0'"><p>เอกสารการลา</p> </ng-container>
+                                    <ng-container *ngIf="document.type_doc == '1'"><p>เอกสารรายงาน</p> </ng-container>
+                                    <ng-container *ngIf="document.type_doc == '2'"><p>เอกสารการแลกเปลี่ยนเวร</p> </ng-container>
+                                    <ng-container *ngIf="document.type_doc != '2' && document.type_doc != '1'&& document.type_doc != '0'">ไม่ได้กำหนด</ng-container>
+                                </td>
+                                <td style="">{{document.createdAt | date}}</td>
+                                <td class="click_seemore" (click)="openDialog(document.id)">ดูรายละเอียด</td>
+
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="paginatorleft">

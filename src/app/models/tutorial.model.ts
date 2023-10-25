@@ -13,7 +13,7 @@ export class Tutorial {
   status?: {
     role?: String,
     active?: boolean,
-  }
+  };
   position?:String;
   createdAt?: Date;
   published?: boolean;

@@ -16,8 +16,18 @@ exports.create = (req, res) => {
         password: req.body.password,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        position: req.body.position,
-        status: req.body.status,
+        // position: req.body.position,
+        // status: req.body.status,
+        departmentDetail: {
+            role: req.body.role,
+            salary: req.body.salary,
+            department: req.body.department
+        },
+        status: {
+            role: req.body.roles,
+            active: req.body.active
+        },
+        position: req.body.position || "member",
         published: req.body.published ? req.body.published : false
     });
 
@@ -35,7 +45,7 @@ exports.create = (req, res) => {
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
     const firstname = req.query.firstname;
-    var condition = firstname ? { firstname:  RegExp(firstname), $option: "i" }  : {};
+    var condition = firstname ? { firstname: RegExp(firstname), $option: "i" } : {};
     Tutorial.find(condition).then(data => {
         res.send(data);
     })

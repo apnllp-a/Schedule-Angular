@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    p,span{
+        font-family: 'Kanit'!important;
+    }
+}
+
+.document_{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 600px;
+    border: 1px solid #5F8D4E;
+    .bg_header{
+        background-color: #5F8D4E;
+        color: #FFF;
+        padding: 12PX;
+
+    }
+    .document_header{
+        
+        display: flex;
+        justify-content: center;
+        p{
+            font-size: 32px;
+        }
+    }
+    .document_date{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .document_section{
+        display: flex;
+        flex-direction: column;
+        padding: 0 16px;
+        .sent_to{
+            p{
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+        .text_detail{
+            min-height: 268px;
+            text-indent: 32px;
+            font-size: 14px;
+            line-height: 24px;
+        }
+    }
+    .document_footer{
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 16px;
+
+        .nameWrite{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+::ng-deep .mat-dialog-container {
+    min-width: 640px;
+    // padding: 12PX !important;
+}
+
+
+@media(max-width:1350px) {
+
+    ::ng-deep   .mat-dialog-container {
+        min-width: 300px !important;
+    }
+}

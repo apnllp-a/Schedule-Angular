@@ -61,3 +61,13 @@
         }
     }
 }
+
+@media (max-width:647px) {
+    .side-nav{
+        flex-direction: column;
+        p{
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

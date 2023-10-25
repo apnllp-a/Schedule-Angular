@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
 @import '/src/assets/scss/mixins';
 @import '/src/assets/scss/variables';
 
@@ -191,13 +191,29 @@
 
             border: 1px solid #31A69F;
 
-            h5 {
-                font-family: 'Kanit' !important;
-                padding: 15px 20px;
-                background-color: #31A69F;
-                color: #fff;
-                font-size: 18px;
+            .header_table {
+                position: relative;
+
+                h5 {
+                    font-family: 'Kanit' !important;
+                    padding: 15px 20px;
+                    background-color: #31A69F;
+                    color: #fff;
+                    font-size: 18px;
+                }
+
+                .add_user {
+                    position: absolute;
+                    top: 10px;
+                    right: 16px;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 4px 10px;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
             }
+
         }
 
         .card-onclick {
@@ -219,12 +235,96 @@
     }
 }
 
+.popup_add_user  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000060;
+
+    .content_popup {
+        background-color: #fff;
+        padding: 36px 24px;
+        border-radius: 16px;
+        width: 540px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        i.fa-xmark {
+            position: absolute;
+            right: 20px;
+            top: 16px;
+            cursor: pointer;
+        }
+
+        .detail {
+
+            .detail_left,
+            .detail_right {
+                display: flex;
+                flex-direction: column;
+                button{
+                    background: #fff;
+                    border: none;
+                }
+            }
+
+            .btn_group {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+
+                button {
+                    padding: 4px 16px;
+                    border: none;
+                    border-radius: 16px;
+                    width: 150px;
+                    transition: .25s ease;
+                    font-size: 16px;
+                }
+                button:hover{
+                    opacity: .7;
+                }
+            }
+        }
+    }
+}
+
+.popup_add_user_success{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000060;
+
+    .content_popup {
+        background-color: #fff;
+        padding: 36px 24px;
+        border-radius: 16px;
+        width: 320px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+}
+
 ::ng-deep .mat-dialog-container {
     background-color: #ffffff !important;
     color: #000;
 }
 
-@media(max-width:767px) {
+@media(max-width:1350px) {
 
     .container {
         .data-table {
@@ -306,18 +406,28 @@
     }
 
     td:nth-of-type(2):before {
-        content: "Email";
+        content: "แผนก";
+
     }
 
     td:nth-of-type(3):before {
-        content: "Username";
+        content: "Role";
+
     }
 
     td:nth-of-type(4):before {
-        content: "วันที่";
+        content: "Email";
     }
 
     td:nth-of-type(5):before {
+        content: "Username";
+    }
+
+    td:nth-of-type(6):before {
+        content: "วันที่";
+    }
+
+    td:nth-of-type(7):before {
         content: "ติดต่อ / แก้ไขข้อมูล";
     }
 

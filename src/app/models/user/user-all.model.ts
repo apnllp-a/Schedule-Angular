@@ -7,5 +7,15 @@ export class UserAll {
     email?: String;
     tal?: String;
     createdAt?: Date;
+    departmentDetail?: {
+        role?: String,
+        salary?: String,
+        department?: String,
+    };
+    status?: {
+        role?: String,
+        active?: boolean,
+    };
+    position?: String;
     published?: boolean;
 }

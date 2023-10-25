@@ -2,6 +2,7 @@
 module.exports = app => {
     const tutorials = require("../controllers/controller.js");
     const user_All = require("../controllers/user_all_controller.js");
+    const notifiCations = require("../controllers/notifications.controller.js")
     const User = require('../models/user_module');
     const bcrypt = require('bcryptjs');
     const jwt = require('jsonwebtoken');
@@ -10,6 +11,7 @@ module.exports = app => {
 
     var router = require("express").Router();
     var routerUserAll = require("express").Router();
+    var routerNotification = require("express").Router();
 
 
     /*************************  Tutorial *************************/
@@ -152,4 +154,31 @@ module.exports = app => {
     routerUserAll.delete("/", user_All.deleteAll);
 
     app.use("/api/userAll", routerUserAll);
+
+
+     //Create a new Notification
+     routerNotification.post("/", notifiCations.create);
+
+     //Retrieve all  Notification
+     routerNotification.get("/", notifiCations.findAll);
+ 
+     //Retrieve all published Notification
+     routerNotification.get("/published", notifiCations.findAllPublished);
+ 
+     //Retrieve a single Notification with id
+     routerNotification.get("/:id", notifiCations.findOne);
+
+     //Retrieve a single Notification with id
+     routerNotification.get("/mess/:id", notifiCations.findOneByID);
+ 
+     //Update a Notification with id
+     routerNotification.put("/:id", notifiCations.update);
+ 
+     //Delete a Notification with id
+     routerNotification.delete("/:id", notifiCations.delete);
+ 
+     //Create a new Notification
+     routerNotification.delete("/", notifiCations.deleteAll);
+ 
+     app.use("/api/notification", routerNotification);
 };

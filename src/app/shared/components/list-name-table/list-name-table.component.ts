@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { da } from 'date-fns/locale';
+import { ServicesTestService } from 'src/app/services/services-test.service';
 
 interface City {
   name: string,
@@ -37,7 +38,29 @@ export class ListNameTableComponent implements OnInit {
   length: number;
   selectedUser: UserAll | null = null; // Assuming UserAll is your data type
   sortedUserAll: UserAll[] = [];
+  hide = true;
 
+  popup_toggle= false;
+
+  popup_uploadSS= false;
+
+  tutorial: Tutorial = {
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    departmentDetail: {
+      role: '',
+      salary: '',
+      department: ''
+    },
+    status: {
+      role: '',
+      active: true
+    },
+    position:'',
+    published: false
+  };
 
 
   @Output() onInput = new EventEmitter<string>();
@@ -173,7 +196,7 @@ export class ListNameTableComponent implements OnInit {
     private primengConfig: PrimeNGConfig,
     public dialog: MatDialog, private userAllService: UserAllService
     , private route: ActivatedRoute,
-    private router: Router, private http: HttpClient) {
+    private router: Router, private http: HttpClient,private tutorialService: ServicesTestService) {
     this.cities = [
       { name: 'วันที่', code: 'NY' },
       { name: 'ระดับพนักงาน', code: 'PRS' }
@@ -249,7 +272,43 @@ export class ListNameTableComponent implements OnInit {
  
   }
   
+  add_user(): void {
+    const data = {
+      username: this.tutorial.username,
+      password: this.tutorial.password,
+      firstname: this.tutorial.firstname,
+      lastname: this.tutorial.lastname,
+      departmentDetail:{
+        role:this.tutorial.departmentDetail?.role || 'member',
+        salary:this.tutorial.departmentDetail?.salary || 0,
+        department:this.tutorial.departmentDetail?.department,
+      },
+      status: {
+        role: this.tutorial.status?.role || 'member',
+        active: this.tutorial.status?.active || true,
+      },
+      position: this.tutorial.position ,
+      createdAt: Date()
 
+    };
+
+    this.userAllService.create(data)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.popup_uploadSS = true;
+
+
+          // setTimeout(() => {
+          //   alert = true;
+          //   console.log("after 2 secs: ", alert);
+          // }, 2000);
+        },
+        error: (e) => console.error(e)
+      });
+
+
+  }
 
 
 }

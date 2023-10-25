@@ -19,9 +19,22 @@ export class RegisterPageComponent implements OnInit {
     password: '',
     firstname: '',
     lastname: '',
-    position: '',
+    departmentDetail: {
+      role: '',
+      salary: '',
+      department: ''
+    },
+    status: {
+      role: '',
+      active: true
+    },
+    position:'',
     published: false
   };
+
+  
+
+  
   submitted = false;
   user_all: UserAll[];
 
@@ -93,9 +106,21 @@ export class RegisterPageComponent implements OnInit {
       password: this.tutorial.password,
       firstname: this.tutorial.firstname,
       lastname: this.tutorial.lastname,
-      position: this.tutorial.position 
+      departmentDetail:{
+        role:this.tutorial.departmentDetail?.role || 'member',
+        salary:this.tutorial.departmentDetail?.salary || 0,
+        department:this.tutorial.departmentDetail?.department,
+      },
+      status: {
+        role: this.tutorial.status?.role || 'member',
+        active: this.tutorial.status?.active || true,
+      },
+      position: this.tutorial.position ,
+      createdAt: Date()
 
     };
+
+    
 
     this.tutorialService.create(data)
       .subscribe({

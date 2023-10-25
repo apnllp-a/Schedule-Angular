@@ -1,3 +1,3 @@
 module.exports = {
-  url: "mongodb+srv://admin:6HtiTiELNfWYhGp9@cluster0.jkjcwvg.mongodb.net/ScheduleDB"
+  url: "mongodb+srv://admin:r3Kaz63Dl0fBMaxe@cluster0.jkjcwvg.mongodb.net/ScheduleDB"
   };

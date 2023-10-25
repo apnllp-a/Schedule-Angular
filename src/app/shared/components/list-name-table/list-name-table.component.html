@@ -45,7 +45,11 @@
                 </div>
             </div>
             <div class="card" [ngClass]="expression ? 'onclick' : 'card-onclick'">
-                <h5>รายชื่อพนักงาน </h5>
+                <div class="header_table">
+                    <h5>รายชื่อพนักงาน </h5>
+                    <button (click)="popup_toggle =! popup_toggle" class="add_user"><i class="fa-solid fa-user-plus"></i> เพิ่มพนักงาน</button>
+                </div>
+
                 <p-table [value]="user_all" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
                     [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate=""
                     [rowsPerPageOptions]="[10,15,20]">
@@ -53,10 +57,12 @@
                         <tr style="">
                             <!-- <th style="width:5%;text-align:center ;">No.</th> -->
                             <th style="width:25%;">รายชื่อ</th>
-                            <th style="width:20%;">Email</th>
-                            <th style="width:20%;">Username</th>
+                            <th style="width:10%;">แผนก</th>
+                            <th style="width:10%;">Role</th>
+                            <th style="width:15%;">Email</th>
+                            <th style="width:15%;">Username</th>
                             <th style="width:15%;">วันที่</th>
-                            <th style="width:15%;">
+                            <th style="width:10%;">
                                 <ng-container *ngIf="expression; else elseTemplate">
                                     ติดต่อ
                                 </ng-container>
@@ -74,6 +80,14 @@
                                     *ngIf="products.firstname == null || products.firstname == ''">ไม่พบข้อมูล</ng-container>
                                 <ng-container *ngIf="products.firstname != null">{{products.firstname}}
                                     {{products.lastname}}</ng-container>
+                            </td>
+                            <td style="font-family: 'Kanit'!important;">
+                                <ng-container *ngIf="products.departmentDetail == null">ยังไม่ได้กำหนด</ng-container>
+                                <ng-container *ngIf="products.departmentDetail != null">{{products.departmentDetail.role}}</ng-container>
+                            </td>
+                            <td style="font-family: 'Kanit'!important;">
+                                <ng-container *ngIf="products.departmentDetail == null">ยังไม่ได้กำหนด</ng-container>
+                                <ng-container *ngIf="products.departmentDetail != null">{{products.departmentDetail.salary}}</ng-container>
                             </td>
                             <td style="font-family: 'Kanit'!important;">
                                 <ng-container *ngIf="products.email == null">ยังไม่ได้กำหนด</ng-container>
@@ -116,4 +130,75 @@
 
     </div>
 
+
+    <div  *ngIf="popup_toggle" class="popup_add_user">
+        <div class="content_popup">
+            <i class="fa-solid fa-xmark" (click)="popup_toggle =! popup_toggle"></i>
+            <h2 style="text-align: center;">เพิ่มพนักงาน</h2>
+            <div class="detail">
+                <div class="detail_left">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First-Name</mat-label>
+                        <input [(ngModel)]="tutorial.firstname" type="text" name="firstname" matInput placeholder="Enter your First Name" type="text"
+                            required>
+                        <!-- <mat-error *ngIf="firstname.invalid">{{getErrorMessageFirstname()}}</mat-error> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last-Name</mat-label>
+                        <input [(ngModel)]="tutorial.lastname" type="text" name="lastname"  matInput placeholder="Enter your Last Name"
+                          type="text"  required>
+                        <!-- <mat-error *ngIf="lastname.invalid">{{getErrorMessageLastname()}}</mat-error> -->
+                      </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input [(ngModel)]="tutorial.username" type="text" name="username" matInput #inputusername maxlength="10"
+                            placeholder="Enter your Username" type="text" required>
+                        <!-- <mat-hint align="end">{{inputusername.value.length}}/10</mat-hint> -->
+                        <!-- <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="detail_right">
+                    
+                      <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input [(ngModel)]="tutorial.password" name="password"  matInput #inputpass minlength="4" maxlength="8"
+                          placeholder="Enter your password" [type]="hide ? 'password' : 'text'"  required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hide">
+                          <!-- <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                          <i [ngClass]="hide == true ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'" ></i>
+                        </button>
+                        <mat-hint align="end">{{inputpass.value.length}}/8</mat-hint>
+                        <!-- <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error> -->
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>เลือกแผนก</mat-label>
+                        <input [(ngModel)]="tutorial.departmentDetail!.department" type="text" name="lastname"  matInput placeholder="เลือกแผนก"
+                          type="text"  required>
+                        <!-- <mat-error *ngIf="lastname.invalid">{{getErrorMessageLastname()}}</mat-error> -->
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>กำหนดสิทธิ์</mat-label>
+                        <input [(ngModel)]="tutorial.departmentDetail!.role" type="text" name="lastname"  matInput placeholder="กำหนดสิทธิ์"
+                          type="text"  required>
+                        <!-- <mat-error *ngIf="lastname.invalid">{{getErrorMessageLastname()}}</mat-error> -->
+                      </mat-form-field>
+                </div>
+
+                <div class="btn_group">
+                    <button (click)="add_user()" style="background: #31A69F;color: #fff;">ADD</button>
+                    <button (click)="popup_toggle =! popup_toggle">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div (click)="popup_uploadSS =! popup_uploadSS" class="popup_add_user_success" *ngIf="popup_uploadSS">
+        <div class="content_popup">
+            <i class="fa-regular fa-circle-check fa-bounce" style="color: #46bc2f;font-size: 62px;"></i>
+            <p>เพิ่ม User เสร็จสิ้น</p>
+
+        </div>
+
+    </div>
 </body>

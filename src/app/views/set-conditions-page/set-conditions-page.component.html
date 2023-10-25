@@ -1,0 +1,196 @@
+<div class="container_">
+    <app-header></app-header>
+    <h1 style=" margin: 150px auto;width: max-content;">กำหนดเงื่อนไขตารางเวร</h1>
+    <section>
+
+        <div class="forum-input">
+            <div class="data-header">
+                <div class="item-left">
+                    <p>รหัสตารางทำงาน</p>
+                    <p>ชื่อตาราง</p>
+                    <p>ชื่อตารางทำงานภาษาอื่น</p>
+                </div>
+                <div class="item-right">
+                    <div class="multi-input">
+                        <input type="text" name="" id="">
+                        <p>ยังใช้งาน</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <input type="text" name="" id="">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+            <div class="data-form">
+                <p class="text-border">กะเวลาทำงานปกติ</p>
+                <div class="item-left">
+                    <p>วันจันทร์</p>
+                    <p>วันอังคาร</p>
+                    <p>วันพุธ</p>
+                    <p>วันพฤหัส</p>
+                    <p>วันศุกร์</p>
+                    <p>วันเสาร์</p>
+                    <p>วันอาทิตย์</p>
+                    <p>ทำงานนอกสถานที่</p>
+                    <button class="btn-position-left" (click)="toggle_popup_form =! toggle_popup_form">เพิ่ม</button>
+                </div>
+                <div class="item-right">
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">1</option>
+                        <option value="">1</option>
+                    </select>
+                </div>
+                <button class="btn-position">แสดง</button>
+            </div>
+        </div>
+        <div class="date-calendar">
+            <table>
+                <thead>
+                    <tr>
+                        <th *ngFor="let day of daysOfWeek">{{ day }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let week of calendar">
+                        <td [ngStyle]="{ 'background-color': isWeekend(day) ? '#B6E2A1' : '#FFFBC1' }"
+                            *ngFor="let day of week">{{ day }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+
+    <div *ngIf="toggle_popup_form" class="dialog-setting">
+        <div class="dialog-content">
+            <p class="head">ข้อตกลง</p>
+            <div class="agreement">
+
+
+                <div class="item-left">
+                    <p>รหัสข้อตกลง</p>
+                    <p>ชื่อข้อตกลง</p>
+                    <p>ชื่อภาษาอื่น</p>
+                    <p>หมายเหตุ</p>
+
+                </div>
+                <div class="item-right">
+                    <div class="multi-input">
+                        <input type="text" name="" id="">
+                        <p>ยังใช้งาน</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <input class="text-input" type="text" name="" id="">
+                    <input class="text-input" type="text" name="" id="">
+                    <input class="text-input" type="text" name="" id="">
+                </div>
+            </div>
+            <div class="work-permit">
+                <div class="work-time">
+                    <p class="head">ช่วงเวลางาน</p>
+                    <div class="workTime-select">
+
+                        <div class="start-day">
+                            <p>เวลาเริ่มงาน</p>
+                            <input type="date" name="" id="">
+                            <input type="time" name="" id="">
+                        </div>
+                        <div class="end-day">
+                            <p>เวลาเลิกงาน</p>
+                            <input type="date" name="" id="">
+                            <input type="time" name="" id="">
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="recording-time">
+                    <p class="head">ช่วงเวลาบันทึกเข้างาน</p>
+
+                    <div class="recordingTime-select">
+                        <div class="start-day">
+                            <p>ตั้งแต่</p>
+                            <input type="date" name="" id="">
+                            <input type="time" name="" id="">
+                        </div>
+                        <div class="end-day">
+                            <p>ถึง</p>
+                            <input type="date" name="" id="">
+                            <input type="time" name="" id="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="other">
+                    <p class="head" style="margin-bottom: 8px;">อื่นๆ</p>
+
+                    <div class="other-item">
+                        <div class="item-left">
+                            <p>จำนวนครั้งรูดบัตร</p>
+                            <p>จำนวน ชม. งาน</p>
+                            <p>วันหยุดประจำปี</p>
+                        </div>
+                        <div class="item-right">
+                            <div class="multi-input">
+                                <input class="text-input" type="text" name="" id="">
+                                <p>เวลางานคงที่</p>
+                                <input type="checkbox" name="" id="">
+                            </div>
+
+                            <div class="multi-input">
+                                <input class="text-input" type="text" name="" id="">
+                                <p>ชม. พัก</p>
+                                <input class="text-input" type="number" name="" id="">
+                            </div>
+
+                            <div class="checkBox">
+                                <input type="checkbox" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-submit">
+                    <button style=" background-color: #B6E2A1;">เพิ่ม</button>
+                    <button (click)="toggle_popup_form =! toggle_popup_form">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
