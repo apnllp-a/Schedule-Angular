@@ -55,7 +55,9 @@ const routes: Routes = [
   { path: 'main-page-head', loadChildren: () => import('./views/main-page-hd/main-page-hd.module').then(m => m.MainPageHdModule) },
   { path: 'main-page-board', loadChildren: () => import('./views/main-page-b/main-page-b.module').then(m => m.MainPageBModule) },
   { path: 'document-head-page', loadChildren: () => import('./views/document-head-page/document-head-page.module').then(m => m.DocumentHeadPageModule) },
-  { path: 'document-b-page', loadChildren: () => import('./views/document-b-page/document-b-page.module').then(m => m.DocumentBPageModule) }
+  { path: 'document-b-page', loadChildren: () => import('./views/document-b-page/document-b-page.module').then(m => m.DocumentBPageModule) },
+  { path: 'set-conditions-page', loadChildren: () => import('./views/set-conditions-page/set-conditions-page.module').then(m => m.SetConditionsPageModule) },
+  // { path: '/shared/components/dialog-document', loadChildren: () => import('./shared/components/dialog-document/dialog-document.module').then(m => m.DialogDocumentModule) }
 ];
 
 @NgModule({

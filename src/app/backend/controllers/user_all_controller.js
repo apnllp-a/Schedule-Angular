@@ -18,6 +18,16 @@ exports.create = (req, res) => {
         lastname: req.body.lastname,
         email:req.body.email,
         tal:req.body.tal,
+        departmentDetail: {
+            role: req.body.role || "member",
+            salary: req.body.salary || 0,
+            department: req.body.department
+        },
+        status: {
+            role: req.body.roles,
+            active: req.body.active
+        },
+        position: req.body.position || "member",
         published: req.body.published ? req.body.published : false
     });
 

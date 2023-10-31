@@ -1,0 +1,29 @@
+<div class="document_">
+
+    <span class="bg_header" >
+        <div class="document_date">
+            <p>{{document_detail.updatedAt}}</p>
+        </div>
+        <div class="document_header">
+            <p>{{text_docType}}</p>
+        </div>
+    </span>
+
+    <div class="document_section">
+        <div class="sent_to">
+            <p>เรียน <span style="font-size: 12px;">{{document_detail?.user_send_name }}</span></p>
+            <p>แผนก <span style="font-size: 12px;">ไม่ได้กำหนด</span></p>
+        </div>
+        <p class="text_detail">{{document_detail?.desc}}
+        </p>
+    </div>
+
+    <div class="document_footer">
+        <div class="nameWrite">
+            <p>{{document_detail?.user_send}}</p>
+            <p>ไม่ได้กำหนด</p>
+            <p>{{document_detail.updatedAt}}</p>
+        </div>
+    </div>
+
+</div>

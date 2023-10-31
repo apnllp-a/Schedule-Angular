@@ -1,9 +1,11 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css);
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
 // .container{
 //     border: 2px solid #d5d5d5;
 //    border-radius: 16px;
@@ -55,7 +57,7 @@
 //             line-height: 18px;
 //             color: #4B5F6B;
 //         }
-        
+
 //     }
 //     .button-group{
 //         margin-top: 10px;
@@ -83,7 +85,7 @@
 //             color: #090909;
 //         }
 //     }
-    
+
 // }
 //Dialog status 
 .dialog-alert-status {
@@ -108,7 +110,8 @@
         transform: translate(-50%, -50%);
         padding: 20px 25px 40px 25px;
         border-radius: 4px;
-        p{
+
+        p {
             font-size: 16px;
         }
 
@@ -128,6 +131,7 @@
             align-items: center;
             justify-content: center;
             gap: 25px;
+
             h3 {
                 font-size: 20px;
                 color: #090909;
@@ -136,15 +140,12 @@
                 padding-bottom: 25px;
                 border-bottom: 1px solid #4B5F6B
             }
-          
-            
-            .popup_status_succeed{
-                
-            }
-            .popup_status_unsucceed{
-             
-            }
-          
+
+
+            .popup_status_succeed {}
+
+            .popup_status_unsucceed {}
+
         }
     }
 }
@@ -154,19 +155,25 @@
 
 
 
-body{
+body {
     overflow: hidden;
-    background: rgb(0,212,255);
-            background: linear-gradient(353deg, rgba(0,212,255,1) 13%, rgba(9,9,121,1) 100%);
+    // background: rgb(0,212,255);
+    // background: linear-gradient(353deg, rgba(0,212,255,1) 13%, rgba(9,9,121,1) 100%);
 }
-img{
+
+img {
     width: 100%;
     overflow: hidden;
 }
-.container{
-    padding: 20px 20px 50px 20px ;
+
+.container {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 20px 20px 50px 20px;
     margin: 0px auto;
-    width: 100%;
+    width: 550px;
     backdrop-filter: blur(4px);
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     border-radius: 4px;
@@ -174,44 +181,83 @@ img{
     display: flex;
     align-items: center;
     flex-direction: column;
-    h1{
+
+    h1 {
         width: 100%;
         font-weight: 700;
-        color: #090979;
+        color: #90CAF9;
     }
-    .form-register-card{
+
+    .form-register-card {
         width: 100%;
-        padding: 50px 0;
+        padding: 16px 0;
         display: flex;
         gap: 10px;
         justify-content: space-around;
         align-items: center;
-        .item-left{
-            width: 40%;
+        flex-direction: column;
+
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+            color: #90CAF9;
+          }
+
+        .item-left {
+            width: 75%;
             display: flex;
             gap: 25px;
             flex-direction: column;
         }
-        .item-right{
-            width: 40%;
+
+        .item-right {
+            width: 75%;
             gap: 25px;
             display: flex;
             flex-direction: column;
         }
-        .mat-form-field{
+
+        .mat-form-field {
             outline: none;
         }
-        
-    }
-    button{
-            width: 90%;
-            background: rgb(0,212,255);
-            background: linear-gradient(353deg, rgba(0,212,255,1) 13%, rgba(9,9,121,1) 100%);
-            height: 50px;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
 
+    }
+
+    button {
+        width: 90%;
+        // background: rgb(0,212,255);
+        // background: linear-gradient(353deg, rgba(0,212,255,1) 13%, rgba(9,9,121,1) 100%);
+        height: 50px;
+        color: #000000;
+        border: none;
+        border-radius: 4px;
+
+    }
+
+    .submit_css{
+        background-color: #90CAF9;
+        transition: .25s ease-in-out;
+    }
+    .submit_css:hover{
+        opacity: .7;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .container {
+        width: 100%;
+
+        h1 {
+            text-align: center;
         }
-  
+
+        .form-register-card {
+            padding: 24px 0;
+
+            .item-left,
+            .item-right {
+                width: 90%;
+            }
+        }
+    }
+
+
 }

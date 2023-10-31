@@ -29,24 +29,24 @@
             </div>
             <div class="card"  [ngClass]="expression ? 'onclick' : 'card-onclick'">
                 <h5>รายชื่อพนักงาน </h5>
-                <p-table [value]="[user_all]"  [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-                    [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                <p-table [value]="user_all"  [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                     currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
                     <ng-template pTemplate="header">
                         <tr style="text-align:center ;">
-                            <th style="width:10%;text-align:center ;">No.</th>
-                            <th style="width:30%;text-align:center ;">รายชื่อ</th>
-                            <th style="width:15%;text-align:center ;"> ติดต่อ</th>
-                            <th style="width:25%;text-align:center ;"> ประเภทเวรการทำงาน</th>
+                            <th style="width:10%;">No.</th>
+                            <th style="width:30%;">รายชื่อ</th>
+                            <th style="width:15%;"> ติดต่อ</th>
+                            <th style="width:25%;"> ประเภทเวรการทำงาน</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-products>
-                        <tr *ngFor="let user_alls of user_all; let i = index" [class.active]="i == currentIndex"
-                        (click)="setActiveUserAlls(user_alls, i)">
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{i+1}}</td>
-                            <td style="text-align:center ;font-family: 'Kanit'!important;">{{user_alls.firstname}} {{user_alls.lastname}}</td>
-                            <td style="text-align:center ;"> {{user_alls.tal}}
-                            <td style="text-align:center ;"> เวรเช้า  or เวรเย็น
-                            </td>
+                        <tr>
+                            <td style="font-family: 'Kanit'!important;">1</td>
+                            <td *ngIf="products.firstname != null" style="font-family: 'Kanit'!important;">{{products.firstname}} {{products.lastname}}</td>
+                            <td *ngIf="products.firstname == null " style="font-family: 'Kanit'!important;">เกิดข้อผิดพลาด</td>
+                            <td *ngIf=" products.tal != null" style=""> {{products.tal}} </td>
+                            <td  *ngIf=" products.tal == null"> ยังไม่ได้กำหนด </td>
+                            <td style=""> เวรเช้า  or เวรเย็น</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="paginatorleft">

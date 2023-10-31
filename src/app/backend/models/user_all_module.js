@@ -7,6 +7,18 @@ module.exports = mongoose => {
       password: String,
       email: String,
       tal:String,
+      // department:String,
+      // role:String,
+      departmentDetail: {
+        role: String, //ระดับสิทธิ์
+        salary: Number, //เงินเดือน 
+        department: String // แผนก
+      },
+      status: {
+        role: String, //ระดับสิทธิ์
+        active: Boolean //ยืนยันการสมัคร
+      },
+      position: {type:String,default:'member'},
       published: Boolean
     },
     { timestamps: true }

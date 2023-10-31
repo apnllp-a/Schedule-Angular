@@ -24,7 +24,8 @@
         h3{
             font-family: 'Kanit';
             border: 3px solid #A6313F;
-            color: #A6313F;
+            color: #fff;
+                background: #A6313F;
             display: flex;
             width: 350px;
             height: 150px;
@@ -113,4 +114,129 @@
  * th{
     font-family: 'Kanit'!important;
  }
+}
+
+@media(max-width:1200px) {
+    h5{
+        display: none;
+    }
+
+    @media (max-width:520px) {
+        .container-table  {
+            .header-title {
+            flex-direction: column;
+                h3{
+                    width: 100%;
+                }
+            }
+        }
+    }
+     
+
+    .container-table {
+        .header-title {
+            gap: 16px;
+            h3 {
+                font-size: 18px;
+                color: #fff;
+                background: #A6313F;
+                margin: 0 !important;
+            }
+        }
+    }
+
+    ::ng-deep .p-datatable-thead {
+        display: none !important;
+    }
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin: 0 0 2rem 0;
+    }
+
+    tr:nth-child(odd) {
+        background: #fff;
+    }
+
+    td:nth-child(1) {
+        background: #A6313F;
+        color: #fff;
+    }
+
+    td:nth-child(5) {
+        background: transparent !important;
+    }
+
+
+    td {
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 45% !important;
+
+        .dropdow-table .mat-form-field {
+            margin-top: 0px;
+        }
+
+    }
+
+    td:before {
+        position: absolute;
+        top: 10px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before {
+        content: "No.";
+
+    }
+
+    td:nth-of-type(2):before {
+        content: "ชื่อ-นามสกุล";
+
+    }
+
+    td:nth-of-type(3):before {
+        content: "ติดต่อ";
+
+    }
+
+    td:nth-of-type(4):before {
+        content: "ประเภทเวรการทำงาน";
+    }
+
+    td:nth-of-type(5):before {
+        content: "สถานะ";
+        display: none;
+    }
+
+    // td:nth-of-type(6):before {
+    //     content: "วันที่";
+    // }
+
+    // td:nth-of-type(7):before {
+    //     content: "ติดต่อ / แก้ไขข้อมูล";
+    // }
+
+   ::ng-deep .p-datatable-table {
+        min-width: none !important;
+    }
+
+
 }

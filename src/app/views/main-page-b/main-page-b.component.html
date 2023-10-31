@@ -13,45 +13,77 @@
                     <div class="list-document_name">
                         <mat-form-field class="list-doc" appearance="fill">
                             <mat-label>เลือกแผนก</mat-label>
-                            <mat-select [(value)]="selected">
+                            <mat-select [(ngModel)]="selected" [(value)]="selected">
                               <mat-option>None</mat-option>
-                              <mat-option value="option1">แผนกที่ 1</mat-option>
-                              <mat-option value="option2">แผนกที่ 2</mat-option>
-                              <mat-option value="option3">แผนกที่ 3</mat-option>
+                              <mat-option   value="1">แผนกที่ 1</mat-option>
+                              <mat-option  value="2">แผนกที่ 2</mat-option>
+                              <mat-option  value="3">แผนกที่ 3</mat-option>
                             </mat-select>
                           </mat-form-field>
                     </div>
         
                    <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input type="text" pInputText placeholder="Search" class="form-control">
-                    <button type="button" >search</button>
+                    <input type="text" (click)="searchReset()" pInputText [(ngModel)]="name" placeholder="Search" class="form-control">
+                    <button type="button" (click)="searchByFirstname(name)">search</button>
                 </span>
                 </div>
             </div>
     
             <div class="data-table">
                 <div class="card">
-                    <p-table [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-                        [tableStyle]="{'min-width': '75rem'}" currentPageReportTemplate="" [rowsPerPageOptions]="[5,10,15]">
+                    <p-table [value]="userAll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                        [tableStyle]="{'min-width': 'auto'}" currentPageReportTemplate="" [rowsPerPageOptions]="[10,15,20]">
                         <ng-template pTemplate="header">
                             <tr style="text-align:center ;">
-                                <th style="width:10%;text-align:center ;">No.</th>
-                                <th style="width:30%;text-align:center ;">ชื่อ-นามสกุล</th>
-                                <th style="width:15%;text-align:center ;"> แผนก</th>
+                                <th style="width:10%;text-align:center ;">ชื่อ-นามสกุล</th>
+                                <th style="width:30%;text-align:center ;">แผนก</th>
+                                <th style="width:15%;text-align:center ;">ระดับสิทธิ์ </th>
                                 <th style="width:25%;text-align:center ;"> การติดต่อ </th>
                                 <th style="width:25%;text-align:center ;"> สถานะ </th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" >
-                            <tr >
-                                <td style="text-align:center ;font-family: 'Kanit'!important;">1</td>
-                                <td style="text-align:center ;font-family: 'Kanit'!important;">อภินันทน์ ลิ้มรำไพ</td>
-                                <td style="text-align:center ;"> ลากิจ </td>
-                                <td style="text-align:center ;">ไปทำอย่างอื่น </td>
-                                <td style="text-align:center ;">สำเร็จ </td>
+                        <ng-template pTemplate="body" let-user>
+                            <tr>
+                              <!-- <td style="text-align:center ;">{{i+1}}</td> -->
+                              <td style="text-align:center ;">
+                                <ng-container *ngIf="user.firstname == null || user.firstname == ''">ไม่พบข้อมูล</ng-container>
+                                <ng-container *ngIf="user.firstname != null">{{user.firstname}} {{user.lastname}}</ng-container>
+                
+                              </td>
+                              <td style="text-align:center ;">
+                                <span ngSwitch="{{user.departmentDetail}}">
+                                  <p *ngSwitchCase="1">
+                                    IT
+                                  </p>
+                                  <p *ngSwitchCase="2">
+                                    HR
+                                  </p>
+                                  <p *ngSwitchCase="3">
+                                    P
+                                  </p>
+                                  <p *ngSwitchCase="4">
+                                    Boss
+                                  </p>
+                                  <p *ngSwitchDefault>
+                                    ยังไม่ได้กำหนดแผนก
+                                  </p>
+                                </span>
+                              </td>
+                              <td style="text-align:center ;">ยังไม่ได้กำหนด</td>
+                              <td style="text-align:center ;">
+                                <ng-container *ngIf="user.tal == null || user.tal == ''">ยังไม่ได้กำหนด</ng-container>
+                                <ng-container *ngIf="user.tal != null">{{user.tal}}</ng-container>
+                              </td>
+                              <td style="text-align:center ;">
+                                <p>someting</p>
+                
+                              </td>
                             </tr>
-                        </ng-template>
+                          </ng-template>
+                          <!-- <div *ngIf="userAll == [] || userAll.length == 0">ไม่พบข้อมูล</div> -->
+
+                        
                         <ng-template pTemplate="paginatorleft">
                         </ng-template>
                         <ng-template pTemplate="paginatorright">
