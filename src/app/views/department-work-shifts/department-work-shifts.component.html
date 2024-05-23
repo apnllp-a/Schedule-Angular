@@ -1,0 +1,38 @@
+<body>
+    <div class="header">
+        <app-header-hd></app-header-hd>
+    </div>
+
+    <div class="calendar">
+        <!-- <div *ngFor="let day of daysInMonth" [ngStyle]="{'background-color': day.color}">
+          {{ day.date | date: 'd' }}
+        </div> -->
+
+    </div>
+
+    <table class="calendar-table">
+        <thead>
+          <tr>
+            <!-- <th >ลำดับที่</th> -->
+            <th >ชื่อ</th>
+            <th *ngFor="let day of headerDays">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let day of headerDaystest" >
+            <!-- <td>{{day}}</td> -->
+            <td style="width: 100%;">ART Apinan Limlampai</td>
+            <td *ngFor="let day of headerDays">
+             <input type="text" style="width: 20px;">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div *ngIf="selectedDay" class="input-popup">
+        <input type="text" placeholder="Enter name" #nameInput>
+        <button (click)="saveName(nameInput.value)">Save</button>
+      </div>
+      
+      
+</body>

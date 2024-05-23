@@ -1,0 +1,152 @@
+<body>
+  <div class="__container">
+    <div class="__header">
+      <app-header></app-header>
+    </div>
+
+    <div class="__content">
+      <!-- <h1>Edit Schedule !!</h1> -->
+      <div class="__content-list">
+        <h2 style="background-color: #3A31A6;color: #fff; padding: 0 4px;margin: 4px 0;">รายการเวรที่ถูกสร้างไว้
+        </h2>
+        <table style="width:100%">
+          <tr class="header-table">
+
+            <th>ชื่อตาราง</th>
+            <th>เวลาเข้างาน</th>
+            <th>เวลาเลิกงาน</th>
+            <th>เวลาเข้าสถานที่ทำงาน</th>
+          </tr>
+          <tr *ngFor="let item of dataWorkTime; let i = index">
+            <td>{{item.nameTable}}</td>
+            <td>{{item.attendWork}}</td>
+            <td>{{item.finishWork}}</td>
+            <td>{{item.lateTime}}</td>
+          </tr>      
+        </table>
+        <ng-container *ngIf="dataWorkTime.length == 0">
+          <p >ยังไม่มีการกำหนดประเภทเวรการทำงาน</p>
+          </ng-container>
+        
+        <br>
+
+        <h2 style="background-color: #3A31A6;color: #fff; padding: 0 4px;margin: 4px 0;">รายการเงื่อนไขที่ถูกสร้างไว้
+        </h2>
+        <table style="width:100%">
+          <tr class="header-table">
+
+            <th>ลำดับที่</th>
+            <th>รายชื่อแผนก</th>
+            <th>เดือน</th>
+            <th>จำนวนชั่วโมง</th>
+          </tr>
+          <tr *ngFor="let item of savedData; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.department}}</td>
+            <td>{{item.month}}</td>
+            <td>{{item.hours}}</td>
+          </tr>
+
+        </table>
+        
+        <ng-container *ngIf="savedData.length == 0">
+          <p >ยังไม่มีการกำหนดเงื่อนไข</p>
+          </ng-container>
+         
+      </div>
+
+
+
+      <div class="__content-configList">
+        <h2 style="background-color: #3A31A6;">สร้างประเภทเวรการทำงาน</h2>
+        <div class="__content-configList-menu">
+          <button (click)="toogleCreateTableTime =! toogleCreateTableTime"><i class="fa-solid fa-plus" style="color: green;"></i> เพิ่มใหม่</button>
+          <button><i class="fa-regular fa-pen-to-square" style="color: rgb(128, 128, 11);"></i> แก้ไข</button>
+          <button><i class="fa-solid fa-xmark" style="color: red;"></i> ลบข้อมูล</button>
+        </div>
+
+        <h2 style="background-color: #3A31A6;margin: 0;">กำหนดเงื่อนไขตารางเวรประจำเดือน</h2>
+        <div class="__content-configList-setCondition">
+          <div class="_setDepartMent">
+            <h3>เลือกแผนก</h3>
+            <div class="display_flexSet">
+              <div>
+                <label>
+                  <input type="radio" name="options" [disabled]="isDisabled('all')"
+                    (change)="selectOption('all')" [checked]="selectedOption === 'all'"> ทุกแผนก
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="options" [disabled]="isDisabled('select')"
+                    (change)="selectOption('select')" [checked]="selectedOption === 'select'"> เลือกแผนก
+                </label>
+                <select *ngIf="selectedOption == 'select'" (change)="onSelectionChange($event)">
+                  <option *ngFor="let item of items" [value]="item">{{ item }}</option>
+                </select>
+
+                <!-- <p>Selected Item: {{ selectedItem }}</p> -->
+
+              </div>
+              <button (click)="resetSelection()">Reset</button>
+            </div>
+          </div><br>
+          <div class="setMonth">
+            <h3>เลือกเดือน</h3>
+            <div style="padding: 0 10px;">
+              <select style="padding: 0 10px;" (change)="onSelectionChangeMonth($event)">
+                <option *ngFor="let item of itemsMonth" [value]="item">{{ item }}</option>
+              </select>
+            </div>
+          </div><br>
+          <div class="setHours">
+            <h3>กำหนดชั่วโมงการทำงาน</h3>
+            <div style="padding: 0 10px;">
+              <input [(ngModel)]="workingHours" type="number">
+            </div>
+          </div>
+
+          <div class="_confirmDate">
+            <button (click)="saveData()">บันทึกข้อมูล</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+<div *ngIf="toogleCreateTableTime" class="_createTableTime-bg">
+  <div class="_createTableTime"> 
+    <h2>สร้างประเภทเวรการทำงาน</h2>
+    <div class="_detailsTable">
+     
+      <div class="_itemLeft">
+        <p>ชื่อตาราง</p>
+        <p>เวลาเข้างาน</p>
+        <p>เวลาเลิกงาน</p>
+        <p>สายได้</p>
+      </div>
+      <div class="_itemRight">
+        <input type="text" placeholder="ชื่อตาราง" [(ngModel)]="nameTable">
+        <input type="time" [(ngModel)]="attendWork">
+        <input type="time" [(ngModel)]="finishWork">
+        <input type="number" [(ngModel)]="lateTime">
+      </div>
+    </div>
+    <div class="_btnTable">
+      <button (click)="saveDataWorkTime()">สร้าง</button>
+      <button (click)="toogleCreateTableTime =! toogleCreateTableTime" style="background-color: red;">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<div (click)="successStatus =! successStatus" *ngIf="successStatus" class="_SuccessStatus">
+    <div class="_successDetail">
+      <h1>บันทึกข้อมูลเสร็จสิ้น</h1>
+      <button style="background-color: #3A31A6;border: none;border-radius: 4px;padding: 4px 12px;color: #fff;" (click)="successStatus =! successStatus">Ok</button>
+    </div>
+</div>
+  
+
+</body>

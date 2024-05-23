@@ -21,7 +21,9 @@
                     <tr (click)="openDialog()">
                         <td style="text-align:center ;">{{products.code }}</td>
                         <td style="text-align:center ;">{{ products.quantity }}</td>
-                        <td style="text-align:center ;">{{ products.name}}</td>
+                        <td style="text-align:center ;">
+                            <button (click)="generatePdf()">Open PDF</button>
+                        </td>
                         <td style="text-align:center ;">{{products.category}}</td>
                         <td style="text-align:center ;">{{products.date}}</td>
                         <td style="text-align:center ;">

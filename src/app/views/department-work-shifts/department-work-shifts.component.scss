@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+
+}
+
+// .calendar {
+//     display: flex;
+//     // grid-template-columns: repeat(30, 1fr);
+//     gap: 5px;
+//   }
+  
+//   .calendar div {
+//     padding: 10px;
+//     border: 1px solid #ddd;
+//     text-align: center;
+//     border-radius: 5px;
+//   }
+  
+//   .calendar div:nth-child(7n+1) { /* Highlight Sundays */
+//     color: red;
+//   }
+  
+//   .calendar div:nth-child(7n) { /* Highlight Saturdays */
+//     color: blue;
+//   }
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar-table th, .calendar-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+    width: 14.28%; /* 100% / 7 days */
+    height: 50px;
+  }
+  
+  .calendar-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .day-cell {
+    cursor: pointer;
+  }
+  
+  .input-popup {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .input-popup input {
+    margin-right: 10px;
+  }
+  
+  .name {
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #555;
+  }
+  

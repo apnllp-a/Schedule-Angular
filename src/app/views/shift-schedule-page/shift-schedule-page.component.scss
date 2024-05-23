@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
+@import "/src/assets/scss/mixins";
+@import "/src/assets/scss/variables";
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+._container_cus{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 75px;
+
+    ._container-all{
+        padding: 24px;
+
+        .line_{
+            padding: 16px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            ._options{
+
+            }
+            ._cardMonth-group {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr); 
+                grid-gap: 10px; 
+            }
+            
+            ._cardMonth {
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: center;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: .25s ease-out;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            ._cardMonth:hover{
+                background-color: #ccc;
+            }
+        }
+    }
+}
+
+
+._SuccessStatus{
+    background-color: #000000ca;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 100000;
+  
+    ._successDetail{
+      border-radius: 8px;
+      position: fixed;
+      padding: 8px 16px;
+      background-color: #fff;
+      width: 25%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+    }
+  }

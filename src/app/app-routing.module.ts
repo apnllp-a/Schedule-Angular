@@ -57,6 +57,9 @@ const routes: Routes = [
   { path: 'document-head-page', loadChildren: () => import('./views/document-head-page/document-head-page.module').then(m => m.DocumentHeadPageModule) },
   { path: 'document-b-page', loadChildren: () => import('./views/document-b-page/document-b-page.module').then(m => m.DocumentBPageModule) },
   { path: 'set-conditions-page', loadChildren: () => import('./views/set-conditions-page/set-conditions-page.module').then(m => m.SetConditionsPageModule) },
+  { path: 'edit-schedule-page', loadChildren: () => import('./views/edit-schedule-page/edit-schedule-page.module').then(m => m.EditSchedulePageModule) },
+  { path: 'department-work_shifts', loadChildren: () => import('./views/department-work-shifts/department-work-shifts.module').then(m => m.DepartmentWorkShiftsModule) },
+  { path: 'shift-schedule-page', loadChildren: () => import('./views/shift-schedule-page/shift-schedule-page.module').then(m => m.ShiftSchedulePageModule) },
   // { path: '/shared/components/dialog-document', loadChildren: () => import('./shared/components/dialog-document/dialog-document.module').then(m => m.DialogDocumentModule) }
 ];
 

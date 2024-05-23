@@ -1,0 +1,29 @@
+<body>
+    <div class="_container_cus">
+        <div class="header">
+            <app-header></app-header>
+        </div>
+        <div class="_container-all">
+            <h2>รายการตารางเวรของแต่ละแผนก</h2>
+            <div class="line_">
+                <div class="_options">
+                    <p style="text-align: right;">ตัวเลือกการกรอง</p>
+                </div>
+                <div class="_cardMonth-group">
+                    <div (click)="successStatus =! successStatus" *ngFor="let item of loopCount" class="_cardMonth"><i
+                            class="fa-solid fa-calendar-days"></i> <span>แผนก....</span> เดือน.... </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="successStatus" class="_SuccessStatus">
+        <div class="_successDetail">
+            <h1>แสดงรายละเอียดของแต่ละตาราง </h1>
+            <span>มีปุ่มตกลง แก้ไข และลบตารางเวร </span> <br>
+            <button style="background-color: #3A31A6;border: none;border-radius: 4px;padding: 4px 12px;color: #fff;"
+                (click)="successStatus =! successStatus">Ok</button>
+        </div>
+    </div>
+</body>
