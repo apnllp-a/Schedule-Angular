@@ -1,70 +1,227 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
-    padding: 0;
-
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
+@import "/src/assets/scss/mixins";
+@import "/src/assets/scss/variables";
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  overflow-x: hidden;
+  
 }
 
-// .calendar {
-//     display: flex;
-//     // grid-template-columns: repeat(30, 1fr);
-//     gap: 5px;
-//   }
-  
-//   .calendar div {
-//     padding: 10px;
-//     border: 1px solid #ddd;
-//     text-align: center;
-//     border-radius: 5px;
-//   }
-  
-//   .calendar div:nth-child(7n+1) { /* Highlight Sundays */
-//     color: red;
-//   }
-  
-//   .calendar div:nth-child(7n) { /* Highlight Saturdays */
-//     color: blue;
-//   }
+._displayFlex-modifier {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: auto;
+  padding: 16px;
+  font-family: "Kanit" !important;
+  * h1{
+    font-family: "Kanit" !important;
+    overflow: hidden;
+    margin: 0;
 
-.calendar-table {
+  }
+  ._title {
     width: 100%;
-    border-collapse: collapse;
+    height: 10%;
+
+    
   }
-  
-  .calendar-table th, .calendar-table td {
-    border: 1px solid #ddd;
-    text-align: center;
-    padding: 10px;
-    width: 14.28%; /* 100% / 7 days */
-    height: 50px;
+  ._addDepartment-workShifts {
+    
+    width: 100%;
+    height: 520px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    ._cardLeft {
+      width: 65%;
+      // padding: 8px;
+      border: 1px solid #A6313F;
+      border-radius: 8px;
+      table {
+        width: 100%;
+        thead {
+          text-align: center;
+          font-weight: 700;
+        }
+        tbody {
+          text-align: center;
+          tr {
+            td {
+              button {
+                width: 100%;
+                height: 30px;
+                background-color: #fff;
+                border: none;
+                padding: 4px;
+                overflow: hidden;
+                transition: .25s ease-in;
+              }
+              button:hover{
+                opacity: .5;
+                background-color: gray;
+              }
+              ._EditBtns {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                align-items: center;
+                p{
+                  color: green;
+                  margin: 0;
+                }
+                button {
+                  width: 20%;
+                  color: #000000;
+                  background-color: yellow;
+                  border-radius: 8px;
+                }
+              }
+            }
+          }
+        }
+
+       
+        td{
+          padding: 4px;
+        }
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    }
+    ._cardRight {
+      // padding: 8px;
+      width: 30%;
+      // background-color: skyblue;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      ._shiftOfMonth {
+        height: 50%;
+        border-radius: 8px;
+        border: 1px solid #A6313F;
+        table {
+          width: 100%;
+          thead {
+            text-align: center;
+          }
+          td{
+            padding: 4px;
+          }
+        }
+        table,
+        th,
+        td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          text-align: center;
+        }
+      }
+
+      ._status {
+        height: 50%;
+        border: 1px solid #A6313F;
+        border-radius: 8px;
+      }
+    }
   }
-  
-  .calendar-table th {
-    background-color: #f4f4f4;
+  ._checkAndsubmit {
+    width: 100%;
+    height: 40%;
+    background-color: yellow;
   }
-  
-  .day-cell {
-    cursor: pointer;
-  }
-  
-  .input-popup {
-    position: absolute;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    top: 20px;
+}
+
+
+._popupSetWorkShifts{
+  background-color: #000000ca;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 100000;
+
+  ._popupSetWorkShiftsDetail{
+    border-radius: 8px;
+    position: fixed;
+    padding: 8px 16px;
+    background-color: #fff;
+    width:50%;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    .table-container {
+      max-height: 400px; /* Adjust this height as needed */
+      overflow-y: auto;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0;
+      text-align: center;
+      border: 1px solid #ddd;
+      position: relative;
+      height: 50px; /* Adjust as needed for row height */
+    }
+    
+    .full-cell {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    input[type="radio"] {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: pointer;
+      appearance: none;
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    input[type="radio"]:checked {
+      background-color: #2196F3;
+    }
+    
+    input[type="radio"]::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+    }
+    
+    input[type="radio"]:checked::before {
+      background-color: #2196F3;
+    }
   }
-  
-  .input-popup input {
-    margin-right: 10px;
-  }
-  
-  .name {
-    margin-top: 5px;
-    font-size: 0.8em;
-    color: #555;
-  }
-  
+}
+
+.weekend {
+  background-color: #ffdddd !important; /* Light red background for weekends */
+}

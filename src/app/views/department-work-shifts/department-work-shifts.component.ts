@@ -15,84 +15,51 @@ interface Day {
   styleUrls: ['./department-work-shifts.component.scss']
 })
 export class DepartmentWorkShiftsComponent implements OnInit {
+  daysInMonth: string[] = [];
+  selectedOptions: { [key: string]: string } = {};
+  currentMonthName: string = '';
+  currentYear: number = 0;
+
+  thaiMonthNames: string[] = [
+    'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+    'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+  ];
 
   constructor() { }
 
-  weekDays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  calendarDays: (Day | null)[][] = [];
-  headerDays: number[] = [];
-  headerDaystest: number[] = [10,1,11,12];
-  holidays: Date[] = [
-    new Date(2024, 0, 1), // Example holiday: January 1, 2024
-    new Date(2024, 11, 25) // Example holiday: December 25, 2024
-  ];
-  selectedDay: Day | null = null;
-
   ngOnInit(): void {
-    this.generateCalendar(new Date().getFullYear(), new Date().getMonth());
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth(); // Months are 0-based in JavaScript
+    this.currentMonthName = this.thaiMonthNames[currentMonth];
+    this.currentYear = currentYear + 543; // Convert Gregorian year to Buddhist year
+
+    const numDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    this.daysInMonth = Array.from({ length: numDaysInMonth }, (_, i) => {
+      const day = i + 1;
+      const date = new Date(currentYear, currentMonth, day);
+      return this.formatDate(date);
+    });
+    
   }
 
-  generateCalendar(year: number, month: number): void {
-    const firstDayOfMonth = new Date(year, month, 1);
-    const lastDayOfMonth = new Date(year, month + 1, 0);
-    const firstDayOfWeek = firstDayOfMonth.getDay();
-    const daysInMonth: (Day | null)[] = [];
-
-    // Generate header numbers
-    this.headerDays = Array.from({ length: lastDayOfMonth.getDate() }, (_, i) => i + 1);
-
-    // Add null values for the days before the first day of the month
-    for (let i = 0; i < firstDayOfWeek; i++) {
-      daysInMonth.push(null);
-    }
-
-    // Add actual days of the month
-    for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
-      const date = new Date(year, month, day);
-      let color = '';
-
-      if (date.getDay() === 0) { // Sunday
-        color = 'red';
-      } else if (date.getDay() === 6) { // Saturday
-        color = 'blue';
-      } else if (this.isHoliday(date)) { // Holiday
-        color = 'green';
-      }
-
-      daysInMonth.push({ 
-        date, 
-        color, 
-        day: date.getDate(), 
-        month: date.getMonth() + 1, // Months are zero-based in JavaScript Date
-        year: date.getFullYear() 
-      });
-    }
-
-    // Group the days into weeks
-    this.calendarDays = [];
-    while (daysInMonth.length) {
-      this.calendarDays.push(daysInMonth.splice(0, 7));
-    }
+  formatDate(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
-  isHoliday(date: Date): boolean {
-    return this.holidays.some(holiday => 
-      holiday.getDate() === date.getDate() &&
-      holiday.getMonth() === date.getMonth() &&
-      holiday.getFullYear() === date.getFullYear()
-    );
+  isWeekend(dateString: string): boolean {
+    const [day, month, year] = dateString.split('/').map(Number);
+    const date = new Date(year, month - 1, day);
+    const dayOfWeek = date.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6; // 0 = Sunday, 6 = Saturday
   }
 
-  selectDay(day: Day | null): void {
-    if (day) {
-      this.selectedDay = day;
-    }
-  }
+  onSelectOption(date: string, option: string): void {
+    this.selectedOptions[date] = option;
+    console.log(this.selectedOptions)
 
-  saveName(name: string): void {
-    if (this.selectedDay) {
-      this.selectedDay.name = name;
-      this.selectedDay = null;
-    }
   }
 }

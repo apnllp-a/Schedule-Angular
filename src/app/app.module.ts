@@ -33,7 +33,7 @@ import { LoginPageComponent } from './views/login-page/login-page.component';
     declarations: [
         AppComponent,
         RegisterPageComponent,
-        LoginPageComponent
+        LoginPageComponent,
     ],
     imports: [
         BrowserModule,

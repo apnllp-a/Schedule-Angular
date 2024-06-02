@@ -47,6 +47,7 @@ db.mongoose
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder applicationzzzzzzzzzz." });
 });
+
 app.get("/userAll", (req, res) => {
   res.json({ message: "Welcome to Appp" });
 });

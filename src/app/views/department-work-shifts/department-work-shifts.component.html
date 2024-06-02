@@ -1,38 +1,153 @@
 <body>
-    <div class="header">
-        <app-header-hd></app-header-hd>
+  <div class="header">
+    <app-header-hd></app-header-hd>
+  </div>
+
+  <div class="_displayFlex-modifier">
+    <div style="padding: 8px;" class="_title">
+      <h1><span>กำหนดเวรการทำงานของแผนก</span></h1>
+
+
     </div>
-
-    <div class="calendar">
-        <!-- <div *ngFor="let day of daysInMonth" [ngStyle]="{'background-color': day.color}">
-          {{ day.date | date: 'd' }}
-        </div> -->
-
-    </div>
-
-    <table class="calendar-table">
-        <thead>
-          <tr>
-            <!-- <th >ลำดับที่</th> -->
-            <th >ชื่อ</th>
-            <th *ngFor="let day of headerDays">{{ day }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let day of headerDaystest" >
-            <!-- <td>{{day}}</td> -->
-            <td style="width: 100%;">ART Apinan Limlampai</td>
-            <td *ngFor="let day of headerDays">
-             <input type="text" style="width: 20px;">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div *ngIf="selectedDay" class="input-popup">
-        <input type="text" placeholder="Enter name" #nameInput>
-        <button (click)="saveName(nameInput.value)">Save</button>
+    <div class="_addDepartment-workShifts">
+      <div class="_cardLeft">
+        <!-- Table list name  -->
+        <h1 style="background-color: #A6313F;padding: 8px 12px;color: #fff;">รายชื่อพนักงาน</h1>
+        <table>
+          <thead>
+            <tr>
+              <td>ลำดับ</td>
+              <td>ชื่อ - นามสกุล</td>
+              <td>ตำแหน่ง</td>
+              <td>การกำหนดเวรารทำงาน</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>11</td>
+              <td>11</td>
+              <td>
+                <button>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>11</td>
+              <td>11</td>
+              <td class="_btnSetStyle">
+                <div class="_EditBtns">
+                  <p>กำหนดแล้ว</p>
+                  <button>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>11</td>
+              <td>11</td>
+              <td class="_btnSetStyle"><button>
+                  <i class="fa-solid fa-plus"></i>
+                </button></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>11</td>
+              <td>11</td>
+              <td class="_btnSetStyle">
+                <button>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      
-      
+
+      <div class="_cardRight">
+        <div class="_shiftOfMonth">
+          <!-- Shifts Foem Hr -->
+          <h1 style="background-color: #A6313F;padding: 8px 12px;color: #fff;">เงื่อนไขประจำเดือน</h1>
+
+          <table>
+            <thead>
+              <tr>
+                <td>ชื่อเงื่อนไข</td>
+                <td>รายละเอียดเงื่อนไข</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>D</td>
+                <td>กลางวัน</td>
+              </tr>
+              <tr>
+                <td>N</td>
+                <td>กลางคืน</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="_status">
+          <!-- Show Status of month -->
+          <h1 style="background-color: #A6313F;padding: 8px 12px;color: #fff;">ตารางเวรที่ผ่านมา</h1>
+          <p>ยังไม่มีการกำหนดตารางเวร</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 8px;" class="_checkAndsubmit">
+      <!-- Check Table before send to hr -->
+      <h1>Check Table before send to hr</h1>
+    </div>
+  </div>
+
+
+
+
+  <div  class="_popupSetWorkShifts">
+    <div class="_popupSetWorkShiftsDetail">
+      <h2>นาย ____ _____</h2>
+      <h2>ประจำเดือน {{ currentMonthName }} {{ currentYear }}</h2>
+      <div class="table-container">
+        <table border="1">
+          <thead style="position: sticky;
+          top: 0;
+          background-color: #f3f3f3; 
+          z-index: 1;">
+            <tr>
+              <th>วันที่</th>
+              <th>เวรกลางวัน (D)</th>
+              <th>เวรกลางคืน (N)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let date of daysInMonth">
+              <td [class.weekend]="isWeekend(date)" style="background-color: skyblue;">{{ date }}</td>
+              <td>
+                <label class="full-cell">
+                  <input type="radio" [name]="'w' + date" value="w 1" [(ngModel)]="selectedOptions[date]"
+                    (change)="onSelectOption(date, 'w 1')">
+                </label>
+              </td>
+              <td>
+                <label class="full-cell">
+                  <input type="radio" [name]="'w' + date" value="w 2" [(ngModel)]="selectedOptions[date]"
+                    (change)="onSelectOption(date, 'w 2')">
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
 </body>

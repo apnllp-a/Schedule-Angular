@@ -17,14 +17,18 @@
             <th>เวลาเลิกงาน</th>
             <th>เวลาเข้าสถานที่ทำงาน</th>
           </tr>
-          <tr *ngFor="let item of dataWorkTime; let i = index">
-            <td>{{item.nameTable}}</td>
-            <td>{{item.attendWork}}</td>
-            <td>{{item.finishWork}}</td>
-            <td>{{item.lateTime}}</td>
+          <tr *ngFor="let item of detailsOfMonths; let i = index">
+            <td>{{item.NameOfType}}</td>
+            <td>{{item.TimeIn}}</td>
+            <td>{{item.TimeOut}}</td>
+            <td class="btn_group">{{item.LateTime}}
+            <button (click)="deleteByID(item._id)"  *ngIf="btnDelete" style="background-color: red;">ลบ</button>
+            <button (click)="EditByID(item._id)" *ngIf="btnEdit" style="background-color: rgb(128, 128, 11);">แก้ไข</button>
+            </td>
+           {{item.id}}
           </tr>      
         </table>
-        <ng-container *ngIf="dataWorkTime.length == 0">
+        <ng-container *ngIf="detailsOfMonths.length == 0">
           <p >ยังไม่มีการกำหนดประเภทเวรการทำงาน</p>
           </ng-container>
         
@@ -61,8 +65,8 @@
         <h2 style="background-color: #3A31A6;">สร้างประเภทเวรการทำงาน</h2>
         <div class="__content-configList-menu">
           <button (click)="toogleCreateTableTime =! toogleCreateTableTime"><i class="fa-solid fa-plus" style="color: green;"></i> เพิ่มใหม่</button>
-          <button><i class="fa-regular fa-pen-to-square" style="color: rgb(128, 128, 11);"></i> แก้ไข</button>
-          <button><i class="fa-solid fa-xmark" style="color: red;"></i> ลบข้อมูล</button>
+          <button (click)="clickBtnEdit()"><i class="fa-regular fa-pen-to-square" style="color: rgb(128, 128, 11);"></i> แก้ไข</button>
+          <button (click)="clickBtnDelete()"><i class="fa-solid fa-xmark" style="color: red;"></i> ลบข้อมูล</button>
         </div>
 
         <h2 style="background-color: #3A31A6;margin: 0;">กำหนดเงื่อนไขตารางเวรประจำเดือน</h2>
@@ -128,14 +132,14 @@
         <p>สายได้</p>
       </div>
       <div class="_itemRight">
-        <input type="text" placeholder="ชื่อตาราง" [(ngModel)]="nameTable">
-        <input type="time" [(ngModel)]="attendWork">
-        <input type="time" [(ngModel)]="finishWork">
-        <input type="number" [(ngModel)]="lateTime">
+        <input type="text" placeholder="ชื่อตาราง" [(ngModel)]="newDetail.NameOfType">
+        <input type="time" [(ngModel)]="newDetail.TimeIn">
+        <input type="time" [(ngModel)]="newDetail.TimeOut">
+        <input type="number" [(ngModel)]="newDetail.LateTime">
       </div>
     </div>
     <div class="_btnTable">
-      <button (click)="saveDataWorkTime()">สร้าง</button>
+      <button (click)="addDetailOfMonth()">สร้าง</button>
       <button (click)="toogleCreateTableTime =! toogleCreateTableTime" style="background-color: red;">ยกเลิก</button>
     </div>
   </div>
@@ -146,6 +150,34 @@
       <h1>บันทึกข้อมูลเสร็จสิ้น</h1>
       <button style="background-color: #3A31A6;border: none;border-radius: 4px;padding: 4px 12px;color: #fff;" (click)="successStatus =! successStatus">Ok</button>
     </div>
+</div>
+
+<div *ngIf="toogleDeleteTime"  class="_DeleteTableTime-bg">
+  <ng-container  >
+  
+  <div class="_DeleteTableTime" > 
+    <h2>แก้ไขตารางชื่อ {{t}}</h2>
+    <div class="_detailsTable">
+     
+      <div class="_itemLeft">
+        <p>ชื่อตาราง</p>
+        <p>เวลาเข้างาน</p>
+        <p>เวลาเลิกงาน</p>
+        <p>สายได้</p>
+      </div>
+      <div class="_itemRight">
+        <input type="text" placeholder="{{t}}" [(ngModel)]="t">
+        <input type="time" placeholder="{{td}}" [(ngModel)]="td">
+        <input type="time" placeholder="{{ts}}" [(ngModel)]="ts">
+        <input type="number" placeholder="{{n}}" [(ngModel)]="n">
+      </div>
+    </div>
+    <div class="_btnTable">
+      <button (click)="updateShiftDetails()" >บันทึกข้อมูล</button>
+    </div>
+  </div>
+  </ng-container>
+
 </div>
   
 

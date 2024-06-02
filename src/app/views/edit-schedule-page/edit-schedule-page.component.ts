@@ -1,6 +1,7 @@
 import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from '../../services/api_/api.service';
 interface data_shift {
   department: string;
   month: string;
@@ -20,6 +21,7 @@ interface dataWorkTime {
 })
 export class EditSchedulePageComponent implements OnInit {
   toogleCreateTableTime = false;
+  toogleDeleteTime = false;
   successStatus = false;
   workingHours: number | undefined;
   nameTable: string;
@@ -30,11 +32,14 @@ export class EditSchedulePageComponent implements OnInit {
   data_shifts: data_shift[];
   savedData: any[] = [];
   dataWorkTime: any[] = [];
+  detailsOfMonths: any[] = [];
+  detailsOfMonthsForEdit: any;
 
-  constructor() { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.savedData)
+    this.getDetailsOfMonth();
+
   }
   selectedOption: string | null = null;
 
@@ -96,14 +101,10 @@ export class EditSchedulePageComponent implements OnInit {
 
   //สร้างประเภทเวรการทำงาน
   saveDataWorkTime(): void {
-    // console.log('Nane of table', this.nameTable)
-    // console.log('Attend Work', this.attendWork)
-    // console.log('Finish Work', this.finishWork)
-    // console.log('Late Time', this.lateTime)
     if (!this.nameTable || !this.attendWork || !this.finishWork) {
       console.error("Error: Incomplete data. Cannot save work time data.");
       return;
-  }
+    }
     const data_work = {
       nameTable: this.nameTable,
       attendWork: this.attendWork,
@@ -118,5 +119,81 @@ export class EditSchedulePageComponent implements OnInit {
     }
     console.log(this.dataWorkTime)
   }
+  btnDelete = false;
+  btnEdit = false;
 
+  clickBtnDelete() {
+    this.btnDelete = true;
+    this.btnEdit = false;
+
+  }
+
+  clickBtnEdit() {
+    this.btnDelete = false;
+    this.btnEdit = true;
+
+  }
+
+  deleteByID(s: any) {
+    console.log(s)
+  }
+  t: string;
+  ts: string;
+  td: string;
+  n: number;
+  id:string;
+  EditByID(s: any): void {
+    this.apiService.getTypeOfShiftsById(s).subscribe(data => {
+      this.detailsOfMonthsForEdit = data;
+      this.t = this.detailsOfMonthsForEdit.NameOfType;
+      this.td = this.detailsOfMonthsForEdit.TimeIn;
+      this.ts = this.detailsOfMonthsForEdit.TimeOut;
+      this.n = this.detailsOfMonthsForEdit.LateTime;
+      this.id = s;
+
+      this.toogleDeleteTime = true;
+    });
+  }
+
+  updateShiftDetails(): void {
+    const updatedDetails = {
+      NameOfType: this.t,
+      TimeIn: this.td,
+      TimeOut: this.ts,
+      LateTime: this.n
+    };
+
+    this.apiService.updateTypeOfShifts(this.id, updatedDetails).subscribe(response => {
+      console.log('Update successful', response); 
+      location.reload();
+    }, error => {
+      console.error('Update failed', error);
+    });
+  }
+
+
+
+
+
+  getDetailsOfMonth() {
+    this.apiService.getTypeOfShifts().subscribe(data => {
+      this.detailsOfMonths = data;
+      console.log(this.detailsOfMonths)
+    });
+  }
+  newDetail: any = { TimeIn: '', TimeOut: '', LateTime: 0, NameOfType: '' };
+
+  addDetailOfMonth() {
+    if (this.newDetail.TimeIn && this.newDetail.TimeOut && this.newDetail.LateTime && this.newDetail.NameOfType) {
+      this.apiService.addTypeOfShifts(this.newDetail).subscribe(data => {
+        this.detailsOfMonths.push(data);
+        this.newDetail = { TimeIn: '', TimeOut: '', LateTime: 0, NameOfType: '' };
+        this.successStatus = true;
+      }, error => {
+        console.error('Error adding detail:', error);
+      });
+    } else {
+      alert('Please fill in all fields.');
+    }
+  }
 }

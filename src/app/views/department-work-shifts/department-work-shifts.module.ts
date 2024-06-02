@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DepartmentWorkShiftsRoutingModule } from './department-work-shifts-routing.module';
 import { DepartmentWorkShiftsComponent } from './department-work-shifts.component';
 import { HeaderHdModule } from 'src/app/shared/components/header-hd/header-hd.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { HeaderHdModule } from 'src/app/shared/components/header-hd/header-hd.mo
   imports: [
     CommonModule,
     DepartmentWorkShiftsRoutingModule,
-    HeaderHdModule
+    HeaderHdModule,
+    FormsModule
   ]
 })
 export class DepartmentWorkShiftsModule { }
