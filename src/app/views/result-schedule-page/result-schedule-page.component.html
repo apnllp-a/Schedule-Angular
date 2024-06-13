@@ -1,0 +1,61 @@
+<body>
+    
+<div class="header">
+    <app-header></app-header>
+  </div>
+  
+<div class="schedule">
+    <h2>ตารางปฏิบัติงาน แผนก ____</h2>
+  <div class="_textHeaderTable">
+    <p class="_customP" >ชั่วโมงทำงาน {{ calculateDurationForMonth() }} ชม.</p>
+  </div>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>ชื่อ - สกุล</th>
+          <th *ngFor="let day of [].constructor(30); let i = index">{{ i + 1 }}</th>
+          <th class="_total">D</th>
+          <th class="_total">N</th>
+          <th class="_total">รวม</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let schedule of schedules; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ users[schedule.username]?.firstName || 'Loading...' }} {{ users[schedule.username]?.lastName || 'Loading...' }}</td>
+          <!-- <td>{{ schedule.department }}</td> -->
+          <td *ngFor="let day of [].constructor(30); let j = index">
+            {{ getShiftForDate(schedule, j + 1) }}
+          </td>
+
+          <td class="_total">{{ getDShiftsForSchedule(schedule) }}</td>
+          <td class="_total">{{ getNShiftsForSchedule(schedule) }}</td>
+          <td class="_total">{{ getDNShiftsForSchedule(schedule) }}</td>
+         
+          
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="_workTimes">
+        <h2>เวลาการทำงาน</h2>
+        <div class="flex-work">
+            <div class="_detaile-workTime" >
+                <p>D =  {{TimeOut}} - {{TimeIn}}</p>
+                <p>N = {{TimeIn}} - {{TimeOut}}</p>
+            </div>
+            <div class="_description">
+                <div class="descripOne">
+                    <p>D = เวรกลางวัน</p>
+                </div>
+                <div class="_descipTwo">
+                    <p>N = เวรกลางคืน</p>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+  

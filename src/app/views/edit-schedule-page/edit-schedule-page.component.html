@@ -22,7 +22,7 @@
             <td>{{item.TimeIn}}</td>
             <td>{{item.TimeOut}}</td>
             <td class="btn_group">{{item.LateTime}}
-            <button (click)="deleteByID(item._id)"  *ngIf="btnDelete" style="background-color: red;">ลบ</button>
+            <button (click)="deleteShift(item._id)"  *ngIf="btnDelete" style="background-color: red;">ลบ</button>
             <button (click)="EditByID(item._id)" *ngIf="btnEdit" style="background-color: rgb(128, 128, 11);">แก้ไข</button>
             </td>
            {{item.id}}

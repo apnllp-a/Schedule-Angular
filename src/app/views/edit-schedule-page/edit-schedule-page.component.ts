@@ -137,6 +137,7 @@ export class EditSchedulePageComponent implements OnInit {
   deleteByID(s: any) {
     console.log(s)
   }
+
   t: string;
   ts: string;
   td: string;
@@ -171,7 +172,17 @@ export class EditSchedulePageComponent implements OnInit {
     });
   }
 
-
+ 
+  deleteShift(id: string): void {
+    this.apiService.deleteTypeOfShifts(id).subscribe(
+      response => {
+        console.log('Shift deleted successfully', response);
+      },
+      error => {
+        console.error('Error deleting shift', error);
+      }
+    );
+  }
 
 
 

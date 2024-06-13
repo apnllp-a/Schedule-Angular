@@ -60,6 +60,7 @@ const routes: Routes = [
   { path: 'edit-schedule-page', loadChildren: () => import('./views/edit-schedule-page/edit-schedule-page.module').then(m => m.EditSchedulePageModule) },
   { path: 'department-work_shifts', loadChildren: () => import('./views/department-work-shifts/department-work-shifts.module').then(m => m.DepartmentWorkShiftsModule) },
   { path: 'shift-schedule-page', loadChildren: () => import('./views/shift-schedule-page/shift-schedule-page.module').then(m => m.ShiftSchedulePageModule) },
+  { path: 'result-schedule-page', loadChildren: () => import('./views/result-schedule-page/result-schedule-page.module').then(m => m.ResultSchedulePageModule) },
   // { path: '/shared/components/dialog-document', loadChildren: () => import('./shared/components/dialog-document/dialog-document.module').then(m => m.DialogDocumentModule) }
 ];
 

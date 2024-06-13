@@ -23,13 +23,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>11</td>
-              <td>11</td>
+            <tr *ngFor="let user of users; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{user.firstName}} {{user.lastName}}</td>
+              <td>{{user.department}}</td>
               <td>
-                <button>
-                  <i class="fa-solid fa-plus"></i>
+                <button (click)="selectUser(user._id)">
+                  <i class="fa-solid fa-plus" ></i>
                 </button>
               </td>
             </tr>
@@ -46,24 +46,7 @@
                 </div>
               </td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>11</td>
-              <td>11</td>
-              <td class="_btnSetStyle"><button>
-                  <i class="fa-solid fa-plus"></i>
-                </button></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>11</td>
-              <td>11</td>
-              <td class="_btnSetStyle">
-                <button>
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </td>
-            </tr>
+          
           </tbody>
         </table>
       </div>
@@ -81,14 +64,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>D</td>
-                <td>กลางวัน</td>
+              <tr *ngFor="let shifts of typeOfShift">
+                <td>{{shifts.NameOfType}}</td>
+                <td *ngIf="shifts.NameOfType == 'D'">กลางวัน</td>
+                <td *ngIf="shifts.NameOfType == 'N'">กลางคืน</td>
+                <td *ngIf="shifts.NameOfType != 'N' && shifts.NameOfType != 'D'">เทส</td>
               </tr>
-              <tr>
-                <td>N</td>
-                <td>กลางคืน</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -105,46 +87,79 @@
     <div style="padding: 8px;" class="_checkAndsubmit">
       <!-- Check Table before send to hr -->
       <h1>Check Table before send to hr</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <td>ชื่อเงื่อนไข</td>
+            <td>รายละเอียดเงื่อนไข</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>D</td>
+            <td>กลางวัน</td>
+          </tr>
+          <tr>
+            <td>N</td>
+            <td>กลางคืน</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
 
 
 
-  <div  class="_popupSetWorkShifts">
+  <div *ngIf="toggel" class="_popupSetWorkShifts">
     <div class="_popupSetWorkShiftsDetail">
-      <h2>นาย ____ _____</h2>
+      <h2>นาย {{selectedUser.firstName}} {{selectedUser.lastName}}</h2>
       <h2>ประจำเดือน {{ currentMonthName }} {{ currentYear }}</h2>
-      <div class="table-container">
-        <table border="1">
-          <thead style="position: sticky;
-          top: 0;
-          background-color: #f3f3f3; 
-          z-index: 1;">
-            <tr>
-              <th>วันที่</th>
-              <th>เวรกลางวัน (D)</th>
-              <th>เวรกลางคืน (N)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let date of daysInMonth">
-              <td [class.weekend]="isWeekend(date)" style="background-color: skyblue;">{{ date }}</td>
-              <td>
-                <label class="full-cell">
-                  <input type="radio" [name]="'w' + date" value="w 1" [(ngModel)]="selectedOptions[date]"
-                    (change)="onSelectOption(date, 'w 1')">
-                </label>
-              </td>
-              <td>
-                <label class="full-cell">
-                  <input type="radio" [name]="'w' + date" value="w 2" [(ngModel)]="selectedOptions[date]"
-                    (change)="onSelectOption(date, 'w 2')">
-                </label>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+     
+
+      <div class="table-container"><form (ngSubmit)="onSubmit()">
+        
+          <!-- <label for="username">Username:</label>
+          <input type="text" id="username" #username required>
+      
+          <label for="department">Department:</label>
+          <input type="text" id="department" #department required> -->
+      
+          <table border="1">
+            <thead style="position: sticky; top: 0; background-color: #f3f3f3; z-index: 1;">
+              <tr >
+                <th>วันที่</th>
+                <ng-container *ngFor="let shifts of typeOfShift">
+                    <th *ngIf="shifts.NameOfType == 'D'">กลางวัน ({{shifts.DameOfType}})</th>
+                    <th *ngIf="shifts.NameOfType == 'N'">กลางคืน ({{shifts.NameOfType}})</th>
+                    <th *ngIf="shifts.NameOfType != 'N' && shifts.NameOfType != 'D'">เทส ({{shifts.NameOfType}})</th>
+                </ng-container>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let date of daysInMonth">
+                <td [class.weekend]="isWeekend(date)" style="background-color: skyblue;">{{ date }}</td>
+                <td>
+                  <label class="full-cell">
+                    <input type="radio" [name]="'shift' + date" value="D" [(ngModel)]="selectedOptions[date]"
+                      (change)="onSelectOption(date, 'D')">
+                   
+                  </label>
+                </td>
+                <td>
+                  <label class="full-cell">
+                    <input type="radio" [name]="'shift' + date" value="N" [(ngModel)]="selectedOptions[date]"
+                      (change)="onSelectOption(date, 'N')">
+                   
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      
+          <button type="submit">Submit</button>
+        </form>
       </div>
 
     </div>

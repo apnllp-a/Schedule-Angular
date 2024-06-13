@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
+@import "/src/assets/scss/mixins";
+@import "/src/assets/scss/variables";
+*{ 
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.schedule {
+    font-family: "Kanit" !important;
+    margin: 20px;
+    margin-top: 7%;
+
+    ._textHeaderTable{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        ._customP{
+            background-color: #3A31A6;
+            color: #f1f1f1;
+            width: 155px;
+            padding: 8px 7px;
+        }
+    }
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    text-align: center;
+}
+
+._total{
+    background-color: rgb(242, 169, 169);
+}
+
+._workTimes{
+   border: 1px solid #3A31A6;
+    width: 500px;
+    margin-top: 16px;
+    float: right;
+
+    h2{
+        font-family: "Kanit" !important;
+        background-color: #3A31A6;
+        color: #fff;
+    }
+    
+    .flex-work{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // align-items: center;
+        padding: 8px 16px;
+        ._description{
+            display: flex;
+            flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 10px;
+    }
+
+    td {
+        display: block;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+}
