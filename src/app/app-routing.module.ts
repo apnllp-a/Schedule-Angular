@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmationTableComponent } from './shared/components/confirmation-table/confirmation-table.component';
-
+import { AuthGuard } from 'src/app/services/auth.guard';
+import { MainPageComponent } from 'src/app/views/main-page-hr/main-page.component';
 const routes: Routes = [
   {
     path: '',
@@ -20,11 +21,11 @@ const routes: Routes = [
     loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
   },
   {
-    path: 'main-page-hr',
+    path: 'main-page-hr',component: MainPageComponent, canActivate: [AuthGuard], data: { expectedRole: 'HR' },
     loadChildren: () => import('./views/main-page-hr/main-page.module').then(m => m.MainPageModule),
   },
   {
-    path: 'main-page-it',
+    path: 'main-page-it',component: MainPageComponent, canActivate: [AuthGuard], data: { expectedRole: 'IT' },
     loadChildren: () => import('./views/main-page-it/main-page-it.module').then(m => m.MainPageItModule),
   },
   {
