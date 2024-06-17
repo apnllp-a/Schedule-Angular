@@ -52,11 +52,11 @@
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-user>
-            <tr>
+            <tr *ngIf="user.status == 'pending'">
               <!-- <td style="text-align:center ;">{{i+1}}</td> -->
               <td style="text-align:center ;">
-                <ng-container *ngIf="user.firstname == null || user.firstname == ''">ไม่พบข้อมูล</ng-container>
-                <ng-container *ngIf="user.firstname != null">{{user.firstname}} {{user.lastname}}</ng-container>
+                <ng-container *ngIf="user.firstName == null || user.firstName == ''">ไม่พบข้อมูล</ng-container>
+                <ng-container *ngIf="user.firstName != null">{{user.firstName}} {{user.lastName}}</ng-container>
 
               </td>
               <td style="text-align:center ;">
@@ -84,9 +84,10 @@
                 <ng-container *ngIf="user.createdAt != null">{{user.createdAt | date}}</ng-container>
               </td>
               <td style="text-align:center ;">
-                <button (click)="confirm($event)" pButton icon="pi pi-check" label="Confirm" style="padding:7px 18px ;
-                                     background-color: #E1AE24;
-                                     border-color: #E1AE24;"></button>
+                <button (click)="confirm(user._id)" pButton icon="pi pi-check" label="Confirm" style="padding: 7px 18px;
+                background-color: #E1AE24;
+                border-color: #E1AE24;"></button>
+        
 
               </td>
             </tr>

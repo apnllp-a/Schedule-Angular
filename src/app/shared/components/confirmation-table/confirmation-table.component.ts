@@ -7,7 +7,8 @@ import { Tutorial } from "../../../models/tutorial.model";
 import { ServicesTestService } from "../../../services/services-test.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserAllService } from '../../../services/user/user-all.service';
-import { UserAll } from 'src/app/models/user/user-all.model';
+import { User } from 'src/app/services/api_/users.service';
+import { UsersService } from 'src/app/services/api_/users.service';
 @Component({
   selector: 'app-confirmation-table',
   templateUrl: './confirmation-table.component.html',
@@ -25,6 +26,7 @@ export class ConfirmationTableComponent {
   currentIndex = -1;
   name = '';
   btn_toggle = false;
+  userId:any;
   
 
   @Output() onInput = new EventEmitter<string>();
@@ -55,30 +57,34 @@ export class ConfirmationTableComponent {
   }
 
 
-  confirm(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: "ยืนยันการสมัครหรือ ไม่",
-      icon: "pi pi-exclamation-triangle",
-      accept: () => {
-        this.seveToUserAll(this.currentTutorial.id)
-        this.messageService.add({
-          severity: "info",
-          summary: "Confirmed",
-          detail: "ยืนยันการสมัคร"
-        });
-      },
-      reject: () => {
-        this.deleteTutorial()
-        this.messageService.add({
-          severity: "error",
-          summary: "Rejected",
-          detail: "ยกเลิกการสมัคร"
-        });
-      }
-    });
+  confirm(userId: any) {
+    if (userId) {
+      this.confirmationService.confirm({
+        message: 'ยืนยันการสมัครหรือไม่',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.updateStatus(userId, 'active');
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'ยืนยันการสมัคร'
+          });
+        },
+        reject: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Rejected',
+            detail: 'ยกเลิกการสมัคร'
+          });
+        }
+      });
+    } else {
+      console.error('User ID is undefined.');
+    }
   }
-  constructor(private confirmationService: ConfirmationService,
+
+ 
+  constructor(private UsersService: UsersService,private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig, private servicetestService: ServicesTestService
     , private route: ActivatedRoute,
@@ -94,7 +100,7 @@ export class ConfirmationTableComponent {
   }
 
   retrieveUserAlls(): void {
-    this.userAllService.getAll()
+    this.UsersService.getActiveUsers()
       .subscribe({
         next: (data) => {
           this.lengthUserAll = data.length;
@@ -104,7 +110,7 @@ export class ConfirmationTableComponent {
   }
 
   retrieveTutorials(): void {
-    this.servicetestService.getAll()
+    this.UsersService.getPendingUsers()
       .subscribe({
         next: (data) => {
           this.tutorials = data;
@@ -229,8 +235,17 @@ export class ConfirmationTableComponent {
  
   }
 
-
-
+  private updateStatus(userId: any, newStatus: 'active' | 'pending' | 'disabled' | 'inactive') {
+    this.UsersService.updateStatus(userId, newStatus).subscribe(
+      response => {
+        console.log('Status updated successfully:', response);
+        // Optionally, you can perform actions after successful update
+      },
+      error => {
+        console.error('Error updating status:', error);
+      }
+    );
+  }
 
 }
 

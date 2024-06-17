@@ -2,8 +2,8 @@ export class UserAll {
     id?: any;
     username?: String;
     password?: String;
-    firstname?: String;
-    lastname?: String;
+    firstName?: String;
+    lastName?: String;
     email?: String;
     tal?: String;
     createdAt?: Date;

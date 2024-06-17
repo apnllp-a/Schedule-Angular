@@ -56,7 +56,7 @@
                     <ng-template pTemplate="header">
                         <tr style="">
                             <!-- <th style="width:5%;text-align:center ;">No.</th> -->
-                            <th style="width:25%;">รายชื่อ</th>
+                            <th style="width:10%;">รายชื่อ</th>
                             <th style="width:10%;">แผนก</th>
                             <th style="width:10%;">Role</th>
                             <th style="width:15%;">Email</th>
@@ -73,21 +73,21 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-products>
-                        <tr>
+                        <tr *ngIf="products.status == 'active'">
                             <!-- <td style="text-align:center ;font-family: 'Kanit'!important;">{{i+1}}</td> -->
                             <td style="font-family: 'Kanit'!important;">
                                 <ng-container
-                                    *ngIf="products.firstname == null || products.firstname == ''">ไม่พบข้อมูล</ng-container>
-                                <ng-container *ngIf="products.firstname != null">{{products.firstname}}
-                                    {{products.lastname}}</ng-container>
+                                    *ngIf="products.firstName == null || products.firstName == ''">ไม่พบข้อมูล</ng-container>
+                                <ng-container *ngIf="products.firstName != null">{{products.firstName}}
+                                    {{products.lastName}}</ng-container>
                             </td>
                             <td style="font-family: 'Kanit'!important;">
-                                <ng-container *ngIf="products.departmentDetail == null">ยังไม่ได้กำหนด</ng-container>
-                                <ng-container *ngIf="products.departmentDetail != null">{{products.departmentDetail.role}}</ng-container>
+                                <ng-container *ngIf="products.department == null">ยังไม่ได้กำหนด</ng-container>
+                                <ng-container *ngIf="products.department != null">{{products.department}}</ng-container>
                             </td>
                             <td style="font-family: 'Kanit'!important;">
-                                <ng-container *ngIf="products.departmentDetail == null">ยังไม่ได้กำหนด</ng-container>
-                                <ng-container *ngIf="products.departmentDetail != null">{{products.departmentDetail.salary}}</ng-container>
+                                <ng-container *ngIf="products.role == null">ยังไม่ได้กำหนด</ng-container>
+                                <ng-container *ngIf="products.role != null">{{products.role}}</ng-container>
                             </td>
                             <td style="font-family: 'Kanit'!important;">
                                 <ng-container *ngIf="products.email == null">ยังไม่ได้กำหนด</ng-container>

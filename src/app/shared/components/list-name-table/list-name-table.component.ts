@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { Tutorial } from 'src/app/models/tutorial.model';
 import { da } from 'date-fns/locale';
 import { ServicesTestService } from 'src/app/services/services-test.service';
-
+import { UsersService } from 'src/app/services/api_/users.service';
 interface City {
   name: string,
   code: string
@@ -139,22 +139,18 @@ export class ListNameTableComponent implements OnInit {
       });
   }
 
-  searchByFirstname(firstname: string): void {
-    // Convert the search query to lowercase
-    const searchQuery = firstname.toLowerCase();
+  searchByFirstname(firstName: string): void {
+    const searchQuery = firstName.toLowerCase();
 
-    // Use Array.prototype.filter() to search for data with a specific firstname
     if (searchQuery) {
-      const searchResult = this.user_all.filter(user => user?.firstname?.toLowerCase() === searchQuery);
+      const searchResult = this.user_all.filter(user => user?.firstName?.toLowerCase() === searchQuery);
       console.log(searchResult);
-
-      // Assign the search results to the searchResult variable
       this.user_all = searchResult;
     }
   }
 
   retrieveUserAlls(): void {
-    this.userAllService.getAll()
+    this.UsersService.getActiveUsers()
       .subscribe({
         next: (data) => {
           this.user_all = data;
@@ -191,7 +187,7 @@ export class ListNameTableComponent implements OnInit {
 
 
 
-  constructor(private confirmationService: ConfirmationService,
+  constructor(private UsersService: UsersService,private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     public dialog: MatDialog, private userAllService: UserAllService
@@ -254,11 +250,11 @@ export class ListNameTableComponent implements OnInit {
           next: (data) => {
             // Sort the data by name in ascending order (A-Z) after checking for undefined values
             this.user_all = data.sort((a: any, b: any) => {
-              if (a.firstname !== undefined && b.firstname !== undefined) {
-                return a.firstname.localeCompare(b.firstname);
-              } else if (a.firstname !== undefined) {
+              if (a.firstName !== undefined && b.firstName !== undefined) {
+                return a.firstName.localeCompare(b.firstName);
+              } else if (a.firstName !== undefined) {
                 return 1; // Move 'a' to a higher index
-              } else if (b.firstname !== undefined) {
+              } else if (b.firstName !== undefined) {
                 return -1; // Move 'b' to a higher index
               } else {
                 return 0; // No change in order when both are undefined
