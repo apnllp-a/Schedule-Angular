@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ScheduleService } from 'src/app/services/api_/schedule-api.service';
 import { UsersService } from "src/app/services/api_/users.service";
 import { ApiService } from '../../services/api_/api.service';
+import { User } from 'src/app/services/api_/schedule-api.service'; 
 
 interface Day {
   date: Date;
@@ -30,6 +31,7 @@ interface Schedule {
 })
 export class DepartmentWorkShiftsComponent implements OnInit {
   daysInMonth: string[] = [];
+  schedules: any[] = [];
   // selectedOptions: { [key: string]: string } = {};
   selectedOptions: { [date: string]: string } = {};
   currentMonthName: string = '';
@@ -55,7 +57,7 @@ export class DepartmentWorkShiftsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
+    this.fetchSchedules();
     this.retrieveUsers();
     this.retrieveTypeOfShifts();
     const currentDate = new Date();
@@ -183,4 +185,70 @@ export class DepartmentWorkShiftsComponent implements OnInit {
 
    }
   }
+
+  userss: { [username: string]: User } = {}; 
+
+  fetchSchedules(): void {
+    this.ScheduleService.getSchedules().subscribe(
+      (data) => {
+        this.schedules = data;
+        console.log(this.schedules)
+        this.schedules.forEach(schedule => {
+          this.fetchUser(schedule.username);  // Fetch user info for each schedule
+        });
+      },
+      (error) => {
+        console.error('Error fetching schedules:', error);
+      }
+    );
+  }
+  
+
+  fetchUser(username: string): void {
+    this.UsersService.getUser(username).subscribe(
+      (user) => {
+        this.userss[username] = user;
+        console.log(this.userss[username])
+      },
+      (error) => {
+        console.error('Error fetching user:', error);
+      }
+    );
+  }
+
+  getShiftForDate(schedule: Schedule, day: number): string {
+    const dateStr = `${day < 10 ? '0' : ''}${day}/06/2024`;
+    const shift = schedule.schedule.find(s => s.date === dateStr);
+    return shift ? shift.shift : '-';
+  }
+
+  getDShiftsForSchedule(schedule: any): number {
+    let totalDShifts = 0;
+    for (let j = 0; j < 30; j++) {
+      if (this.getShiftForDate(schedule, j + 1) === 'D') {
+        totalDShifts++;
+      }
+    }
+    return totalDShifts;
+  }
+
+  getNShiftsForSchedule(schedule: any): number {
+    let totalNShifts = 0;
+    for (let j = 0; j < 30; j++) {
+      if (this.getShiftForDate(schedule, j + 1) === 'N') {
+        totalNShifts++;
+      }
+    }
+    return totalNShifts;
+  }
+
+  getDNShiftsForSchedule(schedule: any): number {
+    return this.getDShiftsForSchedule(schedule) + this.getNShiftsForSchedule(schedule);
+  }
+
+  // Assume this is part of your component class
+public isUserScheduled(username: string): boolean {
+  return this.schedules.some(item => item.username === username);
+}
+
 }
