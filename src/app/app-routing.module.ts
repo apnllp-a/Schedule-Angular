@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfirmationTableComponent } from './shared/components/confirmation-table/confirmation-table.component';
 import { AuthGuard } from 'src/app/services/auth.guard';
 import { MainPageComponent } from 'src/app/views/main-page-hr/main-page.component';
+import { MainPageItComponent } from 'src/app/views/main-page-it/main-page-it.component';
+import { MainPageHdComponent } from 'src/app/views/main-page-hd/main-page-hd.component';
+import { MainPageBComponent } from 'src/app/views/main-page-b/main-page-b.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -16,6 +21,12 @@ const routes: Routes = [
     path: 'register-page/:id',
     loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
   },
+  { path: 'main-page-head', component: MainPageHdComponent, canActivate: [AuthGuard], data: { expectedRole: 'Head' },
+    loadChildren: () => import('./views/main-page-hd/main-page-hd.module').then(m => m.MainPageHdModule) },
+
+  { path: 'main-page-board', component: MainPageBComponent, canActivate: [AuthGuard], data: { expectedRole: 'Board' },
+    loadChildren: () => import('./views/main-page-b/main-page-b.module').then(m => m.MainPageBModule) },
+
   {
     path: 'add',
     loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
@@ -25,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/main-page-hr/main-page.module').then(m => m.MainPageModule),
   },
   {
-    path: 'main-page-it',component: MainPageComponent, canActivate: [AuthGuard], data: { expectedRole: 'IT' },
+    path: 'main-page-it',component: MainPageItComponent, canActivate: [AuthGuard], data: { expectedRole: 'IT' },
     loadChildren: () => import('./views/main-page-it/main-page-it.module').then(m => m.MainPageItModule),
   },
   {
@@ -53,8 +64,7 @@ const routes: Routes = [
   { path: 'documents-page', 
   loadChildren: () => import('./views/documents-page/documents-page.module').then(m => m.DocumentsPageModule) 
 },
-  { path: 'main-page-head', loadChildren: () => import('./views/main-page-hd/main-page-hd.module').then(m => m.MainPageHdModule) },
-  { path: 'main-page-board', loadChildren: () => import('./views/main-page-b/main-page-b.module').then(m => m.MainPageBModule) },
+  
   { path: 'document-head-page', loadChildren: () => import('./views/document-head-page/document-head-page.module').then(m => m.DocumentHeadPageModule) },
   { path: 'document-b-page', loadChildren: () => import('./views/document-b-page/document-b-page.module').then(m => m.DocumentBPageModule) },
   { path: 'set-conditions-page', loadChildren: () => import('./views/set-conditions-page/set-conditions-page.module').then(m => m.SetConditionsPageModule) },
