@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesTestService } from 'src/app/services/services-test.service';
-import { Tutorial } from 'src/app/models/tutorial.model';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { te } from 'date-fns/locale';
-import { UserAllService } from '../../../app/services/user/user-all.service';
-import { delay } from 'rxjs';
-import { UserAll } from 'src/app/models/user/user-all.model';
+import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -14,61 +10,41 @@ import { UserAll } from 'src/app/models/user/user-all.model';
 })
 export class RegisterPageComponent implements OnInit {
   hide = true;
-  tutorial: Tutorial = {
+  user = {
     username: '',
+    firstName: '',
+    lastName: '',
     password: '',
-    firstname: '',
-    lastname: '',
-    departmentDetail: {
-      role: '',
-      salary: '',
-      department: ''
-    },
-    status: {
-      role: '',
-      active: true
-    },
-    position:'',
-    published: false
+    department: ''
   };
 
-  
-
-  
   submitted = false;
-  user_all: UserAll[];
+  h3_alert: string;
+  p_alert: string;
 
+  constructor(private authService: AuthService, private router: Router) { }
 
-  h3_alert:string;
-  p_alert:string;
+  ngOnInit(): void { }
 
-
-  constructor( private userAllService: UserAllService,private tutorialService: ServicesTestService, private router: Router) { }
-  ngOnInit(): void {
-    this.retrieveUserAlls()
-  }
-
-  //fname
-  firstname = new FormControl('', [Validators.required, Validators.nullValidator]);
-  //lname
-  lastname = new FormControl('', [Validators.required, Validators.nullValidator]);
-  //password
-  password = new FormControl('', [Validators.required, Validators.nullValidator]);
-  //username
+  // Form controls for validation
+  firstName = new FormControl('', [Validators.required]);
+  lastName = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]);
   username = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]);
-  getErrorMessageFirstname() {
-    if (this.firstname.hasError('required')) {
+  department = new FormControl('', [Validators.required]);
+
+  getErrorMessageFirstName() {
+    if (this.firstName.hasError('required')) {
       return 'กรุณากรอก ชื่อ';
     }
-    return this.firstname.hasError('firstname') ? 'Not a valid firstname' : '';
-  };
+    return this.firstName.hasError('firstName') ? 'Not a valid first name' : '';
+  }
 
-  getErrorMessageLastname() {
-    if (this.lastname.hasError('required')) {
+  getErrorMessageLastName() {
+    if (this.lastName.hasError('required')) {
       return 'กรุณากรอก นามสกุล';
     }
-    return this.lastname.hasError('lastname') ? 'Not a valid lastname' : '';
-
+    return this.lastName.hasError('lastName') ? 'Not a valid last name' : '';
   }
 
   getErrorMessageUsername() {
@@ -76,7 +52,6 @@ export class RegisterPageComponent implements OnInit {
       return 'กรุณากำหนด ชื่อบัญชีผู้ใช้งาน';
     }
     return this.username.hasError('username') ? 'Not a valid username' : '';
-
   }
 
   getErrorMessagePassword() {
@@ -84,74 +59,47 @@ export class RegisterPageComponent implements OnInit {
       return 'กรุณากำหนด รหัสผ่าน';
     }
     return this.password.hasError('password') ? 'Not a valid password' : '';
-
-  }
-  retrieveUserAlls(): void {
-    this.userAllService.getAll()
-      .subscribe({
-        next: (data) => {
-          this.user_all = data;
-          console.log(this.user_all)
-
-        },
-        error: (e) => console.error(e)
-      });
   }
 
+  getErrorMessageDepartment() {
+    if (this.department.hasError('required')) {
+      return 'กรุณากรอก แผนก';
+    }
+    return this.department.hasError('department') ? 'Not a valid department' : '';
+  }
 
-
-  saveTutorial(): void {
+  saveUser(): void {
     const data = {
-      username: this.tutorial.username,
-      password: this.tutorial.password,
-      firstname: this.tutorial.firstname,
-      lastname: this.tutorial.lastname,
-      departmentDetail:{
-        role:this.tutorial.departmentDetail?.role || 'member',
-        salary:this.tutorial.departmentDetail?.salary || 0,
-        department:this.tutorial.departmentDetail?.department,
-      },
-      status: {
-        role: this.tutorial.status?.role || 'member',
-        active: this.tutorial.status?.active || true,
-      },
-      position: this.tutorial.position ,
-      createdAt: Date()
-
+      username: this.user.username,
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      password: this.user.password,
+      department: this.user.department
     };
 
-    
-
-    this.tutorialService.create(data)
+    this.authService.register(data)
       .subscribe({
         next: (res) => {
           console.log(res);
           this.submitted = true;
-          if (this.submitted == true) {
-            // this.router.navigate(['/']);
-           console.log(res + 'success')
-           this.h3_alert = 'สมัครสมาชิกสำเร็จ'
-           this.p_alert = 'ไปหน้า Login เพื่อเข้าสู่ระบบ'
-          //  กรุณาตรวจสอบข้อมูลอีกครั้ง
+          if (this.submitted) {
+            console.log(res + ' success');
+            this.h3_alert = 'สมัครสมาชิกสำเร็จ';
+            this.p_alert = 'ไปหน้า Login เพื่อเข้าสู่ระบบ';
           }
         },
         error: (e) => console.error(e)
       });
-
-
   }
 
-  newTutorial(): void {
+  newUser(): void {
     this.submitted = false;
-    this.tutorial = {
+    this.user = {
       username: '',
+      firstName: '',
+      lastName: '',
       password: '',
-      firstname: '',
-      lastname: '',
-      position: " member",
-      published: false
-      
+      department: ''
     };
   }
-
 }
