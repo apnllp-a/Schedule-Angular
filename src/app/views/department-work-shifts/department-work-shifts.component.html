@@ -23,17 +23,53 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users; let i = index">
+            <!-- <tr *ngFor="let user of users; let i = index">
               <td>{{i+1}}</td>
               <td>{{user.firstName}} {{user.lastName}}</td>
               <td>{{user.department}}</td>
+              
+              <ng-container *ngFor="let item of schedules">
+                
+                <td *ngIf="user.username != item.username ">
+                  <button  (click)="selectUser(user._id)">
+                    <i class="fa-solid fa-plus" ></i>
+                  </button>
+                </td>
+
+                <td *ngIf="user.username == item.username" class="_btnSetStyle">
+                  <div class="_EditBtns">
+                    <p>กำหนดแล้ว</p>
+                    <button>
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+              
+            </tr> -->
+            <tr *ngFor="let user of users; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ user.firstName }} {{ user.lastName }}</td>
+              <td>{{ user.department }}</td>
+            
               <td>
-                <button (click)="selectUser(user._id)">
-                  <i class="fa-solid fa-plus" ></i>
-                </button>
+                <ng-container *ngIf="!isUserScheduled(user.username); else assigned">
+                  <button (click)="selectUser(user._id)">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </ng-container>
+                <ng-template #assigned>
+                  <div class="_EditBtns">
+                    <p>กำหนดแล้ว</p>
+                    <button (click)="selectUser(user._id)">
+                      <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </ng-template>
               </td>
             </tr>
-            <tr>
+            
+            <!-- <tr>
               <td>1</td>
               <td>11</td>
               <td>11</td>
@@ -45,7 +81,7 @@
                   </button>
                 </div>
               </td>
-            </tr>
+            </tr> -->
           
           </tbody>
         </table>
@@ -84,25 +120,36 @@
       </div>
     </div>
 
-    <div style="padding: 8px;" class="_checkAndsubmit">
+    <div  class="_checkAndsubmit">
       <!-- Check Table before send to hr -->
-      <h1>Check Table before send to hr</h1>
+      <h1>รายละเอียดเวรการทำงานของแต่ละบุคคล</h1>
 
       <table>
         <thead>
           <tr>
-            <td>ชื่อเงื่อนไข</td>
-            <td>รายละเอียดเงื่อนไข</td>
+            <th>No</th>
+            <th>ชื่อ - สกุล</th>
+            <th *ngFor="let day of [].constructor(30); let i = index">{{ i + 1 }}</th>
+            <th class="_total">D</th>
+            <th class="_total">N</th>
+            <th class="_total">รวม</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>D</td>
-            <td>กลางวัน</td>
-          </tr>
-          <tr>
-            <td>N</td>
-            <td>กลางคืน</td>
+          <tr *ngFor="let schedule of schedules; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ userss[schedule.username]?.firstName || 'Loading...' }} {{ userss[schedule.username]?.lastName ||
+              'Loading...' }}</td>
+            <!-- <td>{{ schedule.department }}</td> -->
+            <td *ngFor="let day of [].constructor(30); let j = index">
+              {{ getShiftForDate(schedule, j + 1) }}
+            </td>
+  
+            <td class="_total">{{ getDShiftsForSchedule(schedule) }}</td>
+            <td class="_total">{{ getNShiftsForSchedule(schedule) }}</td>
+            <td class="_total">{{ getDNShiftsForSchedule(schedule) }}</td>
+  
+  
           </tr>
         </tbody>
       </table>
@@ -131,7 +178,7 @@
               <tr >
                 <th>วันที่</th>
                 <ng-container *ngFor="let shifts of typeOfShift">
-                    <th *ngIf="shifts.NameOfType == 'D'">กลางวัน ({{shifts.DameOfType}})</th>
+                    <th *ngIf="shifts.NameOfType == 'D'">กลางวัน ({{shifts.ameOfType}})</th>
                     <th *ngIf="shifts.NameOfType == 'N'">กลางคืน ({{shifts.NameOfType}})</th>
                     <th *ngIf="shifts.NameOfType != 'N' && shifts.NameOfType != 'D'">เทส ({{shifts.NameOfType}})</th>
                 </ng-container>
