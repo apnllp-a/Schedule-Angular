@@ -29,6 +29,7 @@
       </form>
       <p>ยังไม่มีบัญชีผู้ใช้งาน ? <span><a href="/register-page" style="color:#90CAF9;">สร้างบัญชีผู้ใช้งาน </a><br>
           </span></p>
+          <button *ngIf="authService.isLoggedIn" (click)="logout()">Logout</button>
     </div>
   </div>
 </body>

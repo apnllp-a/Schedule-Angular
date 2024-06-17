@@ -21,10 +21,10 @@ export class LoginPageComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-f: any;
+  alertMessage = '';
 
 
-  constructor(private authService: AuthService, private storageService: StorageService,
+  constructor(public authService: AuthService, private storageService: StorageService,
               private router: Router ,private eventBusService: EventBusService,    ) { }
 
   ngOnInit(): void {
@@ -50,6 +50,9 @@ f: any;
           case 'Board':
             this.router.navigate(['/main-page-board']);
             break;
+          case 'Employee':
+            this.alertMessage = 'ไม่มีสิทธิ์เข้าใช้งาน ให้ใช้ได้แค่ Mobile App';
+            break;
           default:
             this.router.navigate(['/']);
             break;
@@ -61,7 +64,10 @@ f: any;
       }
     );
   }
-
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
   
   reloadPage(): void {
     window.location.reload();
