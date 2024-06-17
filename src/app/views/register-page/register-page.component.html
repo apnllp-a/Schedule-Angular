@@ -1,74 +1,55 @@
-<body>
-  <div class="container">
-    <h1>Create your account with Schedule</h1>
-    <div class="dialog-alert-status" *ngIf="submitted" >
-      <div class="dialog-content">
-          <i (click)="submitted =! submitted" class="fa-solid fa-xmark"></i>
-          <div class="detail-content">
-            <h3>{{h3_alert}}</h3>
-            <p>{{p_alert}}</p>
-            <div class="btn_group">
-              <a href="/">เข้าสู่ระบบ</a>
-            </div>
-          </div>
-      </div>
-  </div>
-
-
-
-
-
-    <div class="form-register-card">
-      
-      <div class="item-left">
-        <mat-form-field appearance="outline">
-          <mat-label>First-Name</mat-label>
-          <input type="text" name="firstname" [(ngModel)]="tutorial.firstname" matInput
-            placeholder="Enter your First Name" type="text" [formControl]="firstname" required>
-          <mat-error *ngIf="firstname.invalid">{{getErrorMessageFirstname()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input type="text" name="username" [(ngModel)]="tutorial.username" matInput #inputusername maxlength="10"
-            placeholder="Enter your Username" type="text" [formControl]="username" required>
-          <mat-hint align="end">{{inputusername.value.length}}/10</mat-hint>
-          <mat-error *ngIf="username.invalid">{{getErrorMessageUsername()}}</mat-error>
-        </mat-form-field>
-        <!-- <mat-form-field appearance="outline">
-          <mat-label>Department</mat-label>
-          <input type="text" name="department" [(ngModel)]="tutorial.departmentDetail" matInput
-            placeholder="Enter your Department" type="text">
-        </mat-form-field> -->
-
-      </div>
-      <div class="item-right">
-        <mat-form-field appearance="outline">
-          <mat-label>Last-Name</mat-label>
-          <input type="text" name="lastname" [(ngModel)]="tutorial.lastname" matInput placeholder="Enter your Last Name"
-            type="text" [formControl]="lastname" required>
-          <mat-error *ngIf="lastname.invalid">{{getErrorMessageLastname()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input name="password" [(ngModel)]="tutorial.password" matInput #inputpass minlength="4" maxlength="8"
-            placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-hint align="end">{{inputpass.value.length}}/8</mat-hint>
-          <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
-        </mat-form-field>
-        <!-- <mat-form-field appearance="outline">
-          <mat-label>Status</mat-label>
-          <input type="text" name="status" [(ngModel)]="tutorial.status" matInput placeholder="Enter your Status"
-            type="text">
-        </mat-form-field> -->
+<div class="container">
+  <h1>Create your account with Schedule</h1>
+  <div class="dialog-alert-status" *ngIf="submitted">
+    <div class="dialog-content">
+      <i (click)="submitted = !submitted" class="fa-solid fa-xmark"></i>
+      <div class="detail-content">
+        <h3>{{ h3_alert }}</h3>
+        <p>{{ p_alert }}</p>
+        <div class="btn_group">
+          <a href="/">เข้าสู่ระบบ</a>
+        </div>
       </div>
     </div>
-
-    <button class="submit_css"  type="submit" (click)="saveTutorial()">Confirm !</button>
   </div>
-  <!-- <img src="../../../assets/images/login.png" alt=""> -->
-</body>
 
+  <div class="form-register-card">
+    <div class="item-left">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" name="username" [(ngModel)]="user.username" matInput #inputusername maxlength="10" placeholder="Enter your Username" [formControl]="username" required>
+        <mat-hint align="end">{{ inputusername.value.length }}/10</mat-hint>
+        <mat-error *ngIf="username.invalid">{{ getErrorMessageUsername() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>First-Name</mat-label>
+        <input type="text" name="firstName" [(ngModel)]="user.firstName" matInput placeholder="Enter your First Name" [formControl]="firstName" required>
+        <mat-error *ngIf="firstName.invalid">{{ getErrorMessageFirstName() }}</mat-error>
+      </mat-form-field>
+      </div>
+    <div class="item-right">
+      <mat-form-field appearance="outline">
+        <mat-label>Last-Name</mat-label>
+        <input type="text" name="lastName" [(ngModel)]="user.lastName" matInput placeholder="Enter your Last Name" [formControl]="lastName" required>
+        <mat-error *ngIf="lastName.invalid">{{ getErrorMessageLastName() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <input type="text" name="department" [(ngModel)]="user.department" matInput placeholder="Enter your Department" [formControl]="department" required>
+        <mat-error *ngIf="department.invalid">{{ getErrorMessageDepartment() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input name="password" [(ngModel)]="user.password" matInput #inputpass minlength="4" maxlength="8" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-hint align="end">{{ inputpass.value.length }}/8</mat-hint>
+        <mat-error *ngIf="password.invalid">{{ getErrorMessagePassword() }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button class="submit_css" type="submit" (click)="saveUser()">Confirm !</button>
+</div>
