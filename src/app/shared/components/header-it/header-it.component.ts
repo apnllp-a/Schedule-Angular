@@ -13,8 +13,9 @@ import  {Router} from '@angular/router'
 export class HeaderItComponent implements OnInit {
   displayUi =false;
   showFiller = false;
-  username?: string;
-
+  username: string;
+  storedValues: string | null;
+  userData:any;
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
@@ -23,8 +24,10 @@ export class HeaderItComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
+    this.storedValues = this.storageService.getItem('username');
     const user = this.storageService.getUser();
-    this.username = user.username;
+    this.userData =   this.storedValues;
+    console.log(user)
   }
   
 
