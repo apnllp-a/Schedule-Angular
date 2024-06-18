@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main-page-it',
@@ -22,10 +23,16 @@ export class MainPageItComponent implements OnInit {
   
  
 
-  constructor(private activatedRoute: ActivatedRoute, ) { }
+  constructor(private activatedRoute: ActivatedRoute,public  authService: AuthService, private router: Router ) { }
 
   ngOnInit(): void {
    this.testsID = this.activatedRoute.snapshot.paramMap.get('id');
   }
+
+
+  // logout(): void {
+  //   this.authService.logout();
+  //   this.router.navigate(['/login']);
+  // }
 
 }

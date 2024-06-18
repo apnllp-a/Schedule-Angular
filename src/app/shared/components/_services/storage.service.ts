@@ -34,4 +34,8 @@ export class StorageService {
 
     return false;
   }
+
+  getItem(key: string): string | null {
+    return localStorage.getItem(key);
+  }
 }

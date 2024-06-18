@@ -55,7 +55,20 @@ export class UsersService {
     return this.http.get<any[]>(`${this.baseUrl}?firstname=${firstname}`);
   }
 
-  getUser(username: string): Observable<User> { // Add this method
+  getUser(username: string | null): Observable<User> { // Add this method
     return this.http.get<User>(`${this.baseUrl}/user/${username}`);
+  }
+
+  updateStatus(userId: string, newStatus: 'active' | 'pending' | 'disabled' | 'inactive'): Observable<any> {
+    const updateUrl = `${this.baseUrl}/update/${userId}`;
+    return this.http.patch(updateUrl, { status: newStatus });
+  }
+
+  getPendingUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/pending`);
+  }
+
+  getActiveUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/active`);
   }
 }
