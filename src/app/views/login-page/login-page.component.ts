@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnInit {
             this.router.navigate(['/main-page-hr']);
             break;
           case 'IT':
-            this.router.navigate(['/main-page-it']);
+            this.router.navigate(['/main-page-it/list-name-page']);
             break;
           case 'Head':
             this.router.navigate(['/main-page-head']);
