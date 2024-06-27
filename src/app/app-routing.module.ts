@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/register-page/register-page.module').then(m => m.RegisterPageModule),
   },
   {
-    path: 'main-page-hr',component: MainPageComponent, canActivate: [AuthGuard], data: { expectedRole: 'HR' },
+    path: 'main-page-hr',
     loadChildren: () => import('./views/main-page-hr/main-page.module').then(m => m.MainPageModule),
   },
   {

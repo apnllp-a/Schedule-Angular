@@ -8,6 +8,9 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { text } from 'body-parser';
 import { style } from '@angular/animations';
+import { ShiftSwapService } from 'src/app/services/shift-swap.service';
+import { ShiftSwap } from 'src/app/models/shift-swap/shift-swap.model';
+import { DocumentService } from 'src/app/services/document.service';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -17,9 +20,10 @@ import { style } from '@angular/animations';
   styleUrls: ['./work-shift-page.component.scss'],
 })
 export class WorkShiftPageComponent implements OnInit {
-
+  shiftSwaps: ShiftSwap[] = [];
   pdfObj: any;
-
+  document!: any[];
+  user!: any[];
   products = [
     {
       code: 5,
@@ -118,10 +122,50 @@ export class WorkShiftPageComponent implements OnInit {
       admin: 'admin-Ap'
     }
   ];
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private shiftSwapService: ShiftSwapService,
+    private leaveService: DocumentService
+  ) { }
 
   ngOnInit(): void {
+    this.loadShiftSwaps();
+    this.retrieveDocument();
   }
+
+  loadShiftSwaps(): void {
+    this.shiftSwapService.getShiftSwaps().subscribe(
+      (data) => {
+        this.shiftSwaps = data;
+        console.log(this.shiftSwaps)
+      },
+      (error) => {
+        console.error('Error fetching shift swaps', error);
+      }
+    );
+  }
+
+
+  retrieveDocument(): void {
+    this.leaveService.getAllLeaves()
+      .subscribe({
+        next: (data) => {
+          this.document = data;
+          console.log(this.document);
+          this.leaveService.getLeaveById(data.userId._id) 
+          .subscribe({
+            next: (data) => {
+              this.user = data;
+              console.log(this.user);
+              
+            },
+            error: (e) => console.error(e)
+          });
+
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(DetailWorkShiftComponent, {
 
