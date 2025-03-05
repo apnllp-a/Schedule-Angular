@@ -45,6 +45,7 @@
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.1",
     "ngx-bootstrap": "^9.0.0",
+    "or": "^0.2.0",
     "pdfmake": "^0.2.10",
     "popper.js": "^1.16.1",
     "primeicons": "^6.0.1",
